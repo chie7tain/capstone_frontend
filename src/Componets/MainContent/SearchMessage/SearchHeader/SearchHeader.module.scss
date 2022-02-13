@@ -1,0 +1,14 @@
+@use "../../../../Styles/variables.scss" as varr;
+.search__nav {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  height: 8.8rem;
+  padding: 1.6rem 2.4rem;
+  background-color: varr.$bg_header;
+
+  h3 {
+    font-size: 1.8rem;
+    font-weight: 400;
+  }
+}
