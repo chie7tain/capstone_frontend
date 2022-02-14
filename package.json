@@ -12,10 +12,12 @@
     "@types/react-dom": "^17.0.11",
     "@types/sass": "^1.43.1",
     "node": "^17.4.0",
+    "radium": "^0.26.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-scripts": "5.0.0",
+    "react-transition-group": "^4.4.2",
     "sass": "^1.49.7",
     "typescript": "^4.5.5",
     "web-vitals": "^2.1.4"
@@ -43,5 +45,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/radium": "^0.24.4",
+    "@types/react-transition-group": "^4.4.4"
   }
 }

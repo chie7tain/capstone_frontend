@@ -1,19 +1,12 @@
 import React, { useState } from "react";
-import {} from "";
+// import { CSSTransition } from "react-transition-group";
 import Chat from "./Componets/MainContent/Chat/Chat";
 import SearchMessage from "./Componets/MainContent/SearchMessage/SearchMessage";
 import styles from "./App.module.scss";
 import { ChatContextProvider } from "./Context/ChatContext";
+// import Radium, { Style } from "radium";
 
 const App: React.FC = () => {
-  // const openSearch = () => {
-  //   setSearchView(true);
-  // };
-
-  // const closeSearch = () => {
-  //   setSearchView(false);
-  // };
-
   return (
     <div className={styles.App}>
       <div className={styles.sidebar}>SideBar</div>
