@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import axios from "axios";
-import styles from "./SideBar.module.scss";
+import styles from "./LeftBar.module.scss";
 import image1 from "../../assets/image1.png";
 import Vector from "../../assets/Vector.png";
 import { GlobalStateContext } from "../../context/GlobalState";

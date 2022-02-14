@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./SideBar.module.scss";
+import styles from "./RightBar.module.scss";
 
 import picture from "../../assets/picture.png";
 

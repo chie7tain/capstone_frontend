@@ -3,7 +3,7 @@ import LeftBarFriends from "./LeftBarFriends";
 import person from "../../assets/photo.png";
 import eclipsis from "../../assets/Ellipse.png";
 import dropdown from "../../assets/Stroke.png";
-import styles from "./SideBar.module.scss";
+import styles from "./LeftBar.module.scss";
 
 const LeftSideBar: React.FC = () => {
   return (
