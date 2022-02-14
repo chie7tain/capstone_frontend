@@ -4,16 +4,16 @@ import { ActionType } from "./actionType";
 import AddReducers from "./AddReducers";
 
 interface reducerState {
-  data: any[];
+  data: { [key: string]: any };
   loading: boolean;
   error: string | null;
   getFavoriteFriends?: () => void;
   getFriends?: () => void;
   getGroups?: () => void;
 }
-
+//
 const initialState: reducerState = {
-  data: [],
+  data: { friends: [], groups: [], favoriteFriends: [] },
   loading: false,
   error: null,
 };
@@ -25,28 +25,31 @@ export const GlobalProvider = ({ children }: any) => {
 
   const getFavoriteFriends = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:3050/api/v1/users/friend"
-      );
+      const {
+        data: { data },
+      } = await axios.get("http://localhost:3050/api/v1/users/friend", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NDg2NjI0NH0.V-fzXylcivuBfrwrOb6f8m8J77vrJWdwhAXZINvw1co`,
+        },
+      });
 
-      console.log(res.data);
+      console.log(data, "res");
       dispatch({
         type: ActionType.GET_FAVORITE_FRIENDS_SUCCESS,
-        payload: res.data,
+        payload: data,
       });
     } catch (error: any) {
       dispatch({
         type: ActionType.GET_FAVORITE_FRIENDS_FAILURE,
-        payload: error.response.data.error,
+        payload: "error",
       });
     }
   };
 
   const getFriends = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:3050/api/v1/users/friends"
-      );
+      const res = await axios.get("http://localhost:3050/api/v1/users/friends");
 
       dispatch({
         type: ActionType.GET_FRIENDS_SUCCESS,
@@ -55,16 +58,14 @@ export const GlobalProvider = ({ children }: any) => {
     } catch (error: any) {
       dispatch({
         type: ActionType.GET_FRIENDS_FAILURE,
-        payload: error.response.data.message,
+        payload: error.response.message,
       });
     }
   };
 
   const getGroups = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:3050/api/v1/groups/user"
-      );
+      const res = await axios.get("http://localhost:3050/api/v1/groups/user");
 
       dispatch({
         type: ActionType.GET_GROUPS_SUCCESS,
@@ -73,23 +74,23 @@ export const GlobalProvider = ({ children }: any) => {
     } catch (error: any) {
       dispatch({
         type: ActionType.GET_GROUPS_FAILURE,
-        payload: error.response.data.error,
+        payload: error.response.error,
       });
     }
-
-    return (
-      <GlobalStateContext.Provider
-        value={{
-          data: state.data,
-          loading: state.loading,
-          error: state.error,
-          getFavoriteFriends,
-          getFriends,
-          getGroups,
-        }}
-      >
-        {children}
-      </GlobalStateContext.Provider>
-    );
   };
+
+  return (
+    <GlobalStateContext.Provider
+      value={{
+        data: state.data,
+        loading: state.loading,
+        error: state.error,
+        getFavoriteFriends,
+        getFriends,
+        getGroups,
+      }}
+    >
+      {children}
+    </GlobalStateContext.Provider>
+  );
 };

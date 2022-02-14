@@ -2,32 +2,32 @@ import { ActionType } from "./actionType";
 
 interface GET_FAVORITE_FRIENDS_SUCCESS {
   type: typeof ActionType.GET_FAVORITE_FRIENDS_SUCCESS;
-  payload: any;
+  payload: any[];
 }
 
 interface GET_FAVORITE_FRIENDS_FAILURE {
   type: typeof ActionType.GET_FAVORITE_FRIENDS_FAILURE;
-  payload: any;
+  payload: string;
 }
 
 interface GET_FRIENDS_SUCCESS {
   type: typeof ActionType.GET_FRIENDS_SUCCESS;
-  payload: any;
+  payload: any[];
 }
 
 interface GET_FRIENDS_FAILURE {
   type: typeof ActionType.GET_FRIENDS_FAILURE;
-  payload: any;
+  payload: string;
 }
 
 interface GET_GROUPS_SUCCESS {
   type: typeof ActionType.GET_GROUPS_SUCCESS;
-  payload: any;
+  payload: any[];
 }
 
 interface GET_GROUPS_FAILURE {
   type: typeof ActionType.GET_GROUPS_FAILURE;
-  payload: any;
+  payload: string;
 }
 
 export type Action =

@@ -3,7 +3,7 @@ import { ActionType } from './actionType';
 
 
 interface reducerState {
-    data: any
+    data: { [key: string]: any };
     loading: boolean
     error: string | null
 }
@@ -13,7 +13,7 @@ const AddReducers = (state: reducerState, action: Action): reducerState => {
             return {
                 ...state,
                 loading: true,
-                data: [...state.data, action.payload]
+                data: { ...state.data, favoriteFriendsList: action.payload }
             }
         
         case ActionType.GET_FAVORITE_FRIENDS_FAILURE:
@@ -27,7 +27,7 @@ const AddReducers = (state: reducerState, action: Action): reducerState => {
             return {
                 ...state,
                 loading: true,
-                data: [...state.data, action.payload]
+                data: { ...state.data, friends: action.payload }
             }
         
         case ActionType.GET_FRIENDS_FAILURE:
@@ -41,7 +41,7 @@ const AddReducers = (state: reducerState, action: Action): reducerState => {
             return {
                 ...state,
                 loading: true,
-                data: [...state.data, action.payload]
+                data: { ...state.data, groups: action.payload }
             }
         
         
