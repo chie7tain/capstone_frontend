@@ -1,35 +1,18 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import styles from "./LeftBar.module.scss";
 import image1 from "../../assets/image1.png";
 import Vector from "../../assets/Vector.png";
 import { GlobalStateContext } from "../../context/GlobalState";
-
-const FavoriteFriends: React.FC = () => {
-  return (
-    <>
-      <div className={styles["chat-headerInnerRight"]}>
-        <div className={styles["chat-headerRightImage"]}>
-          <img src={image1} alt="" />
-        </div>
-        <div className={styles["chat-headerRightText"]}>
-          <div className={styles["chat-headerRightTextName"]}>Coder Fisher</div>
-          <div className={styles["chat-headerRightTextMessage"]}>
-            ha ha ha oh man
-          </div>
-        </div>
-      </div>
-      <div className={styles["chat-headerInnerLeft"]}>
-        <div className={styles["chat-headerLeftTime"]}>05:15pm</div>
-        <div className={styles["chat-headerLeftIcon"]}>
-          <img className={styles["chatpin"]} src={Vector} alt="" />
-        </div>
-      </div>
-    </>
-  );
-};
+import FavoriteFriendsData from "./FavoriteFriendsData";
+import FriendsData from "./FriendsData";
+import GroupsData from "./GroupsData";
 
 const LeftBarFriends: React.FC = () => {
-  const { data, getFavoriteFriends } = useContext(GlobalStateContext);
+  const { getFavoriteFriends, getFriends, getGroups } =
+    useContext(GlobalStateContext);
+  const [showFavorite, setShowFavorites] = useState(false);
+  const [showFriends, setShowFriends] = useState(false);
+  const [showGroups, setShowGroups] = useState(false);
 
   useEffect(() => {
     getFavoriteFriends && getFavoriteFriends();
@@ -37,72 +20,40 @@ const LeftBarFriends: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  let displayFavoriteFriends = "";
+  useEffect(() => {
+    getFriends && getFriends();
 
-  const renderFavoriteFriends = () => {
-    displayFavoriteFriends =
-      data &&
-      data.favoriteFriends.map((friends: any, index: number) => {
-        return (
-          <>
-            <div className={styles["chat-headerInnerRight"]}>
-              <div className={styles["chat-headerRightImage"]}>
-                <img src={friends.avatar} alt="" />
-              </div>
-              <div className={styles["chat-headerRightText"]}>
-                <div className={styles["chat-headerRightTextName"]}>
-                  <p>{`${friends.firstName} ${friends.lastName}`
-                    ? friends.phoneNumber
-                    : `${friends.firstName} ${friends.lastName}`}
-                </p>
-                </div>
-                <div className={styles["chat-headerRightTextMessage"]}>
-                  ha ha ha oh man
-                </div>
-              </div>
-            </div>
-            <div className={styles["chat-headerInnerLeft"]}>
-              <div className={styles["chat-headerLeftTime"]}>05:15pm</div>
-              <div className={styles["chat-headerLeftIcon"]}>
-                <img className={styles["chatpin"]} src={Vector} alt="" />
-              </div>
-            </div>
-          </>
-        );
-      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getGroups && getGroups();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const toggleFavoriteFriends = () => {
+    setShowFavorites(!showFavorite);
+  };
+
+  const toggleFriends = () => {
+    setShowFriends(!showFriends);
+  };
+
+  const toggleGroups = () => {
+    setShowGroups(!showGroups);
   };
 
   return (
     <div>
       <div className={styles["button"]}>
-        <button onClick={renderFavoriteFriends}>Favorites</button>
-
-        {displayFavoriteFriends}
-        <button>Friends</button>
-        <button>Groups</button>
+        <button onClick={toggleFavoriteFriends}>Favorites</button>
+        <button onClick={toggleFriends}>Friends</button>
+        <button onClick={toggleGroups}>Groups</button>
       </div>
-
-      <div className={styles["chat-header"]}>
-        <div className={styles["chat-headerInnerRight"]}>
-          <div className={styles["chat-headerRightImage"]}>
-            <img src={image1} alt="" />
-          </div>
-          <div className={styles["chat-headerRightText"]}>
-            <div className={styles["chat-headerRightTextName"]}>
-              David Momoh
-            </div>
-            <div className={styles["chat-headerRightTextMessage"]}>
-              ha ha ha oh man
-            </div>
-          </div>
-        </div>
-        <div className={styles["chat-headerInnerLeft"]}>
-          <div className={styles["chat-headerLeftTime"]}>05:15pm</div>
-          <div className={styles["chat-headerLeftIcon"]}>
-            <img className={styles["chatpin"]} src={Vector} alt="" />
-          </div>
-        </div>
-      </div>
+      {showFavorite ? <FavoriteFriendsData /> : null}
+      {showFriends ? <FriendsData /> : null}
+      {showGroups ? <GroupsData /> : null}
 
       <img src="" alt="" />
     </div>

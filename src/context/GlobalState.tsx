@@ -30,11 +30,11 @@ export const GlobalProvider = ({ children }: any) => {
       } = await axios.get("http://localhost:3050/api/v1/users/friend", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NDg2NjI0NH0.V-fzXylcivuBfrwrOb6f8m8J77vrJWdwhAXZINvw1co`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NDkxODUxMH0.LtH8KCDZL4jC1psm62dlXQGmaKLFmC3rBFV2XQ_XOBA`,
         },
       });
 
-      console.log(data, "res");
+      // console.log(data, "res");
       dispatch({
         type: ActionType.GET_FAVORITE_FRIENDS_SUCCESS,
         payload: data,
@@ -49,11 +49,20 @@ export const GlobalProvider = ({ children }: any) => {
 
   const getFriends = async () => {
     try {
-      const res = await axios.get("http://localhost:3050/api/v1/users/friends");
+      const {
+        data: { data },
+      } = await axios.get("http://localhost:3050/api/v1/users/friends", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NDkxODUxMH0.LtH8KCDZL4jC1psm62dlXQGmaKLFmC3rBFV2XQ_XOBA`,
+        },
+      });
+
+      // console.log(data, "friends-list");
 
       dispatch({
         type: ActionType.GET_FRIENDS_SUCCESS,
-        payload: res.data,
+        payload: data,
       });
     } catch (error: any) {
       dispatch({
@@ -65,11 +74,18 @@ export const GlobalProvider = ({ children }: any) => {
 
   const getGroups = async () => {
     try {
-      const res = await axios.get("http://localhost:3050/api/v1/groups/user");
+      const res = await axios.get("http://localhost:3050/api/v1/groups/user", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NDk1MDMyM30.oOhY7PqWbPrKn_imN9z-sDrjnIoESXRLBLpTVHE1t5w`,
+        },
+      });
 
+
+      console.log(res.data, "groups-list");
       dispatch({
         type: ActionType.GET_GROUPS_SUCCESS,
-        payload: res.data.allGroups,
+        payload: res.data,
       });
     } catch (error: any) {
       dispatch({
@@ -78,6 +94,8 @@ export const GlobalProvider = ({ children }: any) => {
       });
     }
   };
+
+  // console.log(state.data, "state");
 
   return (
     <GlobalStateContext.Provider
