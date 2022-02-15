@@ -13,7 +13,6 @@ const Chat: React.FC<ChatProps> = () => {
   const mediaMatch = useMediaQuery("(min-width: 1000px)");
 
   const useQuery = !mediaMatch && showSearchRes;
-  console.log("xxxxxx", useQuery);
 
   const stylesEdit: CSSProperties = {
     display: `${useQuery ? "none" : "flex"}`,
