@@ -17,7 +17,7 @@ const SearchHeader: React.FC<ISearchHeader> = () => {
       <i onClick={closeView}>
         <IoClose />
       </i>
-      <h3>{"Search Messages"}</h3>
+      <h3>{setChatContext?.isProfile ? "Contact Info" : "Search Messages"}</h3>
     </nav>
   );
 };

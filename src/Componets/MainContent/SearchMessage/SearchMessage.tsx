@@ -8,16 +8,16 @@ import ChatContext from "../../../Context/ChatContext";
 type SearcViewhProp = {};
 
 const SearchMessage: React.FC<SearcViewhProp> = () => {
-  const showSearchRes = useContext(ChatContext)?.searchView;
+  const showSearchRes = useContext(ChatContext);
 
   return (
     <div
       className={`${styles.search__message} ${
-        showSearchRes ? "" : styles.show__search
+        showSearchRes?.searchView ? "" : styles.show__search
       }`}
     >
       <SearchHeader />
-      <SearchBody />
+      {showSearchRes?.isProfile ? "" : <SearchBody />}
     </div>
   );
 };

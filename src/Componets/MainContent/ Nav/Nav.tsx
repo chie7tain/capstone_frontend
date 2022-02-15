@@ -12,6 +12,7 @@ const Nav: React.FC<NavProps> = () => {
   const setChatContext = useContext(ChatContext);
   const handleSearchShow = () => {
     setChatContext?.setSearchView(true);
+    setChatContext?.setIsProfile(false);
   };
 
   return (

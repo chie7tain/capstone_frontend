@@ -10,6 +10,7 @@ const Header: React.FC = () => {
   const setChatContext = useContext(ChatContext);
   const handleSearchShow = () => {
     setChatContext?.setSearchView(true);
+    setChatContext?.setIsProfile(true);
   };
 
   return (
