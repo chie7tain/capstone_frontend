@@ -6,6 +6,8 @@ type ChatContextProviderProps = {
 
 type ChatContextType = {
   searchView: boolean;
+  showAudio: boolean;
+  setShowAudio:React.Dispatch<React.SetStateAction<boolean>>;
   setSearchView: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
@@ -13,9 +15,10 @@ const ChatContext = createContext<ChatContextType | null>(null);
 
 export const ChatContextProvider = ({ children }: ChatContextProviderProps) => {
   const [searchView, setSearchView] = useState<boolean>(false);
+  const [showAudio, setShowAudio] = useState<boolean>(false);
 
   return (
-    <ChatContext.Provider value={{ searchView, setSearchView }}>
+    <ChatContext.Provider value={{ searchView, setSearchView, showAudio, setShowAudio }}>
       {children}
     </ChatContext.Provider>
   );

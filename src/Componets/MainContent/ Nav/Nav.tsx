@@ -14,10 +14,14 @@ const Nav: React.FC<NavProps> = () => {
     setChatContext?.setSearchView(true);
   };
 
+  const handleAudioCall = ()=>{
+    setChatContext?.setShowAudio(true)
+  }
+  
   return (
     <nav className={styles.nav}>
       <ul>
-        <li>
+        <li onClick={handleAudioCall}>
           <i>
             <BiPhoneCall />
           </i>
