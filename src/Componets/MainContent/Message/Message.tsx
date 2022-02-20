@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Message.module.scss";
+import TextMessage from "./TextMessage/TextMessage";
 import { RiLock2Line } from "react-icons/ri";
 
 const Message = () => {
@@ -13,6 +14,10 @@ const Message = () => {
           Messages are end-to-end encrypted. No one outside of this chat, not
           even WhatsApp can read or listen to them click to learn more.
         </p>
+      </div>
+      <div>
+        <TextMessage />
+        <TextMessage />
       </div>
     </div>
   );

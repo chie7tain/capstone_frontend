@@ -1,0 +1,29 @@
+@use "../../../../Styles/variables.scss" as varr;
+
+.textM {
+  background-color: white;
+  color: #444;
+  width: 40%;
+  display: flex;
+  gap: 0.2rem;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  padding: 1rem;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+
+  p {
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+
+  span {
+    align-self: flex-end;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    color: varr.$bg_wa;
+  }
+}

@@ -1,5 +1,10 @@
 @use "../../../../Styles//variables.scss" as varr;
 
+.search__container {
+  overflow: scroll;
+  height: 90vh;
+}
+
 .msearch__input {
   background-color: varr.$bg_header;
   height: 5rem;
@@ -29,6 +34,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2rem;
+  // display: none;
 
   p {
     font-size: 1.4rem;
@@ -38,4 +45,8 @@
 
 .search_icon {
   color: varr.$bg-wa;
+}
+
+.close__search {
+  padding-right: 0.5rem;
 }
