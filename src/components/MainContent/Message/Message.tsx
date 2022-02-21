@@ -3,7 +3,7 @@ import styles from "./Message.module.scss";
 import TextMessage from "./TextMessage/TextMessage";
 import ImageMessage from "./ImageMessage/ImageMessage";
 import VideoMessage from "./VideoMessage/VideoMessage";
-import AudioMessage from "./AudioM/AudioMessage";
+// import AudioMessage from "./AudioM/AudioMessage";
 import { RiLock2Line } from "react-icons/ri";
 
 const Message = () => {
@@ -24,7 +24,7 @@ const Message = () => {
         <TextMessage />
         <ImageMessage />
         <VideoMessage />
-        <AudioMessage />
+        {/* <AudioMessage /> */}
       </div>
     </div>
   );

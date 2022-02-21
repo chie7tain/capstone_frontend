@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import Message from "../Message/Message";
 import MessageInput from "../MessageInput/MessageInput";
 import { useMediaQuery } from "../../Hooks/Medis";
-import ChatContext from "../../../Context/ChatContext";
+import ChatContext from "../../../context/ChatContext";
 import styles from "./Chat.module.scss";
 
 type ChatProps = {};
