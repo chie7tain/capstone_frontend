@@ -4,6 +4,7 @@
   background-color: varr.$bg;
   height: 90%;
   background-image: url("../../../Images//whatsapp_bg.jpeg");
+  overflow: scroll;
 }
 
 .encryption {
@@ -30,4 +31,9 @@
   -moz-border-radius: 1rem;
   -ms-border-radius: 1rem;
   -o-border-radius: 1rem;
+}
+
+.messageContainer {
+  // overflow: scroll;
+  // height: 90vh;
 }
