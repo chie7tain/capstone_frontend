@@ -1,25 +1,23 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { BrowserRouter, Router as Route, Link } from "react-router-dom";
 import styles from "./LeftBar.module.scss";
-import image1 from "../../assets/image1.png";
-import Vector from "../../assets/Vector.png";
-import { GlobalStateContext } from "../../context/GlobalState";
 import FavoriteFriendsData from "./FavoriteFriendsData";
 import FriendsData from "./FriendsData";
 import GroupsData from "./GroupsData";
+import { GlobalStateContext } from "../../context/GlobalState";
 
 const LeftBarFriends: React.FC = () => {
-  const { getFavoriteFriends, getFriends, getGroups } =
-    useContext(GlobalStateContext);
+  const { getFavoriteFriends, getFriends, getGroups } = useContext(GlobalStateContext)
   const [showFavorite, setShowFavorites] = useState(false);
-  const [showFriends, setShowFriends] = useState(false);
+  const [showFriends, setShowFriends] = useState(true);
   const [showGroups, setShowGroups] = useState(false);
+   useEffect(() => {
+     getFavoriteFriends && getFavoriteFriends();
 
-  useEffect(() => {
-    getFavoriteFriends && getFavoriteFriends();
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, []);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  
   useEffect(() => {
     getFriends && getFriends();
 

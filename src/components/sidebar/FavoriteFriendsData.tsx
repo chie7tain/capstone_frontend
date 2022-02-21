@@ -1,20 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Vector from "../../assets/Vector.png";
 import styles from "./LeftBar.module.scss";
 import { GlobalStateContext } from "../../context/GlobalState";
 
 const FavoriteFriendsData: React.FC = () => {
-  const { data } = useContext(GlobalStateContext);
-  //   console.log(data, "data");
+  const { data, getFavoriteFriends } = useContext(GlobalStateContext);
   const { favoriteFriendsList } = data;
   // console.log(favoriteFriendsList, "favoriteFriendsList33");
+
+  useEffect(() => {
+    getFavoriteFriends && getFavoriteFriends();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   return (
     <div>
       <div className={styles["chat-header"]}>
         <div>
-          {/* {console.log(favoriteFriendsList, "friend")} */}
-          {favoriteFriendsList.favoriteFriendsList.map(
+          {favoriteFriendsList?.favoriteFriendsList.map(
             (friend: any, index: string) => {
               return (
                 <div key={index}>

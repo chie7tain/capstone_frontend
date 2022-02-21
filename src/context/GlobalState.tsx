@@ -30,7 +30,7 @@ export const GlobalProvider = ({ children }: any) => {
       } = await axios.get("http://localhost:3050/api/v1/users/friend", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NDkxODUxMH0.LtH8KCDZL4jC1psm62dlXQGmaKLFmC3rBFV2XQ_XOBA`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NTQ2NTQzMn0.GM8DGliyN8SKHhtsOJtNpq2oUrqSUEdhGE2nBs_EwOY`,
         },
       });
 
@@ -54,7 +54,7 @@ export const GlobalProvider = ({ children }: any) => {
       } = await axios.get("http://localhost:3050/api/v1/users/friends", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NDkxODUxMH0.LtH8KCDZL4jC1psm62dlXQGmaKLFmC3rBFV2XQ_XOBA`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NTQ2NTQzMn0.GM8DGliyN8SKHhtsOJtNpq2oUrqSUEdhGE2nBs_EwOY`,
         },
       });
 
@@ -77,12 +77,12 @@ export const GlobalProvider = ({ children }: any) => {
       const res = await axios.get("http://localhost:3050/api/v1/groups/user", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NDk1MDMyM30.oOhY7PqWbPrKn_imN9z-sDrjnIoESXRLBLpTVHE1t5w`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NTQ2NTQzMn0.GM8DGliyN8SKHhtsOJtNpq2oUrqSUEdhGE2nBs_EwOY`,
         },
       });
 
 
-      console.log(res.data, "groups-list");
+      // console.log(res.data, "groups-list");
       dispatch({
         type: ActionType.GET_GROUPS_SUCCESS,
         payload: res.data,
@@ -95,7 +95,7 @@ export const GlobalProvider = ({ children }: any) => {
     }
   };
 
-  // console.log(state.data, "state");
+  console.log(state.data, "state");
 
   return (
     <GlobalStateContext.Provider

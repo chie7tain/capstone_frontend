@@ -1,13 +1,18 @@
-import React, {useContext} from 'react';
-import styles from './LeftBar.module.scss';
-import { GlobalStateContext } from '../../context/GlobalState';
-import Vector from '../../assets/Vector.png';
+import React, { useContext, useEffect } from "react";
+import styles from "./LeftBar.module.scss";
+import { GlobalStateContext } from "../../context/GlobalState";
+import { AiOutlinePushpin } from "react-icons/ai";
 
 const GroupsData: React.FC = () => {
-    const { data } = useContext(GlobalStateContext);
-    const { groups } = data;
-    console.log(groups?.allgroups, "checking groups");
-    // groups.map((e: any) => console.log(e, "groups"))
+  const { data, getGroups } = useContext(GlobalStateContext);
+  const { groups } = data;
+  console.log(groups?.allgroups, "checking groups");
+    
+     useEffect(() => {
+       getGroups && getGroups();
+
+       // eslint-disable-next-line react-hooks/exhaustive-deps
+     }, []);
   return (
     <div>
       {groups?.allgroups.map((group: any, index: string) => {
@@ -33,7 +38,7 @@ const GroupsData: React.FC = () => {
             <div className={styles["chat-headerInnerLeft"]}>
               <div className={styles["chat-headerLeftTime"]}>05:15pm</div>
               <div className={styles["chat-headerLeftIcon"]}>
-                <img className={styles["chatpin"]} src={Vector} alt="" />
+                <AiOutlinePushpin className={styles["chatpin"]} />
               </div>
             </div>
           </div>
@@ -41,6 +46,6 @@ const GroupsData: React.FC = () => {
       })}
     </div>
   );
-}
+};
 
-export default GroupsData
+export default GroupsData;
