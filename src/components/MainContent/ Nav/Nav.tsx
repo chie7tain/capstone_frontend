@@ -4,7 +4,7 @@ import { IoVideocamOutline } from "react-icons/io5";
 import { CgSearchLoading } from "react-icons/cg";
 import { VscChevronDown, VscKebabVertical } from "react-icons/vsc";
 import styles from "./Nav.module.scss";
-import ChatContext from "../../../Context/ChatContext";
+import ChatContext from "../../../context/ChatContext";
 
 type NavProps = {};
 

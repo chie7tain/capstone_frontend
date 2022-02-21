@@ -3,7 +3,7 @@ import styles from "./SearchMessage.module.scss";
 import SearchHeader from "./SearchHeader/SearchHeader";
 import SearchBody from "./SearchBody/SearchBody";
 
-import ChatContext from "../../../Context/ChatContext";
+import ChatContext from "../../../context/ChatContext";
 
 type SearcViewhProp = {};
 

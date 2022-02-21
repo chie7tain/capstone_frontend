@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import ChatContext from "../../../../Context/ChatContext";
+import ChatContext from "../../../../context/ChatContext";
 import styles from "./SearchHeader.module.scss";
 import { IoClose } from "react-icons/io5";
 
