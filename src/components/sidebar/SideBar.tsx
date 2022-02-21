@@ -7,7 +7,7 @@ const SideBar: React.FC = () => {
   return (
     <div className={styles["sidebar-container"]}>
       <LeftSideBar />
-      <RightSideBAr />
+      {/* <RightSideBAr /> */}
     </div>
   );
 };
