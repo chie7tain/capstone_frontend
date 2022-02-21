@@ -1,0 +1,12 @@
+@use "./Styles/variables.scss" as varr;
+
+.App {
+  display: flex;
+  height: 70.8rem;
+  height: 100vh;
+}
+
+.sidebar {
+  flex: 0 0.83 40rem;
+  background-color: hotpink;
+}
