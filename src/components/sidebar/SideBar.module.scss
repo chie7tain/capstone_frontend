@@ -1,68 +1,69 @@
-
 .sidebar-container {
-    display: flex;
-    background-color: #fafafa;
+  display: flex;
+  background-color: #fafafa;
+  background-color: red;
+  height: 100vh;
+  overflow: scroll;
 
-    // for the sidebar
-    .chat-header {
-        display: flex;
-        height: 60px;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 2rem;
-        // padding-right: 6rem;
-        // width: 7rem;
-        // gap: 5rem;
+  // for the sidebar
+  // .chat-header {
+  //     display: flex;
+  //     height: 60px;
+  //     justify-content: space-between;
+  //     align-items: center;
+  //     margin-top: 2rem;
+  //     // padding-right: 6rem;
+  //     // width: 7rem;
+  //     // gap: 5rem;
 
-        justify-content: space-between;
-    }
+  //     justify-content: space-between;
+  // }
 
-    .chat-headerInnerRight {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex: 0.55;
-    }
+  // .chat-headerInnerRight {
+  //     display: flex;
+  //     align-items: center;
+  //     justify-content: space-between;
+  //     flex: 0.55;
+  // }
 
-    .chat-headerRightTextName {
-        font-family: Plus Jakarta Sans;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 24px;
-    }
+  // .chat-headerRightTextName {
+  //     font-family: Plus Jakarta Sans;
+  //     font-style: normal;
+  //     font-weight: normal;
+  //     font-size: 16px;
+  //     line-height: 24px;
+  // }
 
-    .chat-headerRightTextMessage {
-        font-family: Plus Jakarta Sans;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 16px;
-    }
+  // .chat-headerRightTextMessage {
+  //     font-family: Plus Jakarta Sans;
+  //     font-style: normal;
+  //     font-weight: normal;
+  //     font-size: 12px;
+  //     line-height: 16px;
+  // }
 
-    .chat-headerRightText {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
+  // .chat-headerRightText {
+  //     display: flex;
+  //     flex-direction: column;
+  //     align-items: center;
+  //     gap: 15px;
+  // }
 
-    .chat-headerInnerLeft {
-        display: flex;
-        flex-direction: column;
-        flex: 0.45;
-        align-items: flex-end;
-        gap: 15px;
-    }
+  // .chat-headerInnerLeft {
+  //     display: flex;
+  //     flex-direction: column;
+  //     flex: 0.45;
+  //     align-items: flex-end;
+  //     gap: 15px;
+  // }
 
-    .chat-headerLeftTime {
-        font-family: Plus Jakarta Sans;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 10px;
-        line-height: 16px;
-    }
+  // .chat-headerLeftTime {
+  //     font-family: Plus Jakarta Sans;
+  //     font-style: normal;
+  //     font-weight: normal;
+  //     font-size: 10px;
+  //     line-height: 16px;
+  // }
 
-    //   end of the sidebar
+  //   end of the sidebar
 }
-

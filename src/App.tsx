@@ -1,6 +1,6 @@
-import SideBar from "./components/sidebar/SideBar";
- 
-  
+// import SideBar from "./components/sidebar/SideBar";
+import LeftSideBar from "./components/sidebar/LeftSideBar";
+
 import React from "react";
 // import { CSSTransition } from "react-transition-group";
 import Chat from "./components/MainContent/Chat/Chat";
@@ -12,7 +12,9 @@ import { ChatContextProvider } from "./context/ChatContext";
 const App: React.FC = () => {
   return (
     <div className={styles.App}>
-      <div className={styles.sidebar}><SideBar /></div>
+      <div className={styles.sidebar}>
+        <LeftSideBar />
+      </div>
       <ChatContextProvider>
         <Chat />
         <SearchMessage />
