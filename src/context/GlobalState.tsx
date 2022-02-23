@@ -27,14 +27,16 @@ export const GlobalProvider = ({ children }: any) => {
     try {
       const {
         data: { data },
-      } = await axios.get("http://localhost:3050/api/v1/users/friend", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NTQ2NTQzMn0.GM8DGliyN8SKHhtsOJtNpq2oUrqSUEdhGE2nBs_EwOY`,
-        },
-      });
+      } = await axios.get(
+        "http://localhost:3050/api/v1/friends/getFavoriteFriends",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NTUyNDkwMX0.iyuhySdBAmrqz74wcSLnA9P4t-ts5muzGIOZY0ByMFs`,
+          },
+        }
+      );
 
-      // console.log(data, "res");
       dispatch({
         type: ActionType.GET_FAVORITE_FRIENDS_SUCCESS,
         payload: data,
@@ -54,11 +56,9 @@ export const GlobalProvider = ({ children }: any) => {
       } = await axios.get("http://localhost:3050/api/v1/users/friends", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NTQ2NTQzMn0.GM8DGliyN8SKHhtsOJtNpq2oUrqSUEdhGE2nBs_EwOY`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NTUyNDkwMX0.iyuhySdBAmrqz74wcSLnA9P4t-ts5muzGIOZY0ByMFs`,
         },
       });
-
-      // console.log(data, "friends-list");
 
       dispatch({
         type: ActionType.GET_FRIENDS_SUCCESS,
@@ -74,13 +74,12 @@ export const GlobalProvider = ({ children }: any) => {
 
   const getGroups = async () => {
     try {
-      const res = await axios.get("http://localhost:3050/api/v1/groups/user", {
+      const res = await axios.get("http://localhost:3050/api/v1/groups", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NTQ2NTQzMn0.GM8DGliyN8SKHhtsOJtNpq2oUrqSUEdhGE2nBs_EwOY`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NTUyNDkwMX0.iyuhySdBAmrqz74wcSLnA9P4t-ts5muzGIOZY0ByMFs`,
         },
       });
-
 
       // console.log(res.data, "groups-list");
       dispatch({

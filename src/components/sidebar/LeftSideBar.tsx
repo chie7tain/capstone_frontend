@@ -14,11 +14,15 @@ const LeftSideBar: React.FC = () => {
       <div className={styles.header}>
         <div className={styles.header__profile}>
           <img src={person} alt="icon" />
-          <BsDashCircleDotted
-            className={`${styles.icon__left} ${styles.icon}`}
-          />
+          <i>
+            <BsDashCircleDotted
+              className={`${styles.icon__left} ${styles.icon}`}
+            />
+          </i>
         </div>
-        <VscChevronDown className={`${styles.icon__rigth} ${styles.icon}`} />
+        <i className={`${styles.icon__rigth} ${styles.icon}`}>
+          <VscChevronDown />
+        </i>
       </div>
 
       <div className={styles.input__field}>
@@ -28,7 +32,7 @@ const LeftSideBar: React.FC = () => {
         <input type="text" placeholder="Search or start a new chat" />
       </div>
 
-      {/* <LeftBarFriends /> */}
+      <LeftBarFriends />
     </div>
   );
 };
