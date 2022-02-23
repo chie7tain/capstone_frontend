@@ -1,12 +1,12 @@
-import axios from 'axios';
-import React, { useRef, useState, FormEvent } from 'react';
-import styles from './styling.module.scss';
-import fbImg from '../assets/images/facebook-icon.jpeg';
-import ggleImg from '../assets/images/google-icon.png';
-import { IformData } from './../utils/interface';
-import useAxios from 'axios-hooks';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
+import React, { useRef, useState, FormEvent } from "react";
+import styles from "./styling.module.scss";
+import fbImg from "../assets/images/facebook-icon.jpeg";
+import ggleImg from "../assets/images/google-icon.png";
+import { IformData } from "./../utils/interface";
+import useAxios from "axios-hooks";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp: React.FC = (props) => {
   const firstNameTf = useRef<HTMLInputElement>(null);
@@ -16,8 +16,8 @@ const SignUp: React.FC = (props) => {
 
   const [{ data, loading, error }, executeSignUp] = useAxios(
     {
-      url: 'http://localhost:3050/api/v1/users/signup',
-      method: 'POST',
+      url: "http://localhost:3050/api/v1/users/signup",
+      method: "POST",
     },
     {
       manual: true,
@@ -27,9 +27,9 @@ const SignUp: React.FC = (props) => {
 
   if (!loading && error) {
     console.log(error.response?.data);
-    toast.error('Unable to signup', {
-      toastId: '1',
-      position: 'top-left',
+    toast.error("Unable to signup", {
+      toastId: "1",
+      position: "top-left",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -41,9 +41,9 @@ const SignUp: React.FC = (props) => {
 
   if (!loading && !error && data) {
     console.log(data);
-    toast.success('Signed up successfully', {
-      toastId: '2',
-      position: 'top-left',
+    toast.success("Signed up successfully", {
+      toastId: "2",
+      position: "top-left",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -66,8 +66,6 @@ const SignUp: React.FC = (props) => {
     executeSignUp({
       data: formData,
     });
-
-   
   };
 
   const [show, setShow] = useState(false);
@@ -84,7 +82,6 @@ const SignUp: React.FC = (props) => {
         draggable
         pauseOnHover
       />
-    
 
       {/* homePage starts */}
       <div className={styles.bg}>
@@ -122,7 +119,7 @@ const SignUp: React.FC = (props) => {
               <div className={`${styles.row}`}>
                 <input
                   className={`${styles.row}`}
-                  type={show ? 'text' : 'password'}
+                  type={show ? "text" : "password"}
                   placeholder="password"
                   ref={passwordTf}
                   required
@@ -147,7 +144,7 @@ const SignUp: React.FC = (props) => {
                     </a>
                   </div>
                   <div>
-                    {' '}
+                    {" "}
                     <a href="http://localhost:3050/api/v1/users/profile">
                       <img
                         src={fbImg}
@@ -159,9 +156,9 @@ const SignUp: React.FC = (props) => {
                 </div>
               </div>
               <p>
-                {' '}
-                Already a member?{' '}
-                <a href="http://localhost:3050/api/v1/user/login">Login</a>{' '}
+                {" "}
+                Already a member?{" "}
+                <a href="http://localhost:3050/api/v1/user/login">Login</a>{" "}
               </p>
 
               <button className={`${styles.btn}`}>SignUp</button>
