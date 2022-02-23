@@ -1,12 +1,14 @@
-import SignUp from "./Signup/SignUpForm";
+import SignUp from "./components/Signup/SignUpForm";
 import React from "react";
 import MainPage from "./components/MainPage";
+import LoginPage from "./components/Login/LoginPage";
 
 const App: React.FC = () => {
   return (
     <div>
       {/* <SignUp /> */}
-      <MainPage />
+      <LoginPage />
+      {/* <MainPage /> */}
     </div>
   );
 };

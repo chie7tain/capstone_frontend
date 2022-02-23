@@ -3,7 +3,7 @@ import React, { useRef, useState, FormEvent } from "react";
 import styles from "./styling.module.scss";
 import fbImg from "../assets/images/facebook-icon.jpeg";
 import ggleImg from "../assets/images/google-icon.png";
-import { IformData } from "./../utils/interface";
+import { IformData } from "../../utils/interface";
 import useAxios from "axios-hooks";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
