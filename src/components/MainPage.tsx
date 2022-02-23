@@ -6,6 +6,7 @@ import Chat from "./MainContent/Chat/Chat";
 import SearchMessage from "./MainContent/SearchMessage/SearchMessage";
 import styles from "../App.module.scss";
 import { ChatContextProvider } from "../context/ChatContext";
+import Audio from '../components/AudioComponent/AudioFrontend/Audio'
 
 const MainPage: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const MainPage: React.FC = () => {
       <ChatContextProvider>
         <Chat />
         <SearchMessage />
+        <Audio/>
       </ChatContextProvider>
     </div>
   );

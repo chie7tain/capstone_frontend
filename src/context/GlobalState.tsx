@@ -11,7 +11,7 @@ interface reducerState {
   getFriends?: () => void;
   getGroups?: () => void;
 }
-//
+
 const initialState: reducerState = {
   data: { friends: [], groups: [], favoriteFriends: [] },
   loading: false,
