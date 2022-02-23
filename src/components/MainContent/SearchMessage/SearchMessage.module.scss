@@ -1,0 +1,12 @@
+@use "../../../Styles/variables.scss" as varr;
+.search__message {
+  flex: 1;
+  flex: 1 1 40rem;
+  border-top-right-radius: 2.4rem;
+  border-bottom-right-radius: 2.4rem;
+  overflow: scroll;
+}
+
+.show__search {
+  display: none;
+}
