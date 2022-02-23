@@ -5,7 +5,6 @@ import person from "../../assets/photo.png";
 import styles from "./LeftSideBar.module.scss";
 import { BsDashCircleDotted } from "react-icons/bs";
 import { CgSearchLoading } from "react-icons/cg";
-import { FaRegCommentAlt } from "react-icons/fa";
 import { VscChevronDown } from "react-icons/vsc";
 
 const LeftSideBar: React.FC = () => {

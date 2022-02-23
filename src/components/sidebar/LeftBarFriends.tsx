@@ -50,13 +50,11 @@ const LeftBarFriends: React.FC = () => {
         <button onClick={toggleGroups}>Groups</button>
       </div>
       <div className={styles.container__list}>
-        {/* {showFavorite ? <FavoriteFriendsData /> : null}
+        {showFavorite ? <FavoriteFriendsData /> : null}
         {showFriends ? <FriendsData /> : null}
-        {showGroups ? <GroupsData /> : null} */}
-        <GroupsData />
+        {showGroups ? <GroupsData /> : null}
       </div>
-
-      <img src="" alt="" />
+      {/* <img src="" alt="" /> */}
     </div>
   );
 };

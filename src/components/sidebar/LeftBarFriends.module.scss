@@ -34,7 +34,9 @@
 }
 
 .container__list {
-  // background-color: yellow;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  height: 54rem;
 }
