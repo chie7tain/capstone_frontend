@@ -14,6 +14,11 @@
 
 i {
   font-size: 2.5rem;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4rem;
   color: #888;
   font-weight: 100;
   cursor: pointer;
@@ -22,9 +27,15 @@ i {
   -moz-transition: all 0.3s linear;
   -ms-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
 }
 
-i:hover {
+i:hover,
+i:active {
+  background: #dcefed;
   color: varr.$bg-wa;
   transform: scale(1.2);
   -webkit-transform: scale(1.2);
