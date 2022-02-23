@@ -7,6 +7,8 @@ import { IformData } from "./../utils/interface";
 import useAxios from "axios-hooks";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FcGoogle } from "react-icons/fc";
+import { IoLogoFacebook } from "react-icons/io5";
 
 const SignUp: React.FC = (props) => {
   const firstNameTf = useRef<HTMLInputElement>(null);
@@ -136,21 +138,17 @@ const SignUp: React.FC = (props) => {
                     {/* <Link to="http://localhost:3050/auth/google"><img src={ggleImg} alt="google icon" className={styles.googleIcon}></img>
                     </Link> */}
                     <a href="http://localhost:3050/auth/google">
-                      <img
-                        src={ggleImg}
-                        alt="google icon"
-                        className={styles.googleIcon}
-                      ></img>
+                      <i>
+                        <FcGoogle />
+                      </i>
                     </a>
                   </div>
                   <div>
                     {" "}
                     <a href="http://localhost:3050/api/v1/users/profile">
-                      <img
-                        src={fbImg}
-                        alt="facebook icon"
-                        className={`${styles.facebookIcon}`}
-                      ></img>
+                      <i>
+                        <IoLogoFacebook />
+                      </i>
                     </a>
                   </div>
                 </div>
@@ -158,7 +156,9 @@ const SignUp: React.FC = (props) => {
               <p>
                 {" "}
                 Already a member?{" "}
-                <a href="http://localhost:3050/api/v1/user/login">Login</a>{" "}
+                <a href="http://localhost:3050/api/v1/user/login">
+                  <span>Login</span>
+                </a>{" "}
               </p>
 
               <button className={`${styles.btn}`}>SignUp</button>
