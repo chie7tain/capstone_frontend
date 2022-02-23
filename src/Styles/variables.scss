@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;500;700&family=Roboto:ital,wght@0,100;0,400;0,700;1,100&family=Rubik:wght@400;500;600;700&display=swap");
+
+$app-font: "Roboto", sans-serif;
+
+// colors
+$bg: #fafafa;
+$bg-alt: #000;
+$bg-wa: #128c7e;
+$bg-hover: #dcefed;
+$bg_header: #f7f7fc;
+$bg_message: #f6f6f6;
+$font-stroke: #130f26;
+$name-color: #09132c;
+$sender-bg-color: #d7f8f4;
+$time-color: #0b3048;
+$enc-bg-color: #feecdc;
+$enc-color: #312e40;
+$bg_enc: #feecdc;
+
+$text: #010101;
+
+// Media query points
+$md: 70rem;
+
+@mixin breakpoint($point) {
+  @if $point == md {
+    @media (max-width: $md) {
+      // color: rgb(247, 247, 252);
+
+      @content;
+    }
+  }
+}

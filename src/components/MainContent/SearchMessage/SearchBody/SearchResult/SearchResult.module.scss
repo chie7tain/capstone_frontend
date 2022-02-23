@@ -1,0 +1,41 @@
+@use "../../../../../Styles//variables.scss" as varr;
+
+.result__Container {
+  background: varr.$bg;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 1rem;
+  border: 1px solid rgb(221, 221, 221);
+  cursor: pointer;
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  -ms-transition: all 0.25s;
+  -o-transition: all 0.25s;
+}
+
+.result__Container:hover,
+.result__Container:active {
+  background-color: rgba(255, 255, 255, 0.719);
+}
+
+.result_body {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  height: 3.5rem;
+
+  p {
+    font-size: 1.3rem;
+  }
+
+  i {
+    color: varr.$bg-wa;
+    font-size: 2rem;
+  }
+}
+
+.time {
+  color: varr.$bg-wa;
+}

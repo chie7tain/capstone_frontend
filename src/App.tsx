@@ -1,12 +1,15 @@
 import SignUp from "./Signup/SignUpForm";
 import "./App.css";
+import React from "react";
+import MainPage from "./components/MainPage";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
+    <div>
       <SignUp />
+      {/* <MainPage /> */}
     </div>
   );
-}
+};
 
 export default App;
