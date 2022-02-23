@@ -5,8 +5,8 @@ import MainPage from "./components/MainPage";
 const App: React.FC = () => {
   return (
     <div>
-      <SignUp />
-      {/* <MainPage /> */}
+      {/* <SignUp /> */}
+      <MainPage />
     </div>
   );
 };
