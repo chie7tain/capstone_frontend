@@ -1,5 +1,4 @@
 .friends__data {
-  //   background-color: red;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,11 +7,25 @@
   -webkit-box-shadow: 0px 0px 12px -7px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 12px -7px rgba(0, 0, 0, 0.75);
   overflow: hidden;
+  transition: all 1s;
   border-radius: 0.7rem;
   -webkit-border-radius: 0.7rem;
   -moz-border-radius: 0.7rem;
   -ms-border-radius: 0.7rem;
   -o-border-radius: 0.7rem;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+}
+
+.friends__data:hover,
+.friends__data:active {
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
 }
 
 .profile__img {

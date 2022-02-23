@@ -9,6 +9,7 @@ export const useMediaQuery = (query: string) => {
 
     // mediaMatch.addListener(handler);
     mediaMatch.addEventListener("change", handler);
+
     // return () => mediaMatch.removeListener(handler);
     return () => mediaMatch.removeEventListener("change", handler);
   });

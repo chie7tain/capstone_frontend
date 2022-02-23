@@ -20,9 +20,11 @@ const Message = () => {
       </div>
       <div className={styles.messageContainer}>
         <TextMessage />
+        <TextMessage reciever={true} />
         <TextMessage />
-        <TextMessage />
+        <TextMessage reciever={true} />
         <ImageMessage />
+        <TextMessage reciever={true} />
         <VideoMessage />
         {/* <AudioMessage /> */}
       </div>

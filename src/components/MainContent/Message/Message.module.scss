@@ -36,4 +36,6 @@
 .messageContainer {
   // overflow: scroll;
   // height: 90vh;
+  display: flex;
+  flex-direction: column;
 }
