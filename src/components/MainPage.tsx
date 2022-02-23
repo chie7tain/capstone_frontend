@@ -17,6 +17,7 @@ const MainPage: React.FC = () => {
       <ChatContextProvider>
         <Chat />
         <SearchMessage />
+        <Audio/>
       </ChatContextProvider>
     </div>
   );

@@ -12,8 +12,8 @@ const App: React.FC = () => {
   return (
     <div>
       {/* <SignUp /> */}
-      <LoginPage />
-      {/* <MainPage /> */}
+      {/* <LoginPage /> */}
+      <MainPage />
     </div>
   );
 };
