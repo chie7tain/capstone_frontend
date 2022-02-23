@@ -3,11 +3,12 @@ import Peer from 'simple-peer'
 import io from "socket.io-client"
 import styles from './audio.module.scss'
 import ChatContext from '../../../Context/ChatContext';
-import { JsxElement } from 'typescript';
 import {BsTelephone} from 'react-icons/bs'
 import {TiMicrophone} from 'react-icons/ti'
 
-const socket = io("http://localhost:3050")
+const socket = io("http://localhost:3050",{
+    withCredentials: true
+})
 
 type AudioProp = {};
 
@@ -33,16 +34,20 @@ const Audio:React.FC<AudioProp> = () => {
     const connectionRef:React.MutableRefObject<any|null> = useRef(null)
 
 
-    console.log(me)
       
     useEffect(() => {
-      navigator.mediaDevices.getUserMedia({video:false, audio:true}).then((stream)=>{
-          setStream(stream)
-          myAudio.current!.srcObject = stream
-      })
+    //   navigator.mediaDevices.getUserMedia({video:false, audio:true}).then((stream)=>{
+    //       setStream(stream)
+    //       myAudio.current!.srcObject = stream
+    //   })
+
+    socket.on("connect_error", (err) => {
+        console.log(`connect_error due to ${err.message}`);
+      });
 
       socket.on('me', (id)=>{
           setMe(id)
+          console.log(socket.id)
       })
 
       socket.on('callUser', (data)=>{
@@ -110,9 +115,7 @@ const Audio:React.FC<AudioProp> = () => {
          connectionRef.current!.destroy()
     }
     const closeAudio = () => {
-        showAudioContext?.setShowAudio(false);
-        leaveCall()
-        
+        showAudioContext?.setShowAudio(false);  
       };
 
     if(callAccepted && !callEnded){

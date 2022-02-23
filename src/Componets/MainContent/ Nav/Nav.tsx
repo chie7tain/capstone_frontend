@@ -5,6 +5,7 @@ import { CgSearchLoading } from "react-icons/cg";
 import { VscChevronDown, VscKebabVertical } from "react-icons/vsc";
 import styles from "./Nav.module.scss";
 import ChatContext from "../../../Context/ChatContext";
+import Peer from 'simple-peer'
 
 type NavProps = {};
 
