@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Roboto:ital,wght@0,100;0,400;0,700;1,100&family=Rubik:wght@400;500;600;700&display=swap");
 
 :root {
   --primary-color: black;
@@ -11,7 +11,7 @@
   --tertiary-color: #000000;
 }
 body {
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Lora", serif;
   background-color: var(--secondary-color);
 }
 
@@ -28,6 +28,20 @@ body {
   flex-direction: column;
   gap: 3.2rem;
   position: relative;
+
+  h2 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+  }
+
+  p {
+    // height: 19px;
+    margin: 0 auto;
+    width: fit-content;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #828282;
+  }
 }
 .logo-head {
   display: flex;
@@ -42,71 +56,68 @@ body {
   font-size: 1.6rem;
   text-transform: lowercase;
 }
-h2 {
-  font-size: 1.8rem;
-  color: var(--primary-color);
-}
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
-}
-input {
-  height: 4.8rem;
-  border: 1px solid #bdbdbd;
-  border-radius: 0.8rem;
-  padding: 0.8rem;
-  box-sizing: border-box;
-  padding-left: 3rem;
-  outline: #369cdc;
-  width: 100%;
-  background-color: transparent;
-  color: var(--primary-color);
-  -webkit-border-radius: 0.8rem;
-  -moz-border-radius: 0.8rem;
-  -ms-border-radius: 0.8rem;
-  -o-border-radius: 0.8rem;
+
+  button {
+    background-color: rgb(13, 199, 13);
+    height: 4rem;
+    border: none;
+    color: white;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    font-weight: 600;
+    -webkit-border-radius: 0.8rem;
+    -moz-border-radius: 0.8rem;
+    -ms-border-radius: 0.8rem;
+    -o-border-radius: 0.8rem;
+  }
+  button:hover {
+    background-color: green;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+  }
 }
 
-input:hover {
-  border: 1.4px solid #369cdc;
+.format-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  // gap: 4rem;
+
+  input {
+    height: 4.8rem;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.8rem;
+    padding: 0.8rem;
+    box-sizing: border-box;
+    padding-left: 3rem;
+    outline: #369cdc;
+    width: 100%;
+    background-color: transparent;
+    color: var(--primary-color);
+    -webkit-border-radius: 0.8rem;
+    -moz-border-radius: 0.8rem;
+    -ms-border-radius: 0.8rem;
+    -o-border-radius: 0.8rem;
+  }
+
+  input:hover {
+    border: 1.4px solid #369cdc;
+  }
+
+  input:focus {
+    border: 1px solid #369cdc;
+  }
 }
 
-input:focus {
-  border: 1px solid #369cdc;
-}
-
-button {
-  background-color: rgb(13, 199, 13);
-  height: 4rem;
-  border: none;
-  color: white;
-  border-radius: 0.8rem;
-  font-size: 1.6rem;
-  cursor: pointer;
-  font-weight: 600;
-  -webkit-border-radius: 0.8rem;
-  -moz-border-radius: 0.8rem;
-  -ms-border-radius: 0.8rem;
-  -o-border-radius: 0.8rem;
-}
-button:hover {
-  background-color: green;
-  transition: all 0.4s;
-  -webkit-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  -ms-transition: all 0.4s;
-  -o-transition: all 0.4s;
-}
-
-p {
-  // height: 19px;
-  margin: 0 auto;
-  width: fit-content;
-  font-size: 1.4rem;
-  font-weight: 400;
-  color: #828282;
-}
 .social-logins {
   display: flex;
   gap: 3.2rem;
@@ -162,13 +173,6 @@ a {
   color: #369cdc;
 }
 
-.format-box {
-  position: relative;
-  display: flex;
-  align-items: center;
-  // gap: 4rem;
-}
-
 .email-icon {
   position: absolute;
   color: #bdbdbd;
@@ -209,4 +213,4 @@ a {
   top: 12.8rem;
 }
 
-// #435A64
+// // #435A64

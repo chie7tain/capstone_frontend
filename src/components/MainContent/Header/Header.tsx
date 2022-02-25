@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import Nav from "../ Nav/Nav";
+import Nav from "../Nav/Nav";
 import ChatContext from "../../../context/ChatContext";
 import styles from "./Header.module.scss";
 import { FaRegHeart } from "react-icons/fa";
+import DropDownNav from "../Nav/DropDownNav/DropDownNav";
 
 // type IHeaderProps = {};
 
@@ -28,6 +29,7 @@ const Header: React.FC = () => {
         </i>
       </div>
       <Nav />
+      <DropDownNav />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-@use "../Styles//variables.scss" as varr;
+@use "../../Styles/variables.scss" as varr;
 
 .container {
   color: #333333;
@@ -6,7 +6,7 @@
 }
 
 .bg {
-  background-image: url("../../public/whatsapp-img.png");
+  background-image: url("../../Images/whatsapp_bg.jpeg");
   background-repeat: repeat;
   padding-top: 4.8rem;
   height: 100vh;

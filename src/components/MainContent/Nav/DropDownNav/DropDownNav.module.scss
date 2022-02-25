@@ -1,0 +1,63 @@
+@use "../../../../Styles/variables.scss" as varr;
+
+.dropDown {
+  background: #dcefed;
+  background: varr.$bg_header;
+  position: absolute;
+  top: 95%;
+  right: 5%;
+  font-size: 1.5rem;
+  color: #444;
+
+  .drop__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 3rem;
+
+    li {
+      list-style: none;
+      cursor: pointer;
+    }
+  }
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+
+  box-shadow: 0px 0px 12px -7px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 12px -7px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 12px -7px rgba(0, 0, 0, 0.75);
+}
+
+.hide {
+  animation-name: dropdown;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+
+  @keyframes dropdown {
+    0% {
+      top: 100%;
+    }
+    100% {
+      top: -200px;
+    }
+  }
+}
+
+.drop {
+  animation-name: show;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+
+  @keyframes show {
+    0% {
+      top: -100px;
+    }
+    100% {
+      top: 100%;
+    }
+  }
+}

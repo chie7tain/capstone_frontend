@@ -3,6 +3,7 @@ import { BiPhoneCall } from "react-icons/bi";
 import { IoVideocamOutline } from "react-icons/io5";
 import { CgSearchLoading } from "react-icons/cg";
 import { VscChevronDown, VscKebabVertical } from "react-icons/vsc";
+import { IoIosArrowUp } from "react-icons/io";
 import styles from "./Nav.module.scss";
 import ChatContext from "../../../context/ChatContext";
 
@@ -40,7 +41,15 @@ const Nav: React.FC<NavProps> = () => {
         </li>
         <li>
           <i>
-            <VscChevronDown />
+            {setChatContext?.hide ? (
+              <VscChevronDown
+                onClick={() => setChatContext?.setHide(!setChatContext.hide)}
+              />
+            ) : (
+              <IoIosArrowUp
+                onClick={() => setChatContext?.setHide(!setChatContext.hide!)}
+              />
+            )}
           </i>
         </li>
       </ul>
