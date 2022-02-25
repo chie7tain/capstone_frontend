@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { useRef, useState, FormEvent } from "react";
 import styles from "./styling.module.scss";
 import fbImg from "../assets/images/facebook-icon.jpeg";
