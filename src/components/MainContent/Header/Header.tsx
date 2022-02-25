@@ -3,7 +3,7 @@ import Nav from "../Nav/Nav";
 import ChatContext from "../../../context/ChatContext";
 import styles from "./Header.module.scss";
 import { FaRegHeart } from "react-icons/fa";
-import DropDownNav from "../Nav/DropDownNav/DropDownNav";
+import DropDownChatInfo from "../Nav/DropDownChatInfo/DropDownChatInfo";
 
 // type IHeaderProps = {};
 
@@ -29,7 +29,7 @@ const Header: React.FC = () => {
         </i>
       </div>
       <Nav />
-      <DropDownNav />
+      <DropDownChatInfo />
     </div>
   );
 };

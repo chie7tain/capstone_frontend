@@ -7,10 +7,10 @@ type ChatContextProviderProps = {
 type ChatContextType = {
   searchView: boolean;
   isProfile: boolean;
-  hide: boolean;
+  hideProfile: boolean;
   setSearchView: React.Dispatch<React.SetStateAction<boolean>>;
   setIsProfile: React.Dispatch<React.SetStateAction<boolean>>;
-  setHide: React.Dispatch<React.SetStateAction<boolean>>;
+  setHideProfile: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const ChatContext = createContext<ChatContextType | null>(null);
@@ -18,7 +18,7 @@ const ChatContext = createContext<ChatContextType | null>(null);
 export const ChatContextProvider = ({ children }: ChatContextProviderProps) => {
   const [searchView, setSearchView] = useState<boolean>(false);
   const [isProfile, setIsProfile] = useState<boolean>(false);
-  const [hide, setHide] = useState(true);
+  const [hideProfile, setHideProfile] = useState(true);
 
   return (
     <ChatContext.Provider
@@ -27,8 +27,8 @@ export const ChatContextProvider = ({ children }: ChatContextProviderProps) => {
         setSearchView,
         isProfile,
         setIsProfile,
-        hide,
-        setHide,
+        hideProfile,
+        setHideProfile,
       }}
     >
       {children}

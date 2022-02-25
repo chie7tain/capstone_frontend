@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import ChatContext from "../../../../context/ChatContext";
-import styles from "./DropDownNav.module.scss";
+import styles from "./DropDownChatInfo.module.scss";
 
 const DropDownNav = () => {
-  const drop = useContext(ChatContext)?.hide;
+  const drop = useContext(ChatContext)?.hideProfile;
 
   return (
     <nav className={`${styles.dropDown} ${drop ? styles.hide : styles.drop}`}>

@@ -41,13 +41,17 @@ const Nav: React.FC<NavProps> = () => {
         </li>
         <li>
           <i>
-            {setChatContext?.hide ? (
+            {setChatContext?.hideProfile ? (
               <VscChevronDown
-                onClick={() => setChatContext?.setHide(!setChatContext.hide)}
+                onClick={() =>
+                  setChatContext?.setHideProfile(!setChatContext.hideProfile)
+                }
               />
             ) : (
               <IoIosArrowUp
-                onClick={() => setChatContext?.setHide(!setChatContext.hide!)}
+                onClick={() =>
+                  setChatContext?.setHideProfile(!setChatContext.hideProfile!)
+                }
               />
             )}
           </i>
