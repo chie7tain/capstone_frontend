@@ -1,0 +1,94 @@
+
+.profile-container {
+    display: flex;
+    background-color:#FAFAFA;
+   
+}
+
+.leftbar-container{
+    background-color: #F5FAFC;
+    padding: 8.2rem 5.2rem;
+
+    .leftbar-text{
+        display: flex;
+        gap: 0.8rem; 
+        font-size: 1.2rem;
+        line-height: 1;
+        margin-top: -4rem;
+        margin-bottom: 4rem;
+    }
+    .icon{
+    position: absolute;
+    bottom: 40%;
+    right: 40%;
+    z-index: 1;
+color: #fff;
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+    }
+    .profile-pic{
+        background-image: url('../../assets/ellipse.png');
+        width: 10rem;
+        height: 10rem;
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 50%;
+        border: 1px solid black;
+       margin: 0rem 4rem;
+       position: relative;
+
+    }
+    
+    .profile-text{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2.4rem;
+        
+        .profile-name{
+            font-size: 1.1rem;
+            color: #515974;
+            font-weight: 200;
+        }
+    }
+    .profile-paragraph{
+        line-height: 2;
+        color: #9796A5;
+        margin-top: 0.4rem;
+        width: 21rem;
+        font-size: 0.8rem;
+        h4{
+            font-weight: 400;
+            color: #242837;
+            font-size: 1.2rem;
+        }
+    }
+    .paragraph-primary{
+        font-size: 1rem;
+        color: #242837;
+        width: 18rem;
+        margin-top: 0.8rem;
+        line-height: 1.4;
+    }
+}
+
+.rightbar-container{
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 8rem 10rem;
+font-size: 2rem;
+color: #333E5B;
+.rightbar-head{
+    margin-top: 2rem;
+}
+.rightbar-text{
+    color: #8F94A3;
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    text-align: center;
+
+   
+}
+}
