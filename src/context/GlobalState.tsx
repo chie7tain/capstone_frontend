@@ -22,6 +22,7 @@ export const GlobalStateContext = createContext({} as reducerState);
 
 export const GlobalProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(AddReducers, initialState);
+  // const [hideProfileDrop, setHideProfileDrop] = useState<boolean>(true);
 
   const getFavoriteFriends = async () => {
     try {
@@ -93,8 +94,6 @@ export const GlobalProvider = ({ children }: any) => {
       });
     }
   };
-
-  console.log(state.data, "state");
 
   return (
     <GlobalStateContext.Provider

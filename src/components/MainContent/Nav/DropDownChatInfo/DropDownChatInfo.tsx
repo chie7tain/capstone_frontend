@@ -3,7 +3,7 @@ import ChatContext from "../../../../context/ChatContext";
 import styles from "./DropDownChatInfo.module.scss";
 
 const DropDownNav = () => {
-  const drop = useContext(ChatContext)?.hideProfile;
+  const drop = useContext(ChatContext)?.hideChatDrop;
 
   return (
     <nav className={`${styles.dropDown} ${drop ? styles.hide : styles.drop}`}>
