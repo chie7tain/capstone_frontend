@@ -5,14 +5,16 @@ import SearchMessage from "./components/MainContent/SearchMessage/SearchMessage"
 import styles from "./App.module.scss";
 import { ChatContextProvider } from "./context/ChatContext";
 // import Radium, { Style } from "radium";
+import VideoCall from "./components/Video/VideoCall";
 
 const App: React.FC = () => {
   return (
     <div className={styles.App}>
-      <div className={styles.sidebar}>SideBar</div>
+      {/* <div className={styles.sidebar}>SideBar</div> */}
       <ChatContextProvider>
-        <Chat />
-        <SearchMessage />
+        <VideoCall/>
+        {/* <Chat /> */}
+        {/* <SearchMessage /> */}
       </ChatContextProvider>
     </div>
   );
