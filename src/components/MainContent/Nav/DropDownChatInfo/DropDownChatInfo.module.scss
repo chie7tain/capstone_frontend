@@ -13,12 +13,22 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 2rem;
-    padding: 2rem 3rem;
+    padding: 1rem 1.5rem;
 
     li {
       list-style: none;
       cursor: pointer;
+      padding: 1.2rem 1.7rem;
+      border-radius: 0.5rem;
+      -webkit-border-radius: 0.5rem;
+      -moz-border-radius: 0.5rem;
+      -ms-border-radius: 0.5rem;
+      -o-border-radius: 0.5rem;
+    }
+
+    li:hover,
+    li:active {
+      background-color: varr.$bg-wa;
     }
   }
   border-radius: 0.5rem;
@@ -42,7 +52,7 @@
       top: 100%;
     }
     100% {
-      top: -200px;
+      top: -250px;
     }
   }
 }
@@ -54,7 +64,7 @@
 
   @keyframes show {
     0% {
-      top: -100px;
+      top: -1250px;
     }
     100% {
       top: 100%;

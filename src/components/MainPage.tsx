@@ -6,18 +6,22 @@ import Chat from "./MainContent/Chat/Chat";
 import SearchMessage from "./MainContent/SearchMessage/SearchMessage";
 import styles from "../App.module.scss";
 import { ChatContextProvider } from "../context/ChatContext";
-import Audio from '../components/AudioComponent/AudioFrontend/Audio'
+import Audio from "../components/AudioComponent/AudioFrontend/Audio";
+import VideoCall from "./Video/VideoCall";
+import ProfileLeftBar from "./Profile/ProfileLeftBar";
 
 const MainPage: React.FC = () => {
   return (
     <div className={styles.App}>
       <div className={styles.sidebar}>
-        <LeftSideBar />
+        {/* <LeftSideBar /> */}
+        <ProfileLeftBar />
       </div>
       <ChatContextProvider>
         <Chat />
         <SearchMessage />
-        <Audio/>
+        <Audio />
+        {/* <VideoCall /> */}
       </ChatContextProvider>
     </div>
   );
