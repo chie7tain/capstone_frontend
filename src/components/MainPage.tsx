@@ -7,6 +7,7 @@ import SearchMessage from "./MainContent/SearchMessage/SearchMessage";
 import styles from "../App.module.scss";
 import { ChatContextProvider } from "../context/ChatContext";
 import Audio from "../components/AudioComponent/AudioFrontend/Audio";
+import VideoCall from "./Video/VideoCall";
 
 const MainPage: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const MainPage: React.FC = () => {
         <Chat />
         <SearchMessage />
         <Audio />
+        {/* <VideoCall /> */}
       </ChatContextProvider>
     </div>
   );
