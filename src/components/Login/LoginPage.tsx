@@ -50,6 +50,7 @@ const LoginPage = (): JSX.Element => {
       });
       if (response.status === 201) {
         const data = await response.json();
+        console.log(data.user);
         alert(data.message);
       }
       if (response.status === 400) {
@@ -104,9 +105,10 @@ const LoginPage = (): JSX.Element => {
       </div>
       <h2>Login</h2>
       {showError && <p className={styles["error-class"]}>{errorMsg}</p>}
-      <div className={styles.form}>
+      <form className={styles.form}>
         <div className={styles["format-box"]}>
           <MdEmail className={styles["email-icon"]} />
+          <label htmlFor="email"></label>
           <input
             type="email"
             value={form.email}
@@ -119,6 +121,7 @@ const LoginPage = (): JSX.Element => {
         </div>
         <div className={styles["format-box"]}>
           <IoIosLock className={styles["lock-pass"]} />
+          <label htmlFor="password"></label>
           <input
             type="password"
             value={form.password}
@@ -131,7 +134,7 @@ const LoginPage = (): JSX.Element => {
         </div>
 
         <button onClick={handleSubmit}> Login </button>
-      </div>
+      </form>
 
       <p>or continue with these social profile</p>
       <div className={styles["social-logins"]}>

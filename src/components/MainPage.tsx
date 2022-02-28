@@ -20,7 +20,7 @@ const MainPage: React.FC = () => {
       <ChatContextProvider>
         <Chat />
         <SearchMessage />
-        <Audio />
+        {/* <Audio /> */}
         {/* <VideoCall /> */}
       </ChatContextProvider>
     </div>
