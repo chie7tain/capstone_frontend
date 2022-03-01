@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import LeftBarFriends from "./LeftBarFriends";
 import person from "../../assets/photo.png";
 // import styles from "./LeftSideBar.module.scss";
@@ -8,15 +8,17 @@ import { CgSearchLoading } from "react-icons/cg";
 import { VscChevronDown } from "react-icons/vsc";
 import { IoIosArrowUp } from "react-icons/io";
 import DropDownProfile from "./DropDownProfile/DropDownProfile";
+import { GlobalStateContext } from "../../context/GlobalState";
 
 const LeftSideBar: React.FC = () => {
   const [drop, setDrop] = useState(true);
+  const { user } = useContext(GlobalStateContext);
 
   return (
     <div className={styles.sidebarr}>
       <div className={styles.header}>
         <div className={styles.header__profile}>
-          <img src={person} alt="icon" />
+          <img src={user.avatar} alt={user.firstName} />
           <i>
             <BsDashCircleDotted
               className={`${styles.icon__left} ${styles.icon}`}

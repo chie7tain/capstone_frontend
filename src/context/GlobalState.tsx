@@ -2,11 +2,15 @@ import axios from "axios";
 import { createContext, useReducer } from "react";
 import { ActionType } from "./actionType";
 import AddReducers from "./AddReducers";
+import { User } from "../utils/interface";
 
 interface reducerState {
   data: { [key: string]: any };
   loading: boolean;
   error: string | null;
+  user: User;
+  accessToken: string;
+  getUser?: (data: { user: User; accessToken: string }) => void;
   getFavoriteFriends?: () => void;
   getFriends?: () => void;
   getGroups?: () => void;
@@ -16,6 +20,8 @@ const initialState: reducerState = {
   data: { friends: [], groups: [], favoriteFriends: [] },
   loading: false,
   error: null,
+  accessToken: "",
+  user: {},
 };
 
 export const GlobalStateContext = createContext({} as reducerState);
@@ -23,6 +29,13 @@ export const GlobalStateContext = createContext({} as reducerState);
 export const GlobalProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(AddReducers, initialState);
   // const [hideProfileDrop, setHideProfileDrop] = useState<boolean>(true);
+
+  const getUser = (data: { user: User; accessToken: string }) => {
+    dispatch({
+      type: ActionType.GET_USER_LOGIN_SUCCESS,
+      payload: data,
+    });
+  };
 
   const getFavoriteFriends = async () => {
     try {
@@ -101,6 +114,9 @@ export const GlobalProvider = ({ children }: any) => {
         data: state.data,
         loading: state.loading,
         error: state.error,
+        getUser,
+        accessToken: state.accessToken,
+        user: state.user,
         getFavoriteFriends,
         getFriends,
         getGroups,

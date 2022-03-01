@@ -14,8 +14,8 @@ const MainPage: React.FC = () => {
   return (
     <div className={styles.App}>
       <div className={styles.sidebar}>
-        {/* <LeftSideBar /> */}
-        <ProfileLeftBar />
+        <LeftSideBar />
+        {/* <ProfileLeftBar /> */}
       </div>
       <ChatContextProvider>
         <Chat />

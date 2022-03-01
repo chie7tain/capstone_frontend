@@ -4,6 +4,7 @@ import ChatContext from "../../../context/ChatContext";
 import styles from "./Header.module.scss";
 import { FaRegHeart } from "react-icons/fa";
 import DropDownChatInfo from "../Nav/DropDownChatInfo/DropDownChatInfo";
+import { GlobalStateContext } from "../../../context/GlobalState";
 
 // type IHeaderProps = {};
 

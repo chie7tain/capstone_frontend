@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { BsWhatsapp, BsTwitter, BsGithub } from "react-icons/bs";
 import { FaGoogle } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -7,7 +7,8 @@ import { BsCloudSunFill, BsFillCloudMoonFill } from "react-icons/bs";
 import { CgFacebook } from "react-icons/cg";
 import styles from "./Login.module.scss";
 import { UserData, LoginProps } from "./Login.interface";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { GlobalStateContext } from "../../context/GlobalState";
 
 const url: string = "http://localhost:3050/api/v1/user/login";
 
@@ -16,6 +17,7 @@ const Login: React.FC<LoginProps> = ({ spinner }) => {
   const [form, setForm] = useState<UserData>({ email: "", password: "" });
   const [showError, setShowError] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>("");
+  const { getUser } = useContext(GlobalStateContext);
   // const [rememberMe, setRememberMe] = useState(true);
   let navigate = useNavigate();
 
@@ -54,6 +56,8 @@ const Login: React.FC<LoginProps> = ({ spinner }) => {
         const data = await response.json();
 
         spinner(true);
+
+        getUser!({ user: data.user, accessToken: data.accessToken });
 
         setTimeout(() => {
           spinner(false);
@@ -168,7 +172,7 @@ const Login: React.FC<LoginProps> = ({ spinner }) => {
         </div>
       </div>
       <p>
-        Dont't have an account yet? <a href="/SignUp">Register </a>
+        Dont't have an account yet? <Link to="/signup">Register </Link>
       </p>
       <p className={styles["forogt-password"]}>
         <a href="/forgotPassword">Forgot Password ?</a>
