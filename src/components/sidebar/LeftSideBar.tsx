@@ -12,13 +12,17 @@ import { GlobalStateContext } from "../../context/GlobalState";
 
 const LeftSideBar: React.FC = () => {
   const [drop, setDrop] = useState(true);
-  const { user } = useContext(GlobalStateContext);
+  const { user, showProfile } = useContext(GlobalStateContext);
+
+  const handleShow = () => {
+    showProfile!(true);
+  };
 
   return (
     <div className={styles.sidebarr}>
       <div className={styles.header}>
         <div className={styles.header__profile}>
-          <img src={user.avatar} alt={user.firstName} />
+          <img src={user.avatar} alt={user.firstName} onClick={handleShow} />
           <i>
             <BsDashCircleDotted
               className={`${styles.icon__left} ${styles.icon}`}

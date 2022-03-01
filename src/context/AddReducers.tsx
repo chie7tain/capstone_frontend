@@ -8,6 +8,7 @@ interface reducerState {
   error: string | null;
   accessToken: string;
   user: User;
+  showProfilePage: boolean;
 }
 
 const AddReducers = (state: reducerState, action: Action): reducerState => {
@@ -59,6 +60,12 @@ const AddReducers = (state: reducerState, action: Action): reducerState => {
         loading: false,
         accessToken: action.payload.accessToken,
         user: action.payload.user,
+      };
+
+    case ActionType.SHOW_PROFILE_PAGE:
+      return {
+        ...state,
+        showProfilePage: action.payload,
       };
 
     default:

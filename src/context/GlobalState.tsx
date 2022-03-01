@@ -10,6 +10,8 @@ interface reducerState {
   error: string | null;
   user: User;
   accessToken: string;
+  showProfilePage: boolean;
+  showProfile?: (value: boolean) => void;
   getUser?: (data: { user: User; accessToken: string }) => void;
   getFavoriteFriends?: () => void;
   getFriends?: () => void;
@@ -21,6 +23,7 @@ const initialState: reducerState = {
   loading: false,
   error: null,
   accessToken: "",
+  showProfilePage: true,
   user: {},
 };
 
@@ -108,6 +111,13 @@ export const GlobalProvider = ({ children }: any) => {
     }
   };
 
+  const showProfile = (value: boolean) => {
+    dispatch({
+      type: ActionType.SHOW_PROFILE_PAGE,
+      payload: value,
+    });
+  };
+
   return (
     <GlobalStateContext.Provider
       value={{
@@ -120,6 +130,8 @@ export const GlobalProvider = ({ children }: any) => {
         getFavoriteFriends,
         getFriends,
         getGroups,
+        showProfile,
+        showProfilePage: state.showProfilePage,
       }}
     >
       {children}
