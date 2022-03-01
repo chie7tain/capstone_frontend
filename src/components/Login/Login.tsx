@@ -7,6 +7,7 @@ import { BsCloudSunFill, BsFillCloudMoonFill } from "react-icons/bs";
 import { CgFacebook } from "react-icons/cg";
 import styles from "./Login.module.scss";
 import { UserData } from "./Login.interface";
+import { Link } from "react-router-dom";
 
 const url: string = "http://localhost:3050/api/v1/user/login";
 const Login = (): JSX.Element => {
@@ -159,9 +160,9 @@ const Login = (): JSX.Element => {
         </div>
       </div>
       <p>
-        Dont't have an account yet? <a href="/SignUp">Register </a>
+        Dont't have an account yet? <Link to="/signup">Register</Link>
       </p>
-      <p className={styles["forogt-password"]}>
+      <p className={styles["forgot-password"]}>
         <a href="/forgotPassword">Forgot Password ?</a>
       </p>
     </div>
