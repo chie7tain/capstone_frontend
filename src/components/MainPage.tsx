@@ -17,7 +17,6 @@ const MainPage: React.FC = () => {
       <div className={styles.sidebar}>
         {/* <LeftSideBar /> */}
         <ProfileLeftBar />
-        <EmptyFormName />
       </div>
       <ChatContextProvider>
         <Chat />

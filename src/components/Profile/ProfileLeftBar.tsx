@@ -4,19 +4,22 @@ import { BiArrowBack, BiCamera, BiEditAlt } from "react-icons/bi";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import EmptyFormName from "./EmptyFormName";
+// import E"../../assets/Ellipse.png" alt="" />;
+
 
 interface Iprofile {
   firstName?: string;
   lastName?: string;
   username?: string;
   about?: string;
+  avatar?: string;
 }
 
 const ProfileLeftBar = () => {
   const [profile, setProfile] = useState<Iprofile>({});
   const [profileName, setProfilename] = useState(``);
   const [editUserName, setEditUsername] = useState(false);
-  const [about, setAbout] = useState("");
+  const [about, setAbout] = useState(``);
   const [editAboutContent, setAboutContent] = useState(false);
   const [formError, setFormError] = useState(false);
 
@@ -32,6 +35,7 @@ const ProfileLeftBar = () => {
 
   const updateUser = async (property: string, value: string) => {
     // alert(`${property} has been updated to ${value}`);
+    console.log(property, value, "bbbb");
     if (!value) {
       setFormError(true);
       return;
@@ -80,6 +84,7 @@ const ProfileLeftBar = () => {
       setProfilename(
         `${profile.username || profile.firstName + " " + profile.lastName}`
       );
+      setAbout(profile.about || "");
     } catch (e) {}
   };
   useEffect(() => {
@@ -112,7 +117,7 @@ const ProfileLeftBar = () => {
         <div className={styles["profile-text"]}>
           {/* if(!inputForm)
           setInputform(false) */}
-          
+
           {editUserName ? (
             <ProfileForm
               content={{
@@ -128,8 +133,8 @@ const ProfileLeftBar = () => {
           <i onClick={handleUserNameEditClick}>
             {!editUserName && <BiEditAlt />}
           </i>
-      
-          {formError && <EmptyFormName/>}
+
+          {formError && <EmptyFormName />}
         </div>
         <p>
           This is not your username or pin. This name will be visibile to your
