@@ -1,0 +1,28 @@
+.friend::-webkit-scrollbar {
+  overflow-y: scroll;
+  background-color: red;
+  border: 5px solid black;
+}
+
+.profileWrapper {
+  margin: 0;
+  padding: 0;
+}
+
+.loaderStyle {
+  padding-top: 50%;
+  padding-left: 34%;
+}
+.loadingIcon {
+  width: 100px;
+  height: 100px;
+}
+.errorStyle{
+    padding-top: 50%;
+    padding-left: 34%;
+}
+.errorIcon{
+    width: 100px;
+  height: 100px;
+  color: #054950;
+}
