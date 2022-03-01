@@ -9,6 +9,7 @@ import { ChatContextProvider } from "../context/ChatContext";
 import Audio from "../components/AudioComponent/AudioFrontend/Audio";
 import VideoCall from "./Video/VideoCall";
 import ProfileLeftBar from "./Profile/ProfileLeftBar";
+import EmptyFormName from "./Profile/EmptyFormName";
 
 const MainPage: React.FC = () => {
   return (
@@ -16,11 +17,12 @@ const MainPage: React.FC = () => {
       <div className={styles.sidebar}>
         {/* <LeftSideBar /> */}
         <ProfileLeftBar />
+        <EmptyFormName />
       </div>
       <ChatContextProvider>
         <Chat />
         <SearchMessage />
-        <Audio />
+        {/* <Audio /> */}
         <VideoCall />
       </ChatContextProvider>
     </div>

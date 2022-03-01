@@ -1,23 +1,27 @@
 .leftbar-container {
   background-color: #f5fafc;
   flex: 0 0.83 40rem;
-  padding: 2rem;
+  padding: 2rem 2.2rem;
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  position: relative;
 
   .leftbar-text {
     display: flex;
     align-items: center;
     gap: 1rem;
-    font-size: 1.92rem;
+    font-size: 1.6rem;
     line-height: 1;
+    width: 35rem;
+    height: 10rem;
+   
   }
 
   .icon {
     position: absolute;
-    bottom: 40%;
-    right: 40%;
+    bottom: 38%;
+    right: 38%;
     z-index: 1;
     color: #fff;
     font-size: 3.2rem;
@@ -36,18 +40,44 @@
     margin: 0rem 6.4rem;
     position: relative;
   }
+  .profile-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 70%;
+    
+
+   .input-icon{
+     display: flex;
+     gap: 0.4rem;
+   }
+  }
+  .input{
+    border: none;
+    outline: none;
+    width: 33rem;
+    height: 4rem;
+    border-bottom: 0.15rem solid rgba(38, 129, 38, 0.959);
+    background-color: #f5fafc;
+    font-size: 1.8rem;
+    position: relative;
+
+  }
 
   .profile-text {
     display: flex;
     justify-content: space-between;
-    margin-top: 3.84rem;
+    margin-top: 0.2rem;
+   
 
-    .profile-name {
-      font-size: 1.76rem;
-      color: #515974;
-      font-weight: 200;
-    }
   }
+    .profile-name {
+      font-size: 1.6rem;
+      color: #515974;
+      color: rgba(38, 129, 38, 0.959);
+      font-weight: 400;
+    }
   .profile-paragraph {
     line-height: 2;
     color: #9796a5;
@@ -58,7 +88,7 @@
     h4 {
       font-weight: 400;
       color: #242837;
-      font-size: 1.92rem;
+      font-size: 1.8rem;
     }
   }
 
