@@ -23,12 +23,13 @@ const LeftSideBar: React.FC = () => {
       <div className={styles.header}>
         <div className={styles.header__profile}>
           <img src={user.avatar} alt={user.firstName} onClick={handleShow} />
-          <i>
+          {/* <i>
             <BsDashCircleDotted
               className={`${styles.icon__left} ${styles.icon}`}
             />
-          </i>
+          </i> */}
         </div>
+
         <i className={`${styles.icon__rigth} ${styles.icon}`}>
           {drop ? (
             <VscChevronDown onClick={() => setDrop(!drop)} />

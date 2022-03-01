@@ -7,7 +7,7 @@ export interface IformData {
 
 export interface User {
   user?: string;
-  userName?: string;
+  username?: string;
   firstName?: string;
   lastName?: string;
   email?: string;

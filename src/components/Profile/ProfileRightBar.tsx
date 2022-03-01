@@ -1,5 +1,6 @@
 import styles from "./ProfileRightBar.module.scss";
 import picture from "../../assets/picture.png";
+import { HiLockClosed }from "react-icons/hi"
 
 const ProfileRightBar = () => {
   return (
@@ -10,6 +11,13 @@ const ProfileRightBar = () => {
         Whatsapp connects to your phone to sync messages. To reduce data usage.
         connect your phone to Wi-Fi.
       </p>
+
+      <div className={styles["rightbar-footer"]}>
+        <i>
+          <HiLockClosed />
+        </i>
+        <p>End-to-end-encrypted</p>
+      </div>
     </div>
   );
 };

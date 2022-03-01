@@ -29,16 +29,15 @@
 }
 
 .profile__img {
-  // height: 100%;
-  width: 5.7rem;
-  height: 5.7rem;
+  padding: 0.5rem;
+  width: 6rem;
+  height: 6rem;
   object-fit: cover;
-
-  border-radius: 0.7rem;
-  -webkit-border-radius: 0.7rem;
-  -moz-border-radius: 0.7rem;
-  -ms-border-radius: 0.7rem;
-  -o-border-radius: 0.7rem;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 .profile__Header {

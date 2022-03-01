@@ -5,18 +5,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 7rem;
+  height: 6rem;
   padding: 1.6rem 2.4rem;
   position: relative;
 
   img {
-    width: 4.8rem;
-    height: 4.8rem;
-    border-radius: 0.2rem;
-    -webkit-border-radius: 0.2rem;
-    -moz-border-radius: 0.2rem;
-    -ms-border-radius: 0.2rem;
-    -o-border-radius: 0.2rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
   }
 
   .profile__info {
