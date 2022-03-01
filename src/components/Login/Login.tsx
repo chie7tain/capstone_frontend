@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { BsWhatsapp, BsTwitter, BsGithub } from "react-icons/bs";
 import { FaGoogle } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -6,16 +6,20 @@ import { IoIosLock } from "react-icons/io";
 import { BsCloudSunFill, BsFillCloudMoonFill } from "react-icons/bs";
 import { CgFacebook } from "react-icons/cg";
 import styles from "./Login.module.scss";
-import { UserData } from "./Login.interface";
-import { Link } from "react-router-dom";
+import { UserData, LoginProps } from "./Login.interface";
+import { Link, useNavigate } from "react-router-dom";
+import { GlobalStateContext } from "../../context/GlobalState";
 
 const url: string = "http://localhost:3050/api/v1/user/login";
-const Login = (): JSX.Element => {
+
+const Login: React.FC<LoginProps> = ({ spinner }) => {
   const [isLight, setIsLight] = useState(true);
   const [form, setForm] = useState<UserData>({ email: "", password: "" });
   const [showError, setShowError] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>("");
+  const { getUser } = useContext(GlobalStateContext);
   // const [rememberMe, setRememberMe] = useState(true);
+  let navigate = useNavigate();
 
   const focusPoint = useRef<HTMLInputElement>(null);
   const focusPoint2 = useRef<HTMLInputElement>(null);
@@ -50,7 +54,15 @@ const Login = (): JSX.Element => {
       });
       if (response.status === 201) {
         const data = await response.json();
-        alert(data.message);
+
+        spinner(true);
+
+        getUser!({ user: data.user, accessToken: data.accessToken });
+
+        setTimeout(() => {
+          spinner(false);
+          navigate("/chat");
+        }, 3000);
       }
       if (response.status === 400) {
         const data = await response.text();
@@ -160,7 +172,7 @@ const Login = (): JSX.Element => {
         </div>
       </div>
       <p>
-        Dont't have an account yet? <Link to="/signup">Register</Link>
+        Dont't have an account yet? <Link to="/signup">Register </Link>
       </p>
       <p className={styles["forgot-password"]}>
         <a href="/forgotPassword">Forgot Password ?</a>

@@ -4,11 +4,12 @@ import LoginSpinner from "./LoginSpinner/LoginSpinner";
 import styles from "./LoginPage.module.scss";
 
 const LoginPage = () => {
-  const [user, setUser] = useState(false);
+  const [spinner, setSpinner] = useState(false);
+
   return (
     <div className={styles.loginContainer}>
-      <Login />
-      {user && <LoginSpinner />}
+      <Login spinner={setSpinner} />
+      {spinner && <LoginSpinner />}
     </div>
   );
 };

@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoFacebook } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const SignUp: React.FC = (props) => {
   const firstNameTf = useRef<HTMLInputElement>(null);
@@ -156,9 +157,9 @@ const SignUp: React.FC = (props) => {
               <p>
                 {" "}
                 Already a member?{" "}
-                <a href="http://localhost:3050/api/v1/user/login">
+                <Link to="/login">
                   <span>Login</span>
-                </a>{" "}
+                </Link>{" "}
               </p>
 
               <button className={`${styles.btn}`}>SignUp</button>
