@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styles from "./SearchMessage.module.scss";
 import SearchHeader from "./SearchHeader/SearchHeader";
 import SearchBody from "./SearchBody/SearchBody";
+import Group from "../../Group-Page/Group/Group";
 
 import ChatContext from "../../../context/ChatContext";
 
@@ -17,7 +18,7 @@ const SearchMessage: React.FC<SearcViewhProp> = () => {
       }`}
     >
       <SearchHeader />
-      {showSearchRes?.isProfile ? "" : <SearchBody />}
+      {showSearchRes?.isProfile ? <Group /> : <SearchBody />}
     </div>
   );
 };
