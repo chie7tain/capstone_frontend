@@ -15,7 +15,6 @@
     line-height: 1;
     width: 35rem;
     height: 10rem;
-   
   }
 
   .icon {
@@ -30,30 +29,36 @@
     align-self: center;
   }
   .profile-pic {
-    // background-image: url("../../assets/Ellipse.png");
+    background-image: url('../../assets/Ellipse.png');
     width: 16rem;
     height: 16rem;
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 50%;
-    border: 1px solid black;
+    border: none;
     margin: 0rem 6.4rem;
+    overflow: hidden;
     position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
-  .profile-input{
+  .profile-input {
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
     left: 70%;
-    
 
-   .input-icon{
-     display: flex;
-     gap: 0.4rem;
-   }
+    .input-icon {
+      display: flex;
+      gap: 0.4rem;
+    }
   }
-  .input{
+  .input {
     border: none;
     outline: none;
     width: 33rem;
@@ -62,22 +67,19 @@
     background-color: #f5fafc;
     font-size: 1.8rem;
     position: relative;
-
   }
 
   .profile-text {
     display: flex;
     justify-content: space-between;
     margin-top: 0.2rem;
-   
-
   }
-    .profile-name {
-      font-size: 1.6rem;
-      color: #515974;
-      color: rgba(38, 129, 38, 0.959);
-      font-weight: 400;
-    }
+  .profile-name {
+    font-size: 1.6rem;
+    color: #515974;
+    color: rgba(38, 129, 38, 0.959);
+    font-weight: 400;
+  }
   .profile-paragraph {
     line-height: 2;
     color: #9796a5;
@@ -95,7 +97,9 @@
   p {
     font-size: 1.5rem;
   }
-
+i{
+  font-size: 2.4rem;
+}
   .paragraph-primary {
     font-size: 1.6rem;
     color: #242837;

@@ -1,3 +1,4 @@
+import { User } from "../utils/interface";
 import { ActionType } from "./actionType";
 
 interface GET_FAVORITE_FRIENDS_SUCCESS {
@@ -30,10 +31,22 @@ interface GET_GROUPS_FAILURE {
   payload: string;
 }
 
+interface GET_USER_LOGIN_SUCCESS {
+  type: typeof ActionType.GET_USER_LOGIN_SUCCESS;
+  payload: { accessToken: string; user: User };
+}
+
+interface SHOW_PROFILE_PAGE {
+  type: typeof ActionType.SHOW_PROFILE_PAGE;
+  payload: boolean;
+}
+
 export type Action =
   | GET_FAVORITE_FRIENDS_SUCCESS
   | GET_FAVORITE_FRIENDS_FAILURE
   | GET_FRIENDS_SUCCESS
   | GET_FRIENDS_FAILURE
   | GET_GROUPS_SUCCESS
-  | GET_GROUPS_FAILURE;
+  | GET_GROUPS_FAILURE
+  | GET_USER_LOGIN_SUCCESS
+  | SHOW_PROFILE_PAGE;

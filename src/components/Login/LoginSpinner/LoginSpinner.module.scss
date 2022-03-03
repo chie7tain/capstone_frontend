@@ -1,0 +1,96 @@
+// body {
+//   // background-color: #004d40;
+// }
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+
+  .loginSpinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vh;
+    // margin: auto auto;
+    // position: absolute;
+    position: relative;
+    top: -5%;
+    left: 23%;
+    // background-color: rgba(0, 0, 0, 0.062);
+    // display: none;
+    // opacity: 0;
+
+    .container {
+      background-color: rgb(0, 77, 64);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4rem;
+      height: 50%;
+      width: 70%;
+      border-radius: 2rem;
+      box-shadow: 0px 0px 12px -2px rgba(0, 77, 64, 0.75);
+      -webkit-box-shadow: 0px 0px 12px -2px rgba(0, 77, 64, 0.75);
+      -moz-box-shadow: 0px 0px 12px -2px rgba(0, 77, 64, 0.75);
+    }
+
+    .loader {
+      position: relative;
+      width: 15rem;
+      height: 15rem;
+      background-color: #4caf50;
+      border-radius: 50%;
+      animation: spinner 1s linear infinite;
+    }
+
+    .loader::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(to top, transparent, #a1ccb3);
+      border-top-left-radius: 100rem;
+      border-bottom-left-radius: 100rem;
+    }
+    .loader::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 45%;
+      width: 2rem;
+      height: 2rem;
+      background-color: #e8f5e9;
+      border-radius: 50%;
+      box-shadow: 0 0 1rem #e8f5e9, 0 0 2rem #e8f5e9, 0 0 3rem #e8f5e9,
+        0 0 4rem #e8f5e9, 0 0 5rem #e8f5e9;
+    }
+    .loader span {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      left: 2rem;
+      bottom: 2rem;
+      background-color: #004d40;
+      border-radius: 50%;
+    }
+    .spinner {
+      font-size: 2.5rem;
+      color: white;
+      box-sizing: border-box;
+    }
+
+    @keyframes spinner {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}

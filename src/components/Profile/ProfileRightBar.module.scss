@@ -1,10 +1,14 @@
 .rightbar-container {
   display: flex;
+   flex: 1;
+  flex: 1 1 76rem;
+  height: 100%;
   gap: 2rem;
   flex-direction: column;
   align-items: center;
+    overflow: hidden;
   padding: 12.8rem 16rem;
-  font-size: 3.2rem;
+  font-size: 2.2rem;
   color: #333e5b;
 
   .rightbar-head {
@@ -25,10 +29,6 @@
     align-items: center;
     color: #8f94a3;
     margin-top: 7rem;
-   i{
-     width: 2.4rem;
-     height: 2.4rem;
-
-   }
   }
+
 }

@@ -13,7 +13,8 @@ const ProfileRightBar = () => {
       </p>
 
       <div className={styles["rightbar-footer"]}>
-        <i>
+        <i
+        >
           <HiLockClosed />
         </i>
         <p>End-to-end-encrypted</p>
