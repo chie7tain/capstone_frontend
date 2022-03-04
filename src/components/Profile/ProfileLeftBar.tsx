@@ -22,7 +22,8 @@ const ProfileLeftBar = () => {
   const [formError, setFormError] = useState(false);
 
   /// GlobalContext
-  const { user, accessToken, showProfile } = useContext(GlobalStateContext);
+  const { user, accessToken, showProfile, showProfilePage } =
+    useContext(GlobalStateContext);
 
   const handleUserNameEditClick = () => {
     setEditUsername(true);
@@ -81,8 +82,13 @@ const ProfileLeftBar = () => {
     showProfile!(false);
   };
 
+  console.log(showProfilePage);
   return (
-    <div className={styles["leftbar-container"]}>
+    <div
+      className={`${styles["leftbar-container"]} ${
+        showProfilePage ? styles.moveIn : styles.moveOut
+      }`}
+    >
       <div className={styles["leftbar-text"]}>
         <i onClick={handleShow}>
           <BiArrowBack />

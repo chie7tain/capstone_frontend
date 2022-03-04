@@ -5,7 +5,11 @@
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  height: 100vh;
   position: relative;
+  position: absolute;
+  top: 0;
+  z-index: 100;
 
   .leftbar-text {
     display: flex;
@@ -104,5 +108,35 @@
     width: 28.8rem;
     margin-top: 1.28rem;
     line-height: 1.4;
+  }
+}
+
+.moveIn {
+  animation-name: main;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+
+  @keyframes main {
+    0% {
+      right: 120%;
+    }
+    100% {
+      right: 0;
+    }
+  }
+}
+
+.moveOut {
+  animation-name: side;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+
+  @keyframes side {
+    0% {
+      right: 0%;
+    }
+    100% {
+      right: 120%;
+    }
   }
 }

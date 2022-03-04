@@ -1,6 +1,7 @@
 // import SideBar from "./components/sidebar/SideBar";
 import React, { useContext } from "react";
 import LeftSideBar from "./sidebar/LeftSideBar";
+import ProfileRightBar from "./Profile/ProfileRightBar";
 // import { CSSTransition } from "react-transition-group";
 import Chat from "./MainContent/Chat/Chat";
 import SearchMessage from "./MainContent/SearchMessage/SearchMessage";
@@ -12,13 +13,16 @@ import EmptyFormName from "./Profile/EmptyFormName";
 import { GlobalStateContext } from "../context/GlobalState";
 
 const MainPage: React.FC = () => {
-  const { showProfilePage } = useContext(GlobalStateContext);
+  const { showProfilePage, showMessages } = useContext(GlobalStateContext);
   return (
     <div className={styles.App}>
       <div className={styles.sidebar}>
-        {showProfilePage ? <ProfileLeftBar /> : <LeftSideBar />}
+        <ProfileLeftBar />
+        <LeftSideBar />
       </div>
-      <Chat />
+      {showMessages ? <Chat /> : <ProfileRightBar />}
+      {/* <Chat /> 
+      <ProfileRightBar /> */}
       <SearchMessage />
       {/* <Audio /> */}
       {/* <VideoCall /> */}

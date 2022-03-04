@@ -22,7 +22,9 @@ const LeftSideBar: React.FC = () => {
     <div className={styles.sidebarr}>
       <div className={styles.header}>
         <div className={styles.header__profile}>
-          <img src={user.avatar} alt={user.firstName} onClick={handleShow} />
+          <div>
+            <img src={user.avatar} alt={user.firstName} onClick={handleShow} />
+          </div>
           {/* <i>
             <BsDashCircleDotted
               className={`${styles.icon__left} ${styles.icon}`}

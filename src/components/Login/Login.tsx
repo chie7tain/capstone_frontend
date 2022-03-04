@@ -174,7 +174,7 @@ const Login: React.FC<LoginProps> = ({ spinner }) => {
       <p>
         Dont't have an account yet? <Link to="/signup">Register </Link>
       </p>
-      <p className={styles["forogt-password"]}>
+      <p className={styles["forgot-password"]}>
         <a href="/forgotPassword">Forgot Password ?</a>
       </p>
     </div>

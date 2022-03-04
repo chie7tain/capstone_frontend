@@ -41,6 +41,11 @@ interface SHOW_PROFILE_PAGE {
   payload: boolean;
 }
 
+interface SHOW_MESSAGES {
+  type: typeof ActionType.SHOW_MESSAGES;
+  payload: boolean;
+}
+
 export type Action =
   | GET_FAVORITE_FRIENDS_SUCCESS
   | GET_FAVORITE_FRIENDS_FAILURE
@@ -49,4 +54,5 @@ export type Action =
   | GET_GROUPS_SUCCESS
   | GET_GROUPS_FAILURE
   | GET_USER_LOGIN_SUCCESS
-  | SHOW_PROFILE_PAGE;
+  | SHOW_PROFILE_PAGE
+  | SHOW_MESSAGES;
