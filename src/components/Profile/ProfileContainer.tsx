@@ -9,7 +9,7 @@ const ProfileContainer = () => {
     <div className={styles["profile-container"]}>
       <ProfileLeftBar />
       <ProfileRightBar />
-      {/* <EmptyFormName/> */}
+      <EmptyFormName/>
       {/* <EmptyFormAbout/> */}
     </div>
   );

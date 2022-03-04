@@ -1,7 +1,7 @@
 import styles from "./ProfileLeftBar.module.scss";
 import ProfileForm from "./ProfileForm";
 import { BiArrowBack, BiCamera, BiEditAlt } from "react-icons/bi";
-import { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import EmptyFormName from "./EmptyFormName";
 import { GlobalStateContext } from "../../context/GlobalState";
@@ -11,15 +11,21 @@ interface Iprofile {
   lastName?: string;
   username?: string;
   about?: string;
+  avatar?: string;
 }
 
 const ProfileLeftBar = () => {
   const [profile, setProfile] = useState<Iprofile>({});
   const [profileName, setProfilename] = useState(``);
   const [editUserName, setEditUsername] = useState(false);
-  const [about, setAbout] = useState("");
+  const [about, setAbout] = useState(``);
   const [editAboutContent, setAboutContent] = useState(false);
   const [formError, setFormError] = useState(false);
+  const [profilePic, setProfilePic] = useState("");
+  const [selectedPic, setSelectedPic] = useState("");
+  const [previewSource, setPreviewSource] = useState();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [file, setFile] = useState<any>();
 
   /// GlobalContext
   const { user, accessToken, showProfile, showProfilePage } =
@@ -31,9 +37,51 @@ const ProfileLeftBar = () => {
   const handleAboutContentClick = () => {
     setAboutContent(true);
   };
+  const handleInputPicClick = (e: { target: { files: any } }) => {
+    // setEditPic(true)
+    console.log(">>> handleInput pic:", e.target.files);
+    const file = e.target.files[0];
+    setFile(file);
+    previewFile(file);
+  };
+  const previewFile = (file: any) => {
+    const reader: any = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewSource(reader.result);
+    };
+  };
+  const handleSubmitFile = (e: any) => {
+    e.preventDefault();
+    if (!previewSource) return;
+    uploadImage();
+    // const reader = new FileReader()
+    // reader.readAsDataURL(editPic)
+  };
+  const uploadImage = async () => {
+    // const fileToUpload = { avatar: base64EncodedImage };
+    const fileToUpload = new FormData();
+    fileToUpload.append("avatar", file);
+    try {
+      const data = await axios.patch(
+        "http://localhost:3050/api/v1/users/updatepicture",
+        fileToUpload,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      console.log(">>> Upload Sucess:", data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const updateUser = async (property: string, value: string) => {
     // alert(`${property} has been updated to ${value}`);
+    console.log(property, value, "bbbb");
     if (!value) {
       setFormError(true);
       return;
@@ -55,6 +103,7 @@ const ProfileLeftBar = () => {
         propertyToUpdate,
         {
           headers: {
+            // "Content-Type": "multipart/form-data;boundary=SOME_BOUNDARY",
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`,
           },
@@ -65,17 +114,12 @@ const ProfileLeftBar = () => {
     }
   };
 
-  // const fetchProfile = async () => {
-  //   try {
-
-  //   } catch (e) {}
-  // };
-
   useEffect(() => {
     // fetchProfile();
     setProfile(user);
     setProfilename(`${user.username || user.firstName + " " + user.lastName}`);
     setAbout(user.about || "");
+    // setProfilePic(`${user.avatar || ""}`)
   }, [user]);
 
   const handleShow = () => {
@@ -97,17 +141,39 @@ const ProfileLeftBar = () => {
         <h2>Profile</h2>
       </div>
 
-      <div className={styles.pic__container}>
+      <form onSubmit={handleSubmitFile} className={styles.pic__container}>
         <div className={styles["profile-pic"]}>
+          {previewSource && <img src={previewSource} alt="" />}
           <img src={user.avatar} alt={user.firstName} />
+
           <label htmlFor="file-input">
             <i className={styles["icon"]}>
               <BiCamera />
-              <input className={styles["icon"]} type="file" />
+              <input
+                className={styles["icon"]}
+                type="file"
+                onChange={handleInputPicClick}
+                value={profilePic}
+                ref={fileInputRef}
+                accept="image/gif, image/jpeg, image/png, image/jpg"
+              />
             </i>
           </label>
         </div>
-      </div>
+        <button
+          style={{
+            background: "green",
+            padding: "0.9rem 2rem",
+            marginTop: "1.4rem",
+            border: "none",
+            color: "white",
+            borderRadius: "0.4rem",
+          }}
+          type="submit"
+        >
+          upload
+        </button>
+      </form>
 
       <div className={styles["profile-paragraph"]}>
         <p className={styles["profile-name"]}>Your name</p>
@@ -130,7 +196,6 @@ const ProfileLeftBar = () => {
           <i onClick={handleUserNameEditClick}>
             {!editUserName && <BiEditAlt />}
           </i>
-
           {formError && <EmptyFormName />}
         </div>
         <p>

@@ -24,7 +24,7 @@ const MainPage: React.FC = () => {
       {/* <Chat /> 
       <ProfileRightBar /> */}
       <SearchMessage />
-      {/* <Audio /> */}
+      <Audio />
       {/* <VideoCall /> */}
     </div>
   );

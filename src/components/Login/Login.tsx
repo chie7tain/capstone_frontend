@@ -54,6 +54,7 @@ const Login: React.FC<LoginProps> = ({ spinner }) => {
       });
       if (response.status === 201) {
         const data = await response.json();
+        console.log(data);
 
         spinner(true);
 
