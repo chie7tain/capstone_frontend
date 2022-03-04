@@ -9,11 +9,11 @@ import styles from "../App.module.scss";
 import Audio from "../components/AudioComponent/AudioFrontend/Audio";
 import VideoCall from "./Video/VideoCall";
 import ProfileLeftBar from "./Profile/ProfileLeftBar";
-import EmptyFormName from "./Profile/EmptyFormName";
 import { GlobalStateContext } from "../context/GlobalState";
 
 const MainPage: React.FC = () => {
-  const { showProfilePage, showMessages } = useContext(GlobalStateContext);
+  const { showMessages } = useContext(GlobalStateContext);
+
   return (
     <div className={styles.App}>
       <div className={styles.sidebar}>

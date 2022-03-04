@@ -4,20 +4,26 @@ import { GlobalStateContext } from "../../context/GlobalState";
 import { BsPinAngle } from "react-icons/bs";
 
 const GroupsData: React.FC = () => {
-  const { data, getGroups } = useContext(GlobalStateContext);
+  const { data, getGroups, setShowMessages, showMessages } =
+    useContext(GlobalStateContext);
   const { groups } = data;
-  console.log(groups?.allgroups, "checking groups");
 
   useEffect(() => {
     getGroups && getGroups();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const showChat = () => {
+    setShowMessages!(true);
+    console.log("ti;meless", showMessages);
+  };
+
   return (
     <div>
       {groups?.allgroups.map((group: any, index: string) => {
         return (
-          <div key={index} className={styles.friends__data}>
+          <div key={index} className={styles.friends__data} onClick={showChat}>
             <div className={styles.profile__Header}>
               <img
                 src={group.groupImage}

@@ -20,7 +20,7 @@ const LeftSideBar: React.FC = () => {
 
   return (
     <div className={styles.sidebarr}>
-      <div className={styles.header}>
+      <header className={styles.header}>
         <div className={styles.header__profile}>
           <div>
             <img src={user.avatar} alt={user.firstName} onClick={handleShow} />
@@ -39,7 +39,7 @@ const LeftSideBar: React.FC = () => {
             <IoIosArrowUp onClick={() => setDrop(!drop)} />
           )}
         </i>
-      </div>
+      </header>
 
       <div className={styles.input__field}>
         <i>

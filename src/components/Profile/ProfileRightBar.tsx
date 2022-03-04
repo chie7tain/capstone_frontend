@@ -1,8 +1,15 @@
 import styles from "./ProfileRightBar.module.scss";
 import picture from "../../assets/picture.png";
 import { HiLockClosed } from "react-icons/hi";
+import { useContext } from "react";
+import { GlobalStateContext } from "../../context/GlobalState";
 
 const ProfileRightBar = () => {
+  const { setShowMessages } = useContext(GlobalStateContext);
+
+  const handleShow = () => {
+    setShowMessages!(true);
+  };
   return (
     <div className={styles["rightbar-container"]}>
       <img src={picture} alt="img" />
@@ -13,7 +20,7 @@ const ProfileRightBar = () => {
       </p>
 
       <div className={styles["rightbar-footer"]}>
-        <i>
+        <i onClick={handleShow}>
           <HiLockClosed />
         </i>
         <p>End-to-end-encrypted</p>

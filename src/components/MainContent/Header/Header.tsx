@@ -16,7 +16,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <div className={styles.profile__info}>
         <img src="https://i.stack.imgur.com/YQu5k.png" alt="user tag" />
         <div className={styles.name__status}>
@@ -31,7 +31,7 @@ const Header: React.FC = () => {
       </div>
       <Nav />
       <DropDownChatInfo />
-    </div>
+    </header>
   );
 };
 
