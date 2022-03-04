@@ -10,10 +10,14 @@ interface reducerState {
   getFavoriteFriends?: () => void;
   getFriends?: () => void;
   getGroups?: () => void;
+  getMessages?: () => void;
+  addFavoriteFriend?: (data: any) => void;
+  addFriend?: (data: any) => void;
+  removeFavoriteFriend?: (data: any) => void;
 }
-//
+
 const initialState: reducerState = {
-  data: { friends: [], groups: [], favoriteFriends: [] },
+  data: { friends: [], groups: [], favoriteFriendsList: [] },
   loading: false,
   error: null,
 };
@@ -27,14 +31,14 @@ export const GlobalProvider = ({ children }: any) => {
     try {
       const {
         data: { data },
-      } = await axios.get("http://localhost:3050/api/v1/users/friend", {
+      } = await axios.get("http://localhost:3050/api/v1/users/getfavorites", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NTQ2NTQzMn0.GM8DGliyN8SKHhtsOJtNpq2oUrqSUEdhGE2nBs_EwOY`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NjQyMTI1M30.HHjxJvroBNKc0b8cW3T0oS20W-K4T5oIjjfyGR5pxjQ`,
         },
       });
 
-      // console.log(data, "res");
+      console.log(data, "favorite friends");
       dispatch({
         type: ActionType.GET_FAVORITE_FRIENDS_SUCCESS,
         payload: data,
@@ -54,11 +58,9 @@ export const GlobalProvider = ({ children }: any) => {
       } = await axios.get("http://localhost:3050/api/v1/users/friends", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NTQ2NTQzMn0.GM8DGliyN8SKHhtsOJtNpq2oUrqSUEdhGE2nBs_EwOY`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NjQyMTI1M30.HHjxJvroBNKc0b8cW3T0oS20W-K4T5oIjjfyGR5pxjQ`,
         },
       });
-
-      // console.log(data, "friends-list");
 
       dispatch({
         type: ActionType.GET_FRIENDS_SUCCESS,
@@ -74,13 +76,12 @@ export const GlobalProvider = ({ children }: any) => {
 
   const getGroups = async () => {
     try {
-      const res = await axios.get("http://localhost:3050/api/v1/groups/user", {
+      const res = await axios.get("http://localhost:3050/api/v1/groups/", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NTQ2NTQzMn0.GM8DGliyN8SKHhtsOJtNpq2oUrqSUEdhGE2nBs_EwOY`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NjQyMTI1M30.HHjxJvroBNKc0b8cW3T0oS20W-K4T5oIjjfyGR5pxjQ`,
         },
       });
-
 
       // console.log(res.data, "groups-list");
       dispatch({
@@ -95,6 +96,119 @@ export const GlobalProvider = ({ children }: any) => {
     }
   };
 
+  // Add friend by email
+  const addFriend = async (email: string) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:3050/api/v1/users/friend",
+        {
+          email,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NjQyMTI1M30.HHjxJvroBNKc0b8cW3T0oS20W-K4T5oIjjfyGR5pxjQ`,
+          },
+        }
+      );
+
+      dispatch({
+        type: ActionType.ADD_FRIEND_SUCCESS,
+        payload: res.data,
+      });
+    } catch (error: any) {
+      dispatch({
+        type: ActionType.ADD_FRIEND_FAILURE,
+        payload: error.response.error,
+      });
+    }
+  };
+
+  // Add favorite friend by id
+  const addFavoriteFriend = async (id: string) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:3050/api/v1/users/friends",
+        {
+          id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NjQyMTI1M30.HHjxJvroBNKc0b8cW3T0oS20W-K4T5oIjjfyGR5pxjQ`,
+          },
+        }
+      );
+
+      dispatch({
+        type: ActionType.ADD_FAVORITE_FRIEND_SUCCESS,
+        payload: res.data,
+      });
+    } catch (error: any) {
+      dispatch({
+        type: ActionType.ADD_FAVORITE_FRIEND_FAILURE,
+        payload: error.response.error,
+      });
+    }
+  };
+
+  // Remove favorite friend by id
+
+  const removeFavoriteFriend = async (id: string) => {
+    try {
+      const res = await axios.post(
+        `http://localhost:3050/api/v1/users/friends/${id}`,
+        {
+          id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NjQyMTI1M30.HHjxJvroBNKc0b8cW3T0oS20W-K4T5oIjjfyGR5pxjQ`,
+          },
+        }
+      );
+
+      dispatch({
+        type: ActionType.REMOVE_FAVORITE_FRIEND_SUCCESS,
+        payload: res.data,
+      });
+    } catch (error: any) {
+      dispatch({
+        type: ActionType.REMOVE_FAVORITE_FRIEND_FAILURE,
+        payload: error.response.error,
+      });
+    }
+  };
+
+  // Get messages
+
+  // const getMessages = async () => {
+  //   try {
+  //     const res = await axios.get(
+  //       "http://localhost:3050/api/v1/chats/61fa3f7e3517687c2ad8ec22/messages",
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NjQyMTI1M30.HHjxJvroBNKc0b8cW3T0oS20W-K4T5oIjjfyGR5pxjQ`,
+  //         },
+  //       }
+  //     );
+
+  //     console.log(res.data, "messages");
+
+  //     dispatch({
+  //       type: ActionType.GET_MESSAGES_SUCCESS,
+  //       payload: res.data,
+  //     });
+  //   } catch (error: any) {
+  //     dispatch({
+  //       type: ActionType.GET_MESSAGES_FAILURE,
+  //       payload: error.response.error,
+  //     });
+  //   }
+  // };
+
   console.log(state.data, "state");
 
   return (
@@ -106,6 +220,9 @@ export const GlobalProvider = ({ children }: any) => {
         getFavoriteFriends,
         getFriends,
         getGroups,
+        addFriend,
+        addFavoriteFriend,
+        removeFavoriteFriend,
       }}
     >
       {children}

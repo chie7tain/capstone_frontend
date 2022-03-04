@@ -1,49 +1,54 @@
-import React, { useContext, useEffect } from "react";
-import styles from "./LeftBar.module.scss";
+import React, { useContext, useEffect, useState } from "react";
+import styles from "./FriendsData.module.scss";
 import { GlobalStateContext } from "../../context/GlobalState";
-import { AiOutlinePushpin } from "react-icons/ai";
+import { BsPinAngle } from "react-icons/bs";
+import Spinner from "../common/Spinner";
 
 const GroupsData: React.FC = () => {
   const { data, getGroups } = useContext(GlobalStateContext);
   const { groups } = data;
   console.log(groups?.allgroups, "checking groups");
-    
-     useEffect(() => {
-       getGroups && getGroups();
 
-       // eslint-disable-next-line react-hooks/exhaustive-deps
-     }, []);
+  // const [redirect, setRedirect] = useState(false);
+
+
+  useEffect(() => {
+    getGroups && getGroups();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div>
-      {groups?.allgroups.map((group: any, index: string) => {
-        return (
-          <div key={index}>
-            <div className={styles["chat-headerInnerRight"]}>
-              <div className={styles["chat-headerRightImage"]}>
+      {groups.length === 0 ? (
+        <div className={styles.friends__data}>
+          <Spinner />
+          <h4 style={{textAlign:"center", fontSize:"16px", display: "block"}}>No Group included yet</h4>
+        </div>
+      ) : (
+        groups?.allgroups.map((group: any, index: string) => {
+          return (
+            <div key={index} className={styles.friends__data}>
+              <div className={styles.profile__Header}>
                 <img
                   src={group.groupImage}
-                  className={styles["chat-headerRightImage"]}
+                  className={styles.profile__img}
                   alt=""
                 />
-              </div>
-              <div className={styles["chat-headerRightText"]}>
-                <div className={styles["chat-headerRightTextName"]}>
-                  {group.groupName ? group.groupName : ""}
-                </div>
-                <div className={styles["chat-headerRightTextMessage"]}>
-                  ha ha ha oh man
+                <div className={styles.profile__info}>
+                  <h2>{group.groupName ? group.groupName : ""}</h2>
+                  <p>ha ha ha oh man</p>
                 </div>
               </div>
-            </div>
-            <div className={styles["chat-headerInnerLeft"]}>
-              <div className={styles["chat-headerLeftTime"]}>05:15pm</div>
-              <div className={styles["chat-headerLeftIcon"]}>
-                <AiOutlinePushpin className={styles["chatpin"]} />
+              <div className={styles.extra}>
+                <span>05:15pm</span>
+                <i>
+                  <BsPinAngle />
+                </i>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      )}
     </div>
   );
 };

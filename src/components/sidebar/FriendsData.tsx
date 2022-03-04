@@ -1,51 +1,60 @@
 import React, { useContext, useEffect } from "react";
-import styles from "./LeftBar.module.scss";
+import styles from "./FriendsData.module.scss";
 import { GlobalStateContext } from "../../context/GlobalState";
-import Vector from "../../assets/Vector.png";
+import { BsPinAngle } from "react-icons/bs";
+import Spinner from "../common/Spinner";
 
 const FriendsData: React.FC = () => {
   const { data, getFriends } = useContext(GlobalStateContext);
-    const { friends } = data;
-    
-    useEffect(() => {
-        getFriends && getFriends();
-        
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+
+  console.log(data.favoriteFriendsList, "checking favorite friends");
+  console.log(data.friends, "checking friends");
+  const { friends } = data;
+
+  console.log(friends?.friends, "checking friends");
+
+  useEffect(() => {
+    getFriends && getFriends();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
-      {friends.friends?.map((friend: any, index: string) => {
-        return (
-          <div key={index}>
-            <div className={styles["chat-headerInnerRight"]}>
-              <div className={styles["chat-headerRightImage"]}>
+      {friends.length === 0 ? (
+        <div className={styles.friends__data}>
+          <Spinner />
+          <h4 style={{textAlign:"center", margin:"auto", fontSize:"16px"}}>No Friend included yet</h4>
+        </div>
+      ) : (
+        friends?.friends.map((friend: any, index: string) => {
+          return (
+            <div key={index} className={styles.friends__data}>
+              <div className={styles.profile__Header}>
                 <img
                   src={friend.friendId.avatar}
-                  className={styles["chat-headerRightImage"]}
+                  className={styles.profile__img}
                   alt=""
                 />
-              </div>
-              <div className={styles["chat-headerRightText"]}>
-                <div className={styles["chat-headerRightTextName"]}>
-                  {`${friend.friendId.firstName} ${friend.friendId.lastName}`
-                    ? `${friend.friendId.firstName} ${friend.friendId.lastName}`
-                    : `${friend.friendId.phoneNumber}`}
-                </div>
-                <div className={styles["chat-headerRightTextMessage"]}>
-                  ha ha ha oh man
+                <div className={styles.profile__info}>
+                  <h2>
+                    {`${friend.friendId.firstName} ${friend.friendId.lastName}`
+                      ? `${friend.friendId.firstName} ${friend.friendId.lastName}`
+                      : `${friend.friendId.phoneNumber}`}
+                  </h2>
+                  <p>ha ha ha oh man</p>
                 </div>
               </div>
-            </div>
-            <div className={styles["chat-headerInnerLeft"]}>
-              <div className={styles["chat-headerLeftTime"]}>05:15pm</div>
-              <div className={styles["chat-headerLeftIcon"]}>
-                <img className={styles["chatpin"]} src={Vector} alt="" />
+              <div className={styles.extra}>
+                <span>05:15pm</span>
+                <i>
+                  <BsPinAngle />
+                </i>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      )}
     </div>
   );
 };

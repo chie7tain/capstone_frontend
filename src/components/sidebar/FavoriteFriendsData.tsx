@@ -1,13 +1,18 @@
 import React, { useContext, useEffect } from "react";
-import Vector from "../../assets/Vector.png";
-import styles from "./LeftBar.module.scss";
+import styles from "./FriendsData.module.scss";
 import { GlobalStateContext } from "../../context/GlobalState";
+import { BsPinAngle } from "react-icons/bs";
+import Spinner from "../common/Spinner";
 
 const FavoriteFriendsData: React.FC = () => {
   const { data, getFavoriteFriends } = useContext(GlobalStateContext);
-  const { favoriteFriendsList } = data;
-  // console.log(favoriteFriendsList, "favoriteFriendsList33");
 
+  // console.log(data.favoriteFriendsList, "checking favorite friends");
+
+  const { favoriteFriendsList } = data;
+  // const { favoriteFriendsList } = data;
+
+  // console.log(favoriteFriendsList, "checking favorite friends list");
   useEffect(() => {
     getFavoriteFriends && getFavoriteFriends();
 
@@ -15,45 +20,46 @@ const FavoriteFriendsData: React.FC = () => {
   }, []);
 
 
+
+
+  
   return (
     <div>
-      <div className={styles["chat-header"]}>
-        <div>
-          {favoriteFriendsList?.favoriteFriendsList.map(
-            (friend: any, index: string) => {
-              return (
-                <div key={index}>
-                  <div className={styles["chat-headerInnerRight"]}>
-                    <div className={styles["chat-headerRightImage"]}>
-                      <img
-                        src={friend.avatar}
-                        className={styles["chat-headerRightImage"]}
-                        alt=""
-                      />
-                    </div>
-                    <div className={styles["chat-headerRightText"]}>
-                      <div className={styles["chat-headerRightTextName"]}>
-                        {`${friend.firstName} ${friend.lastName}`
-                          ? `${friend.firstName} ${friend.lastName}`
-                          : `${friend.phoneNumber}`}
-                      </div>
-                      <div className={styles["chat-headerRightTextMessage"]}>
-                        ha ha ha oh man
-                      </div>
-                    </div>
-                  </div>
-                  <div className={styles["chat-headerInnerLeft"]}>
-                    <div className={styles["chat-headerLeftTime"]}>05:15pm</div>
-                    <div className={styles["chat-headerLeftIcon"]}>
-                      <img className={styles["chatpin"]} src={Vector} alt="" />
-                    </div>
-                  </div>
-                </div>
-              );
-            }
-          )}
+
+      {favoriteFriendsList?.favoriteFriendsList.length === 0 || data === undefined ? (
+        <div className={styles.friends__data}>
+          <Spinner />
+          <h4 style={{textAlign:"center", fontSize:"16px"}}>No Favorite Friend included yet</h4>
         </div>
-      </div>
+      ) : (
+        favoriteFriendsList?.favoriteFriendsList.map((friend: any, index: string) => {
+          return (
+            <div key={index} className={styles.friends__data}>
+              <div className={styles.profile__Header}>
+                <img
+                  src={friend.avatar}
+                  className={styles.profile__img}
+                  alt=""
+                />
+                <div className={styles.profile__info}>
+                  <h2>
+                    {`${friend.firstName} ${friend.lastName}`
+                      ? `${friend.firstName} ${friend.lastName}`
+                      : `${friend.phoneNumber}`}
+                  </h2>
+                  <p>ha ha ha oh man</p>
+                </div>
+              </div>
+              <div className={styles.extra}>
+                <span>05:15pm</span>
+                <i>
+                  <BsPinAngle />
+                </i>
+              </div>
+            </div>
+          );
+        })
+      )}
     </div>
   );
 };

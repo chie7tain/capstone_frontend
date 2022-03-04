@@ -49,8 +49,22 @@ const AddReducers = (state: reducerState, action: Action): reducerState => {
             return {
                 ...state,
                 loading: false,
+                error: action.payload
+            }
+
+        case ActionType.GET_MESSAGES_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                data: { ...state.data, messages: action.payload }
             }
         
+        case ActionType.GET_MESSAGES_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
         
         default:
             return state
