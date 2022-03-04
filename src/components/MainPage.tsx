@@ -20,9 +20,9 @@ const MainPage: React.FC = () => {
         <ProfileLeftBar />
         <LeftSideBar />
       </div>
-      {showMessages ? <Chat /> : <ProfileRightBar />}
-      {/* <Chat /> 
-      <ProfileRightBar /> */}
+      {/* {showMessages ? <Chat /> : <ProfileRightBar />} */}
+      <Chat />
+      {/* <ProfileRightBar /> */}
       <SearchMessage />
       <Audio />
       {/* <VideoCall /> */}

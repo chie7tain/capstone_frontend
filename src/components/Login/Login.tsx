@@ -150,13 +150,17 @@ const Login: React.FC<LoginProps> = ({ spinner }) => {
       <div className={styles["social-logins"]}>
         <div className={styles["social-circle"]}>
           <i className={styles.google}>
-            <FaGoogle />
+            <a href="http://localhost:3050/auth/google">
+              <FaGoogle />
+            </a>
           </i>
         </div>
 
         <div className={`${styles["social-circle"]} ${styles.b}`}>
           <i className={styles.fb}>
-            <CgFacebook />
+            <a href="http://localhost:3050/api/v1/users/profile">
+              <CgFacebook />
+            </a>
           </i>
         </div>
 
