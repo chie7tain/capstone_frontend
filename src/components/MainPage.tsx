@@ -18,10 +18,10 @@ const MainPage: React.FC = () => {
       <div className={styles.sidebar}>
         {showProfilePage ? <ProfileLeftBar /> : <LeftSideBar />}
       </div>
-      <Chat />
-      {/* <ProfileRightBar /> */}
+      {/* <Chat /> */}
+      <ProfileRightBar />
       <SearchMessage />
-      {/* <Audio /> */}
+      <Audio />
       {/* <VideoCall /> */}
     </div>
   );

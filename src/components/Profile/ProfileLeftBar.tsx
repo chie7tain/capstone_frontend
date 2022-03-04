@@ -102,7 +102,8 @@ const ProfileLeftBar = () => {
         propertyToUpdate,
         {
           headers: {
-            "Content-Type": "multipart/form-data;boundary=SOME_BOUNDARY",
+            // "Content-Type": "multipart/form-data;boundary=SOME_BOUNDARY",
+            "Content-Type":"application/json",
             Authorization: `Bearer ${accessToken}`,
           },
         }
