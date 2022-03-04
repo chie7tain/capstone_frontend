@@ -18,7 +18,11 @@ const SearchMessage: React.FC<SearcViewhProp> = () => {
       }`}
     >
       <SearchHeader />
-      {showSearchRes?.isProfile ? <Group /> : <SearchBody />}
+      {showSearchRes?.isProfile ? (
+        <Group groupId={"61fbf827b932d016e737a90e"} />
+      ) : (
+        <SearchBody />
+      )}
     </div>
   );
 };
