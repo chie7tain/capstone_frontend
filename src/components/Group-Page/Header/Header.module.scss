@@ -22,7 +22,7 @@
     height: 150px;
     background-color: cadetblue;
     border-radius: 50%;
-    margin-top: 5px;
+    margin-top: 15px;
     text-align: center;
     cursor: pointer;
   }
@@ -34,11 +34,14 @@
   .details {
     color: rgba(128, 128, 128, 0.795);
     font-weight: 400;
+    text-align: center;
   }
   .nameIcon {
     display: flex;
     justify-content: space-around;
     gap: 3rem;
+    margin-top: 10px;
+    text-align: center;
   }
 
   .new {

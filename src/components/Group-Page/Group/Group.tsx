@@ -29,7 +29,7 @@ const Group: FC<groupI> = ({ groupId }) => {
         groupMemberCount={data.groupMembers.length}
       />
       <About groupDescription={data.groupDescription} />
-      <Media />
+      {/* <Media /> */}
       <Members groupMembers={data.groupMembers} />
       <Footer />
     </div>
