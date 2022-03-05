@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
+import Pusher from "pusher-js";
 import axios from "axios";
 import styles from "./MessageInput.module.scss";
 import { CgAddR } from "react-icons/cg";
@@ -54,11 +55,24 @@ const MessageInput: React.FC = () => {
     getChats();
   }, []);
 
+
+  useEffect(() => {
+    const pusher = new Pusher("94d55bd3b0ecf1274ef3", {
+      cluster: "eu",
+    });
+
+    const channel = pusher.subscribe("messages");
+    channel.bind("inserted", (data: any) => {
+      alert(JSON.stringify(data));
+    });
+
+  }, []);
+
   console.log(conversations.messages, "conversations");
 
   const handleChange = (e: any) => {
     setCurrentChat(e.target.value);
-  }
+  };
 
   return (
     <div className={styles.message__input}>
@@ -67,17 +81,16 @@ const MessageInput: React.FC = () => {
         <CgAddR />
       </i>
 
-      <form>
-        <input
-          type="text"
-          name="message"
-          onChange={handleChange}
-          placeholder="Say Something..."
-        />
-        <button type="submit">
-          <AiOutlineSend />
-        </button>
-      </form>
+      <input
+        type="text"
+        name="message"
+        onChange={handleChange}
+        placeholder="Say Something..."
+      />
+
+      <button type="submit">
+        <AiOutlineSend />
+      </button>
 
       <i>
         <AiOutlineAudio />
