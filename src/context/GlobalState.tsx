@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useReducer } from "react";
 import { ActionType } from "./actionType";
 import AddReducers from "./AddReducers";
-import { User } from "../utils/interface";
+import { IChat, User } from "../utils/interface";
 
 interface reducerState {
   data: { [key: string]: any };
@@ -12,6 +12,8 @@ interface reducerState {
   accessToken: string;
   showProfilePage: boolean;
   showMessages: boolean;
+  currentChat: IChat;
+  friendDetail: any;
   showProfile?: (value: boolean) => void;
   setShowMessages?: (value: boolean) => void;
   getUser?: (data: { user: User; accessToken: string }) => void;
@@ -22,6 +24,8 @@ interface reducerState {
   addFavoriteFriend?: (data: any) => void;
   addFriend?: (data: any) => void;
   removeFavoriteFriend?: (data: any) => void;
+  startChat?: (members: string) => void;
+  setFriendDetail?: (friend: any) => void;
 }
 
 const initialState: reducerState = {
@@ -32,6 +36,8 @@ const initialState: reducerState = {
   showProfilePage: true,
   showMessages: false,
   user: JSON.parse(sessionStorage.getItem("user") as string) || {},
+  currentChat: {},
+  friendDetail: {},
 };
 
 export const GlobalStateContext = createContext({} as reducerState);
@@ -39,6 +45,8 @@ export const GlobalStateContext = createContext({} as reducerState);
 export const GlobalProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(AddReducers, initialState);
   // const [hideProfileDrop, setHideProfileDrop] = useState<boolean>(true);
+
+  console.log("message....", state.showMessages);
 
   const getUser = (data: { user: User; accessToken: string }) => {
     dispatch({
@@ -58,7 +66,6 @@ export const GlobalProvider = ({ children }: any) => {
         },
       });
 
-      console.log(data, "favorite friends");
       dispatch({
         type: ActionType.GET_FAVORITE_FRIENDS_SUCCESS,
         payload: data,
@@ -129,7 +136,7 @@ export const GlobalProvider = ({ children }: any) => {
       payload: value,
     });
   };
-  console.log('xxxxxxx', initialState.accessToken)
+
   // Add friend by email
   const addFriend = async (email: string) => {
     try {
@@ -243,7 +250,41 @@ export const GlobalProvider = ({ children }: any) => {
   //   }
   // };
 
-  console.log(state.data, "state");
+  const startChat = async (members: string) => {
+    try {
+      const {
+        data: { data },
+      } = await axios.post(
+        "http://localhost:3050/api/v1/chats",
+        {
+          members,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${initialState.accessToken}`,
+          },
+        }
+      );
+
+      dispatch({
+        type: ActionType.GET_ACTIVE_CHAT,
+        payload: data,
+      });
+    } catch (error: any) {
+      dispatch({
+        type: ActionType.GET_ACTIVE_CHAT_FAILURE,
+        payload: "error",
+      });
+    }
+  };
+
+  const setFriendDetail = (friend: any) => {
+    dispatch({
+      type: ActionType.SET_FRIEND,
+      payload: friend,
+    });
+  };
 
   return (
     <GlobalStateContext.Provider
@@ -264,6 +305,10 @@ export const GlobalProvider = ({ children }: any) => {
         addFriend,
         addFavoriteFriend,
         removeFavoriteFriend,
+        startChat,
+        currentChat: state.currentChat,
+        setFriendDetail,
+        friendDetail: state.friendDetail,
       }}
     >
       {children}

@@ -1,6 +1,6 @@
 import { Action } from "./index";
 import { ActionType } from "./actionType";
-import { User } from "../utils/interface";
+import { IChat, User } from "../utils/interface";
 
 interface reducerState {
   data: { [key: string]: any };
@@ -10,6 +10,8 @@ interface reducerState {
   user: User;
   showProfilePage: boolean;
   showMessages: boolean;
+  currentChat: IChat;
+  friendDetail: any;
 }
 
 const AddReducers = (state: reducerState, action: Action): reducerState => {
@@ -86,7 +88,27 @@ const AddReducers = (state: reducerState, action: Action): reducerState => {
     case ActionType.SHOW_MESSAGES:
       return {
         ...state,
-        showProfilePage: action.payload,
+        showMessages: action.payload,
+      };
+
+    case ActionType.GET_ACTIVE_CHAT:
+      return {
+        ...state,
+        loading: false,
+        currentChat: action.payload,
+      };
+
+    case ActionType.GET_ACTIVE_CHAT_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case ActionType.SET_FRIEND:
+      return {
+        ...state,
+        friendDetail: action.payload,
       };
 
     default:

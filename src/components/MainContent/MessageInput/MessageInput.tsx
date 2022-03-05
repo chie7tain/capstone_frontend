@@ -43,9 +43,6 @@ const MessageInput: React.FC = () => {
         );
 
         const { data } = res;
-
-        console.log(data, "chats");
-
         setConversations(data);
       } catch (error) {
         console.log(error);
@@ -54,7 +51,6 @@ const MessageInput: React.FC = () => {
 
     getChats();
   }, []);
-
 
   useEffect(() => {
     const pusher = new Pusher("94d55bd3b0ecf1274ef3", {
@@ -65,10 +61,7 @@ const MessageInput: React.FC = () => {
     channel.bind("inserted", (data: any) => {
       alert(JSON.stringify(data));
     });
-
   }, []);
-
-  console.log(conversations.messages, "conversations");
 
   const handleChange = (e: any) => {
     setCurrentChat(e.target.value);

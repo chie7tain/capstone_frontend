@@ -1,35 +1,53 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./FriendsData.module.scss";
 import { GlobalStateContext } from "../../context/GlobalState";
 import { BsPinAngle } from "react-icons/bs";
 import Spinner from "../common/Spinner";
 
 const FriendsData: React.FC = () => {
-  const { data, getFriends } = useContext(GlobalStateContext);
+  const [chat, setChat] = useState("");
+  const { data, getFriends, setShowMessages, startChat, setFriendDetail } =
+    useContext(GlobalStateContext);
 
-  console.log(data.favoriteFriendsList, "checking favorite friends");
-  console.log(data.friends, "checking friends");
   const { friends } = data;
-
-  console.log(friends?.friends, "checking friends");
 
   useEffect(() => {
     getFriends && getFriends();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const activeChat = (friendId: string) => {
+    setChat(friendId);
+
+    const partner = friends?.friends.filter(
+      (active: any) => active._id === friendId
+    );
+    setFriendDetail!(partner[0].friendId);
+    setShowMessages!(true);
+  };
+
+  useEffect(() => {
+    startChat!(chat);
+  }, [chat]);
+
+  // () => console.log("I just clicked me!!!", friend._id)
   return (
     <div>
       {friends.length === 0 ? (
         <div className={styles.friends__data}>
           <Spinner />
-          <h4 style={{textAlign:"center", margin:"auto", fontSize:"16px"}}>No Friend included yet</h4>
+          <h4 style={{ textAlign: "center", margin: "auto", fontSize: "16px" }}>
+            No Friend included yet
+          </h4>
         </div>
       ) : (
         friends?.friends.map((friend: any, index: string) => {
           return (
-            <div key={index} className={styles.friends__data}>
+            <div
+              key={index}
+              className={styles.friends__data}
+              onClick={activeChat.bind(this, friend._id)}
+            >
               <div className={styles.profile__Header}>
                 <img
                   src={friend.friendId.avatar}

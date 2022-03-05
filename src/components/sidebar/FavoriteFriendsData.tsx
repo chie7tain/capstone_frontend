@@ -1,23 +1,40 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./FriendsData.module.scss";
 import { GlobalStateContext } from "../../context/GlobalState";
 import { BsPinAngle } from "react-icons/bs";
 import Spinner from "../common/Spinner";
 
 const FavoriteFriendsData: React.FC = () => {
-  const { data, getFavoriteFriends } = useContext(GlobalStateContext);
-
-  // console.log(data.favoriteFriendsList, "checking favorite friends");
+  const [chat, setChat] = useState("");
+  const {
+    data,
+    getFavoriteFriends,
+    setShowMessages,
+    startChat,
+    setFriendDetail,
+  } = useContext(GlobalStateContext);
 
   const { favoriteFriendsList } = data;
   // const { favoriteFriendsList } = data;
 
-  // console.log(favoriteFriendsList, "checking favorite friends list");
   useEffect(() => {
     getFavoriteFriends && getFavoriteFriends();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const activeChat = (friendId: string) => {
+    // setChat(friendId);
+    // const partner = favoriteFriendsList?.favoriteFriendsList.filter(
+    //   (active: any) => active._id === friendId
+    // );
+    // setFriendDetail!(partner[0].friendId);
+    // setShowMessages!(true);
+  };
+
+  useEffect(() => {
+    startChat!(chat);
+  }, [chat]);
 
   return (
     <div>
@@ -33,7 +50,11 @@ const FavoriteFriendsData: React.FC = () => {
         favoriteFriendsList?.favoriteFriendsList.map(
           (friend: any, index: string) => {
             return (
-              <div key={index} className={styles.friends__data}>
+              <div
+                key={index}
+                className={styles.friends__data}
+                onClick={activeChat.bind(this, friend.id)}
+              >
                 <div className={styles.profile__Header}>
                   <img
                     src={friend.avatar}

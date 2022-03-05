@@ -75,7 +75,6 @@ const ProfileLeftBar = () => {
       const update = data.data.data.user.avatar;
       let user = JSON.parse(sessionStorage.getItem("user") as string);
       user["avatar"] = update;
-      console.log(">>> Upload Sucess:", update);
       getUser!({ user, accessToken });
       sessionStorage.setItem("user", JSON.stringify(user));
     } catch (error) {
@@ -131,7 +130,6 @@ const ProfileLeftBar = () => {
     showProfile!(false);
   };
 
-  console.log(showProfilePage);
   return (
     <div
       className={`${styles["leftbar-container"]} ${

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import {MdOutlineMessage} from "react-icons/md";
+import { MdOutlineMessage } from "react-icons/md";
 import styles from "./LeftBarFriends.module.scss";
 import FavoriteFriendsData from "./FavoriteFriendsData";
 import FriendsData from "./FriendsData";
@@ -18,24 +18,22 @@ const LeftBarFriends: React.FC = () => {
     getFriends && getFriends();
     getGroups && getGroups();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, []);
-
-
+  }, []);
 
   const toggleFavoriteFriends = () => {
-    setShowFavorites(!showFavorite);
+    setShowFavorites(true);
     setShowFriends(false);
     setShowGroups(false);
   };
 
   const toggleFriends = () => {
-    setShowFriends(!showFriends);
+    setShowFriends(true);
     setShowFavorites(false);
     setShowGroups(false);
   };
 
   const toggleGroups = () => {
-    setShowGroups(!showGroups);
+    setShowGroups(true);
     setShowFavorites(false);
     setShowFriends(false);
   };
@@ -43,8 +41,8 @@ const LeftBarFriends: React.FC = () => {
   return (
     <div>
       <div className={styles.ffgButtons}>
-        <button onClick={toggleFavoriteFriends}>Favorites</button>
         <button onClick={toggleFriends}>Friends</button>
+        <button onClick={toggleFavoriteFriends}>Favorites</button>
         <button onClick={toggleGroups}>Groups</button>
       </div>
       <div className={styles.container__list}>

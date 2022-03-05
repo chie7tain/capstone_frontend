@@ -86,6 +86,21 @@ interface REMOVE_FAVORITE_FRIEND_FAILURE {
   payload: string;
 }
 
+interface GET_ACTIVE_CHAT {
+  type: typeof ActionType.GET_ACTIVE_CHAT;
+  payload: any;
+}
+
+interface GET_ACTIVE_CHAT_FAILURE {
+  type: typeof ActionType.GET_ACTIVE_CHAT_FAILURE;
+  payload: any;
+}
+
+interface SET_FRIEND {
+  type: typeof ActionType.SET_FRIEND;
+  payload: any;
+}
+
 export type Action =
   | GET_FAVORITE_FRIENDS_SUCCESS
   | GET_FAVORITE_FRIENDS_FAILURE
@@ -103,4 +118,7 @@ export type Action =
   | ADD_FAVORITE_FRIEND_SUCCESS
   | ADD_FAVORITE_FRIEND_FAILURE
   | REMOVE_FAVORITE_FRIEND_SUCCESS
-  | REMOVE_FAVORITE_FRIEND_FAILURE;
+  | REMOVE_FAVORITE_FRIEND_FAILURE
+  | GET_ACTIVE_CHAT
+  | GET_ACTIVE_CHAT_FAILURE
+  | SET_FRIEND;

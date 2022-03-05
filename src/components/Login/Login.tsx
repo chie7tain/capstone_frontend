@@ -54,7 +54,6 @@ const Login: React.FC<LoginProps> = ({ spinner }) => {
       });
       if (response.status === 201) {
         const data = await response.json();
-        console.log(data);
 
         spinner(true);
 
@@ -79,7 +78,6 @@ const Login: React.FC<LoginProps> = ({ spinner }) => {
         setShowError(true);
         setTimeout(() => setShowError(false), 3000);
       }
-      console.log(response);
     } catch (err: any) {
       console.error(err);
     }
