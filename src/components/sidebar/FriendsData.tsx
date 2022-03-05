@@ -2,10 +2,16 @@ import React, { useContext, useEffect } from "react";
 import styles from "./FriendsData.module.scss";
 import { GlobalStateContext } from "../../context/GlobalState";
 import { BsPinAngle } from "react-icons/bs";
+import Spinner from "../common/Spinner";
 
 const FriendsData: React.FC = () => {
   const { data, getFriends } = useContext(GlobalStateContext);
+
+  console.log(data.favoriteFriendsList, "checking favorite friends");
+  console.log(data.friends, "checking friends");
   const { friends } = data;
+
+  console.log(friends?.friends, "checking friends");
 
   useEffect(() => {
     getFriends && getFriends();
@@ -15,33 +21,40 @@ const FriendsData: React.FC = () => {
 
   return (
     <div>
-      {friends.friends?.map((friend: any, index: string) => {
-        return (
-          <div key={index} className={styles.friends__data}>
-            <div className={styles.profile__Header}>
-              <img
-                src={friend.friendId.avatar}
-                className={styles.profile__img}
-                alt=""
-              />
-              <div className={styles.profile__info}>
-                <h2>
-                  {`${friend.friendId.firstName} ${friend.friendId.lastName}`
-                    ? `${friend.friendId.firstName} ${friend.friendId.lastName}`
-                    : `${friend.friendId.phoneNumber}`}
-                </h2>
-                <p>ha ha ha oh man</p>
+      {friends.length === 0 ? (
+        <div className={styles.friends__data}>
+          <Spinner />
+          <h4 style={{textAlign:"center", margin:"auto", fontSize:"16px"}}>No Friend included yet</h4>
+        </div>
+      ) : (
+        friends?.friends.map((friend: any, index: string) => {
+          return (
+            <div key={index} className={styles.friends__data}>
+              <div className={styles.profile__Header}>
+                <img
+                  src={friend.friendId.avatar}
+                  className={styles.profile__img}
+                  alt=""
+                />
+                <div className={styles.profile__info}>
+                  <h2>
+                    {`${friend.friendId.firstName} ${friend.friendId.lastName}`
+                      ? `${friend.friendId.firstName} ${friend.friendId.lastName}`
+                      : `${friend.friendId.phoneNumber}`}
+                  </h2>
+                  <p>ha ha ha oh man</p>
+                </div>
+              </div>
+              <div className={styles.extra}>
+                <span>05:15pm</span>
+                <i>
+                  <BsPinAngle />
+                </i>
               </div>
             </div>
-            <div className={styles.extra}>
-              <span>05:15pm</span>
-              <i>
-                <BsPinAngle />
-              </i>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })
+      )}
     </div>
   );
 };

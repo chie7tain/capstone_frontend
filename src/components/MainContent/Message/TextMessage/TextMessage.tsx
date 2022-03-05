@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import styles from "./TextMessage.module.scss";
 
 interface IText {
@@ -6,6 +7,9 @@ interface IText {
 }
 
 const TextMessage: React.FC<IText> = ({ reciever }) => {
+
+
+  
   return (
     <div className={`${styles.textM} ${reciever ? styles.recipant : ""}`}>
       <p>

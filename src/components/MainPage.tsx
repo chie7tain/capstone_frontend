@@ -6,10 +6,11 @@ import ProfileRightBar from "./Profile/ProfileRightBar";
 import Chat from "./MainContent/Chat/Chat";
 import SearchMessage from "./MainContent/SearchMessage/SearchMessage";
 import styles from "../App.module.scss";
-import Audio from "../components/AudioComponent/AudioFrontend/Audio";
-import VideoCall from "./Video/VideoCall";
+// import Audio from "./AudioComponent/AudioFrontend/Audio";
+// import VideoCall from "./Video/VideoCall";
 import ProfileLeftBar from "./Profile/ProfileLeftBar";
 import { GlobalStateContext } from "../context/GlobalState";
+// import Audio from '../components/AudioComponent/AudioFrontend/Audio'
 
 const MainPage: React.FC = () => {
   const { showMessages } = useContext(GlobalStateContext);
@@ -24,7 +25,7 @@ const MainPage: React.FC = () => {
       <Chat />
       {/* <ProfileRightBar /> */}
       <SearchMessage />
-      <Audio />
+      {/* <Audio /> */}
       {/* <VideoCall /> */}
     </div>
   );

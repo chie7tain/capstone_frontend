@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { BrowserRouter, Router as Route, Link } from "react-router-dom";
+import {MdOutlineMessage} from "react-icons/md";
 import styles from "./LeftBarFriends.module.scss";
 import FavoriteFriendsData from "./FavoriteFriendsData";
 import FriendsData from "./FriendsData";
@@ -12,34 +12,32 @@ const LeftBarFriends: React.FC = () => {
   const [showFavorite, setShowFavorites] = useState(false);
   const [showFriends, setShowFriends] = useState(true);
   const [showGroups, setShowGroups] = useState(false);
+
   useEffect(() => {
     getFavoriteFriends && getFavoriteFriends();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
     getFriends && getFriends();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
     getGroups && getGroups();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+   }, []);
+
+
 
   const toggleFavoriteFriends = () => {
     setShowFavorites(!showFavorite);
+    setShowFriends(false);
+    setShowGroups(false);
   };
 
   const toggleFriends = () => {
     setShowFriends(!showFriends);
+    setShowFavorites(false);
+    setShowGroups(false);
   };
 
   const toggleGroups = () => {
     setShowGroups(!showGroups);
+    setShowFavorites(false);
+    setShowFriends(false);
   };
 
   return (
@@ -50,9 +48,11 @@ const LeftBarFriends: React.FC = () => {
         <button onClick={toggleGroups}>Groups</button>
       </div>
       <div className={styles.container__list}>
-        {showFavorite ? <FavoriteFriendsData /> : null}
-        {showFriends ? <FriendsData /> : null}
-        {showGroups ? <GroupsData /> : null}
+        {showFavorite && <FavoriteFriendsData />}
+        {showFriends && <FriendsData />}
+        {showGroups && <GroupsData />}
+
+        <MdOutlineMessage />
       </div>
       {/* <img src="" alt="" /> */}
     </div>
