@@ -4,9 +4,14 @@
   display: flex;
   height: 70.8rem;
   height: 100vh;
+  overflow: hidden;
+  font-family: sans-serif;
 }
 
 .sidebar {
   flex: 0 0.83 40rem;
   background-color: hotpink;
+  background-color: varr.$bg_header;
+  // background-color: varr.$bg_message;
+  // background-color: white;
 }

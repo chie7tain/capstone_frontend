@@ -1,0 +1,19 @@
+.rightbar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8rem 10rem;
+    font-size: 2rem;
+    color: #333E5B;
+
+    .rightbar-head {
+        margin-top: 2rem;
+    }
+
+    .rightbar-text {
+        color: #8F94A3;
+        font-size: 1.4rem;
+        margin-top: 1rem;
+        text-align: center;
+    }
+}

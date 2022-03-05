@@ -1,0 +1,54 @@
+@use "../../../Styles/variables.scss" as varr;
+
+.header {
+  background-color: varr.$bg_header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 6rem;
+  padding: 1.6rem 2.4rem;
+  position: relative;
+
+  img {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+  }
+
+  .profile__info {
+    display: flex;
+    gap: 1.5rem;
+
+    .name__status {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      //   padding: 0.2rem 0;
+
+      h2 {
+        font-size: 1.8rem;
+        font-weight: 300;
+        color: #777;
+        letter-spacing: 1px;
+        cursor: pointer;
+      }
+
+      p {
+        font-size: 1.2rem;
+        letter-spacing: 0.5px;
+
+        span {
+          height: 1rem;
+          width: 1rem;
+          background-color: varr.$bg-wa;
+          border-radius: 50%;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

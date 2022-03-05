@@ -25,6 +25,8 @@ $md: 70rem;
 @mixin breakpoint($point) {
   @if $point == md {
     @media (max-width: $md) {
+      // color: rgb(247, 247, 252);
+
       @content;
     }
   }

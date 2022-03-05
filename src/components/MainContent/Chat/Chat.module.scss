@@ -1,0 +1,13 @@
+@use "../../../Styles//variables.scss" as varr;
+
+.main__content {
+  flex: 1;
+  flex: 1 1 76rem;
+  border-top-right-radius: 2.4rem;
+  border-bottom-right-radius: 2.4rem;
+  background-color: varr.$bg;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

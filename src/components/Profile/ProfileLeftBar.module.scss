@@ -1,0 +1,108 @@
+.leftbar-container {
+  background-color: #f5fafc;
+  flex: 0 0.83 40rem;
+  padding: 2rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  position: relative;
+
+  .leftbar-text {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.6rem;
+    line-height: 1;
+    width: 35rem;
+    height: 10rem;
+  }
+
+  .icon {
+    position: absolute;
+    bottom: 38%;
+    right: 38%;
+    z-index: 1;
+    color: #fff;
+    font-size: 3.2rem;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+  .profile-pic {
+    // background-image: url("../../assets/Ellipse.png");
+    width: 16rem;
+    height: 16rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin: 0rem 6.4rem;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .profile-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 70%;
+
+    .input-icon {
+      display: flex;
+      gap: 0.4rem;
+    }
+  }
+  .input {
+    border: none;
+    outline: none;
+    width: 33rem;
+    height: 4rem;
+    border-bottom: 0.15rem solid rgba(38, 129, 38, 0.959);
+    background-color: #f5fafc;
+    font-size: 1.8rem;
+    position: relative;
+  }
+
+  .profile-text {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.2rem;
+  }
+  .profile-name {
+    font-size: 1.6rem;
+    color: #515974;
+    color: rgba(38, 129, 38, 0.959);
+    font-weight: 400;
+  }
+  .profile-paragraph {
+    line-height: 2;
+    color: #9796a5;
+    margin-top: 0.64rem;
+    width: 33.6rem;
+    font-size: 1.28rem;
+
+    h4 {
+      font-weight: 400;
+      color: #242837;
+      font-size: 1.8rem;
+    }
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+
+  .paragraph-primary {
+    font-size: 1.6rem;
+    color: #242837;
+    width: 28.8rem;
+    margin-top: 1.28rem;
+    line-height: 1.4;
+  }
+}
