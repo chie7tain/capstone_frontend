@@ -58,6 +58,8 @@ const Login: React.FC<LoginProps> = ({ spinner }) => {
 
         spinner(true);
 
+        sessionStorage.setItem("token", JSON.stringify(data.accessToken));
+        sessionStorage.setItem("user", JSON.stringify(data.user));
         getUser!({ user: data.user, accessToken: data.accessToken });
 
         setTimeout(() => {

@@ -28,10 +28,10 @@ const initialState: reducerState = {
   data: { friends: [], groups: [], favoriteFriendsList: [] },
   loading: false,
   error: null,
-  accessToken: "",
+  accessToken: JSON.parse(sessionStorage.getItem("token") as string) || "",
   showProfilePage: true,
   showMessages: false,
-  user: {},
+  user: JSON.parse(sessionStorage.getItem("user") as string) || {},
 };
 
 export const GlobalStateContext = createContext({} as reducerState);
@@ -54,7 +54,7 @@ export const GlobalProvider = ({ children }: any) => {
       } = await axios.get("http://localhost:3050/api/v1/users/getfavorites", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NjQyMTI1M30.HHjxJvroBNKc0b8cW3T0oS20W-K4T5oIjjfyGR5pxjQ`,
+          Authorization: `Bearer ${initialState.accessToken}`,
         },
       });
 
@@ -78,7 +78,7 @@ export const GlobalProvider = ({ children }: any) => {
       } = await axios.get("http://localhost:3050/api/v1/users/friends", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NjQyMTI1M30.HHjxJvroBNKc0b8cW3T0oS20W-K4T5oIjjfyGR5pxjQ`,
+          Authorization: `Bearer ${initialState.accessToken}`,
         },
       });
 
@@ -99,7 +99,7 @@ export const GlobalProvider = ({ children }: any) => {
       const res = await axios.get("http://localhost:3050/api/v1/groups/", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NjQyMTI1M30.HHjxJvroBNKc0b8cW3T0oS20W-K4T5oIjjfyGR5pxjQ`,
+          Authorization: `Bearer ${initialState.accessToken}`,
         },
       });
 
@@ -129,6 +129,7 @@ export const GlobalProvider = ({ children }: any) => {
       payload: value,
     });
   };
+  console.log('xxxxxxx', initialState.accessToken)
   // Add friend by email
   const addFriend = async (email: string) => {
     try {
@@ -140,7 +141,7 @@ export const GlobalProvider = ({ children }: any) => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NjQyMTI1M30.HHjxJvroBNKc0b8cW3T0oS20W-K4T5oIjjfyGR5pxjQ`,
+            Authorization: `Bearer ${initialState.accessToken}`,
           },
         }
       );
@@ -168,7 +169,7 @@ export const GlobalProvider = ({ children }: any) => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NjQyMTI1M30.HHjxJvroBNKc0b8cW3T0oS20W-K4T5oIjjfyGR5pxjQ`,
+            Authorization: `Bearer ${initialState.accessToken}`,
           },
         }
       );
@@ -197,7 +198,7 @@ export const GlobalProvider = ({ children }: any) => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NjQyMTI1M30.HHjxJvroBNKc0b8cW3T0oS20W-K4T5oIjjfyGR5pxjQ`,
+            Authorization: `Bearer ${initialState.accessToken}`,
           },
         }
       );
@@ -223,7 +224,7 @@ export const GlobalProvider = ({ children }: any) => {
   //       {
   //         headers: {
   //           "Content-Type": "application/json",
-  //           Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmE4YTliZmFjOWEzMGJlNzk3YSIsImlhdCI6MTY0NjQyMTI1M30.HHjxJvroBNKc0b8cW3T0oS20W-K4T5oIjjfyGR5pxjQ`,
+  //           Authorization: `Bearer ${initialState.accessToken}`,
   //         },
   //       }
   //     );

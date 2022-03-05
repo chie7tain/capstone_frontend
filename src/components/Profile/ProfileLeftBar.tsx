@@ -28,7 +28,7 @@ const ProfileLeftBar = () => {
   const [file, setFile] = useState<any>();
 
   /// GlobalContext
-  const { user, accessToken, showProfile, showProfilePage } =
+  const { user, accessToken, showProfile, showProfilePage, getUser } =
     useContext(GlobalStateContext);
 
   const handleUserNameEditClick = () => {
@@ -38,8 +38,6 @@ const ProfileLeftBar = () => {
     setAboutContent(true);
   };
   const handleInputPicClick = (e: { target: { files: any } }) => {
-    // setEditPic(true)
-    console.log(">>> handleInput pic:", e.target.files);
     const file = e.target.files[0];
     setFile(file);
     previewFile(file);
@@ -73,21 +71,24 @@ const ProfileLeftBar = () => {
           },
         }
       );
-      console.log(">>> Upload Sucess:", data);
+
+      const update = data.data.data.user.avatar;
+      let user = JSON.parse(sessionStorage.getItem("user") as string);
+      user["avatar"] = update;
+      console.log(">>> Upload Sucess:", update);
+      getUser!({ user, accessToken });
+      sessionStorage.setItem("user", JSON.stringify(user));
     } catch (error) {
       console.error(error);
     }
   };
 
   const updateUser = async (property: string, value: string) => {
-    // alert(`${property} has been updated to ${value}`);
-    console.log(property, value, "bbbb");
     if (!value) {
       setFormError(true);
       return;
     }
     const propertyToUpdate = { [property]: value };
-    //show user ' fullname h4 ' when user clicks done for editing user fullname
 
     try {
       if (property === "username") {
@@ -109,6 +110,10 @@ const ProfileLeftBar = () => {
           },
         }
       );
+
+      let user = JSON.parse(sessionStorage.getItem("user") as string);
+      user[property] = value;
+      sessionStorage.setItem("user", JSON.stringify(user));
     } catch (err) {
       alert("error occurred");
     }
