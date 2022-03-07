@@ -15,7 +15,6 @@ const FavoriteFriendsData: React.FC = () => {
   } = useContext(GlobalStateContext);
 
   const { favoriteFriendsList } = data;
-  // const { favoriteFriendsList } = data;
 
   useEffect(() => {
     getFavoriteFriends && getFavoriteFriends();
@@ -24,16 +23,17 @@ const FavoriteFriendsData: React.FC = () => {
   }, []);
 
   const activeChat = (friendId: string) => {
-    // setChat(friendId);
-    // const partner = favoriteFriendsList?.favoriteFriendsList.filter(
-    //   (active: any) => active._id === friendId
-    // );
-    // setFriendDetail!(partner[0].friendId);
-    // setShowMessages!(true);
+    setChat(friendId);
+    const partner = favoriteFriendsList?.favoriteFriendsList.filter(
+      (active: any) => active._id === friendId
+    );
+
+    setFriendDetail!(partner[0]);
+    setShowMessages!(true);
   };
 
   useEffect(() => {
-    startChat!(chat);
+    chat && startChat!(chat);
   }, [chat]);
 
   return (
