@@ -30,13 +30,6 @@ export default function Members(prop: Props) {
 
   useEffect(() => {
     const response = prop.groupMembers.map(async (memberId) => {
-      // const result = await fetch(`${url}${memberId}`, {
-      //   headers: {
-      //     Authorization: `Bearer ${accessToken}`,
-      //   },
-      // });
-      // const data: object = await result.json();
-      // return data;
 
       try {
         const res = await axios.get(`${url}${memberId}`, {
@@ -59,53 +52,7 @@ export default function Members(prop: Props) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // const groups = [
-  //   {
-  //     avatar: groupAvatar,
-  //     name: "Jane",
-  //     status: "up and grateful",
-  //   },
-  //   {
-  //     avatar: groupAvatar,
-  //     name: "Aj",
-  //     status: "Rose amongst thorns",
-  //   },
-  //   {
-  //     avatar: groupAvatar,
-  //     name: "Jade",
-  //     status: "Grind and grit",
-  //   },
-  //   {
-  //     avatar: groupAvatar,
-  //     name: "Jade",
-  //     status: "Grind and grit",
-  //   },
-  //   {
-  //     avatar: groupAvatar,
-  //     name: "Jade",
-  //     status: "Grind and grit",
-  //   },
-  //   {
-  //     avatar: groupAvatar,
-  //     name: "Jade",
-  //     status: "Grind and grit",
-  //   },
-  //   {
-  //     avatar: groupAvatar,
-  //     name: "Jade",
-  //     status: "Grind and grit",
-  //   },
-  //   {
-  //     avatar: groupAvatar,
-  //     name: "Jade",
-  //     status: "Grind and grit",
-  //   },
-  //   {
-  //     avatar: groupAvatar,
-  //     name: "Mercy lambo",
-  //     status: "I can handle pressure don slap customer😂",
-  //   },
-  // ];
+
   return (
     <div>
       {members.map((member: Resdata) => (
