@@ -1,6 +1,6 @@
 import { Action } from "./index";
 import { ActionType } from "./actionType";
-import { User } from "../utils/interface";
+import { IChat, User } from "../utils/interface";
 
 interface reducerState {
   data: { [key: string]: any };
@@ -9,6 +9,9 @@ interface reducerState {
   accessToken: string;
   user: User;
   showProfilePage: boolean;
+  showMessages: boolean;
+  currentChat: IChat;
+  friendDetail: any;
 }
 
 const AddReducers = (state: reducerState, action: Action): reducerState => {
@@ -54,6 +57,20 @@ const AddReducers = (state: reducerState, action: Action): reducerState => {
         loading: false,
       };
 
+    case ActionType.GET_MESSAGES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: { ...state.data, messages: action.payload },
+      };
+
+    case ActionType.GET_MESSAGES_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
     case ActionType.GET_USER_LOGIN_SUCCESS:
       return {
         ...state,
@@ -66,6 +83,32 @@ const AddReducers = (state: reducerState, action: Action): reducerState => {
       return {
         ...state,
         showProfilePage: action.payload,
+      };
+
+    case ActionType.SHOW_MESSAGES:
+      return {
+        ...state,
+        showMessages: action.payload,
+      };
+
+    case ActionType.GET_ACTIVE_CHAT:
+      return {
+        ...state,
+        loading: false,
+        currentChat: action.payload,
+      };
+
+    case ActionType.GET_ACTIVE_CHAT_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case ActionType.SET_FRIEND:
+      return {
+        ...state,
+        friendDetail: action.payload,
       };
 
     default:

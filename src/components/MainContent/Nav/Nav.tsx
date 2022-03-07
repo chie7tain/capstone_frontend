@@ -6,7 +6,6 @@ import { VscChevronDown, VscKebabVertical } from "react-icons/vsc";
 import { IoIosArrowUp } from "react-icons/io";
 import styles from "./Nav.module.scss";
 import ChatContext from "../../../context/ChatContext";
-import Peer from "simple-peer";
 
 type NavProps = {};
 

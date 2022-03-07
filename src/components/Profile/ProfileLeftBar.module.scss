@@ -5,7 +5,11 @@
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  height: 100vh;
   position: relative;
+  position: absolute;
+  top: 0;
+  z-index: 100;
 
   .leftbar-text {
     display: flex;
@@ -13,7 +17,7 @@
     gap: 1rem;
     font-size: 1.6rem;
     line-height: 1;
-    width: 35rem;
+    width: 36rem;
     height: 10rem;
   }
 
@@ -29,13 +33,13 @@
     align-self: center;
   }
   .profile-pic {
-    // background-image: url("../../assets/Ellipse.png");
+    background-image: url("../../assets/Ellipse.png");
     width: 16rem;
     height: 16rem;
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 50%;
-    border: 1px solid black;
+    border: none;
     margin: 0rem 6.4rem;
     overflow: hidden;
     position: relative;
@@ -97,12 +101,44 @@
   p {
     font-size: 1.5rem;
   }
-
+  i {
+    font-size: 2.4rem;
+  }
   .paragraph-primary {
     font-size: 1.6rem;
     color: #242837;
     width: 28.8rem;
     margin-top: 1.28rem;
     line-height: 1.4;
+  }
+}
+
+.moveIn {
+  animation-name: main;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+
+  @keyframes main {
+    0% {
+      right: 100%;
+    }
+    100% {
+      right: 0;
+    }
+  }
+}
+
+.moveOut {
+  animation-name: side;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+
+  @keyframes side {
+    0% {
+      right: 0%;
+    }
+    100% {
+      right: 100%;
+    }
   }
 }
