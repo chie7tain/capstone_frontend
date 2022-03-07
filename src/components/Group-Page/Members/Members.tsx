@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import groupAvatar from "./male4.png";
+// import groupAvatar from "./male4.png"
 import styles from "./Members.module.scss";
-import useGet from "../../../utils/getApi";
+// import useGet from "../../../utils/getApi";
 import { GlobalStateContext } from "../../../context/GlobalState";
 import axios from "axios";
 
@@ -30,7 +30,6 @@ export default function Members(prop: Props) {
 
   useEffect(() => {
     const response = prop.groupMembers.map(async (memberId) => {
-
       try {
         const res = await axios.get(`${url}${memberId}`, {
           headers: {
