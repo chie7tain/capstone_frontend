@@ -1,10 +1,10 @@
-import styles from "./ProfileLeftBar.module.scss";
 import ProfileForm from "./ProfileForm";
 import { BiArrowBack, BiCamera, BiEditAlt } from "react-icons/bi";
-import React, { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import EmptyFormName from "./EmptyFormName";
 import { GlobalStateContext } from "../../context/GlobalState";
+import styles from "./ProfileLeftBar.module.scss";
 
 interface Iprofile {
   firstName?: string;

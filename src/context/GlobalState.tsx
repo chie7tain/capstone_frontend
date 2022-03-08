@@ -51,6 +51,7 @@ export const GlobalProvider = ({ children }: any) => {
   // const [hideProfileDrop, setHideProfileDrop] = useState<boolean>(true);
 
   const getUser = (data: { user: User; accessToken: string }) => {
+    sessionStorage.setItem("tok", data.accessToken);
     dispatch({
       type: ActionType.GET_USER_LOGIN_SUCCESS,
       payload: data,
@@ -64,7 +65,7 @@ export const GlobalProvider = ({ children }: any) => {
       } = await axios.get("http://localhost:3050/api/v1/users/getfavorites", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${initialState.accessToken}`,
+          Authorization: `Bearer ${state.accessToken}`,
         },
       });
 
@@ -87,7 +88,7 @@ export const GlobalProvider = ({ children }: any) => {
       } = await axios.get("http://localhost:3050/api/v1/users/friends", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${initialState.accessToken}`,
+          Authorization: `Bearer ${state.accessToken}`,
         },
       });
 
@@ -108,7 +109,7 @@ export const GlobalProvider = ({ children }: any) => {
       const res = await axios.get("http://localhost:3050/api/v1/groups/", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${initialState.accessToken}`,
+          Authorization: `Bearer ${state.accessToken}`,
         },
       });
 

@@ -1,0 +1,31 @@
+.starredMsgWrap{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+    padding-top: 3rem;
+    padding-left: 3rem;
+    width: 100%;
+    height: 9rem;
+    display: flex;
+    // flex-direction: column;
+    color: white;
+    background-color: rgb(5, 73, 80);
+    // background-color:yellow;
+    
+}
+.starredTextContainer{
+    display: flex;
+    justify-content: space-between;
+    // background-color: red;
+    width: 150px;
+    font-size: 1.5rem;
+}
+.forwardArrow{
+    font-size: 2rem;
+    color: lightgray;
+    margin-right: 6px;
+}
+.starIcon{
+    font-size: 1.8rem;
+    color: lightgray;
+}

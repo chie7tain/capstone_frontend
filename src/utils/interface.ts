@@ -6,6 +6,7 @@ export interface IformData {
 }
 
 export interface User {
+  _id?: string;
   user?: string;
   username?: string;
   firstName?: string;

@@ -10,7 +10,7 @@ import { UserData, LoginProps } from "./Login.interface";
 import { Link, useNavigate } from "react-router-dom";
 import { GlobalStateContext } from "../../context/GlobalState";
 
-const url: string = "http://localhost:3050/api/v1/user/login";
+const url: string = "http://localhost:3050/api/v1/users/login";
 
 const Login: React.FC<LoginProps> = ({ spinner }) => {
   const [isLight, setIsLight] = useState(true);
