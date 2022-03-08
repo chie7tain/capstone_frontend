@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useReducer } from "react";
 import { ActionType } from "./actionType";
 import AddReducers from "./AddReducers";
-import { IChat, User } from "../utils/interface";
+import { IChat, IMessage, User } from "../utils/interface";
 
 interface reducerState {
   data: { [key: string]: any };
@@ -15,19 +15,20 @@ interface reducerState {
   currentChat: IChat;
   friendDetail: any;
   groupDetail: any;
+  messages: IMessage;
   showProfile?: (value: boolean) => void;
   setShowMessages?: (value: boolean) => void;
   getUser?: (data: { user: User; accessToken: string }) => void;
   getFavoriteFriends?: () => void;
   getFriends?: () => void;
   getGroups?: () => void;
-  getMessages?: () => void;
   addFavoriteFriend?: (data: any) => void;
   addFriend?: (data: any) => void;
   removeFavoriteFriend?: (data: any) => void;
   startChat?: (members: string) => void;
   setFriendDetail?: (friend: any) => void;
   setGroupDetail?: (group: any) => void;
+  getMessages?: (chatId: string) => void;
 }
 
 const initialState: reducerState = {
@@ -41,7 +42,7 @@ const initialState: reducerState = {
   currentChat: {},
   friendDetail: {},
   groupDetail: {},
-  // contactOnDisplay,
+  messages: {},
 };
 
 export const GlobalStateContext = createContext({} as reducerState);
@@ -226,32 +227,31 @@ export const GlobalProvider = ({ children }: any) => {
   };
 
   // Get messages
+  const getMessages = async (chatId: string) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:3050/api/v1/chats/${chatId}/messages`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${state.accessToken}`,
+          },
+        }
+      );
 
-  // const getMessages = async () => {
-  //   try {
-  //     const res = await axios.get(
-  //       "http://localhost:3050/api/v1/chats/61fa3f7e3517687c2ad8ec22/messages",
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${initialState.accessToken}`,
-  //         },
-  //       }
-  //     );
+      console.log(res.data, "messages******");
 
-  //     console.log(res.data, "messages");
-
-  //     dispatch({
-  //       type: ActionType.GET_MESSAGES_SUCCESS,
-  //       payload: res.data,
-  //     });
-  //   } catch (error: any) {
-  //     dispatch({
-  //       type: ActionType.GET_MESSAGES_FAILURE,
-  //       payload: error.response.error,
-  //     });
-  //   }
-  // };
+      dispatch({
+        type: ActionType.GET_MESSAGES_SUCCESS,
+        payload: res.data,
+      });
+    } catch (error: any) {
+      dispatch({
+        type: ActionType.GET_MESSAGES_FAILURE,
+        payload: error.response.error,
+      });
+    }
+  };
 
   const startChat = async (members: string) => {
     try {
@@ -324,6 +324,8 @@ export const GlobalProvider = ({ children }: any) => {
         friendDetail: state.friendDetail,
         setGroupDetail,
         groupDetail: state.groupDetail,
+        getMessages,
+        messages: state.messages,
       }}
     >
       {children}

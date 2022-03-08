@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { GlobalStateContext } from "../../../../context/GlobalState";
 import styles from "./TextMessage.module.scss";
 
 interface IText {
@@ -7,9 +8,8 @@ interface IText {
 }
 
 const TextMessage: React.FC<IText> = ({ reciever }) => {
+  const { messages } = useContext(GlobalStateContext);
 
-
-  
   return (
     <div className={`${styles.textM} ${reciever ? styles.recipant : ""}`}>
       <p>

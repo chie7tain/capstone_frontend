@@ -27,3 +27,15 @@ export interface IChat {
   id?: string;
   members?: string[];
 }
+
+export interface IMessage {
+  senderId?: string;
+  chatId?: string;
+  text?: string;
+  mediaType?: string;
+  mediaUrl?: string;
+  mediaId?: string;
+  deletedAt?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
