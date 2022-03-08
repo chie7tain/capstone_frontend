@@ -16,8 +16,7 @@ const FriendsData: React.FC = () => {
   } = useContext(GlobalStateContext);
 
   const { friends } = data;
-  console.log(friends);
-  console.log(friends.friends);
+
   const filteredFriends = friends?.friends.filter((friend: any) => {
     const { friendId: myFriend } = friend; //change the variable name
 
@@ -27,7 +26,7 @@ const FriendsData: React.FC = () => {
     ); // check if the myFriend includes the searchTerm
   });
 
-  console.log(filteredFriends);
+
 
   useEffect(() => {
     getFriends && getFriends();
