@@ -1,20 +1,29 @@
-import React, { useContext, useEffect, useState } from "react";
-import styles from "./FriendsData.module.scss";
-import { GlobalStateContext } from "../../context/GlobalState";
-import { BsPinAngle } from "react-icons/bs";
-import Spinner from "../common/Spinner";
+import React, { useContext, useEffect, useState } from 'react';
+import styles from './FriendsData.module.scss';
+import { GlobalStateContext } from '../../context/GlobalState';
+import { BsPinAngle } from 'react-icons/bs';
+import Spinner from '../common/Spinner';
 
 const FavoriteFriendsData: React.FC = () => {
-  const [chat, setChat] = useState("");
+  const [chat, setChat] = useState('');
   const {
     data,
     getFavoriteFriends,
     setShowMessages,
     startChat,
     setFriendDetail,
+    searchTerm,
   } = useContext(GlobalStateContext);
 
   const { favoriteFriendsList } = data;
+// this code is for the search bar to filter the friends list by the first name or last name using the search term which comes from the GlobalStateContext
+  const filteredFavoriteFriends =
+    favoriteFriendsList?.favoriteFriendsList.filter((myFriend: any) => {
+      return (
+        myFriend.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        myFriend.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    });
 
   useEffect(() => {
     getFavoriteFriends && getFavoriteFriends();
@@ -42,12 +51,13 @@ const FavoriteFriendsData: React.FC = () => {
       data === undefined ? (
         <div className={styles.friends__data}>
           <Spinner />
-          <h4 style={{ textAlign: "center", fontSize: "16px" }}>
+          <h4 style={{ textAlign: 'center', fontSize: '16px' }}>
             No Favorite Friend included yet
           </h4>
         </div>
       ) : (
-        favoriteFriendsList?.favoriteFriendsList.map(
+        // favoriteFriendsList?.favoriteFriendsList.map(
+        filteredFavoriteFriends.map(
           (friend: any, index: string) => {
             return (
               <div
