@@ -41,6 +41,7 @@ const initialState: reducerState = {
   currentChat: {},
   friendDetail: {},
   groupDetail: {},
+  // contactOnDisplay,
 };
 
 export const GlobalStateContext = createContext({} as reducerState);
@@ -48,8 +49,6 @@ export const GlobalStateContext = createContext({} as reducerState);
 export const GlobalProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(AddReducers, initialState);
   // const [hideProfileDrop, setHideProfileDrop] = useState<boolean>(true);
-
-  console.log("message....", state.showMessages);
 
   const getUser = (data: { user: User; accessToken: string }) => {
     dispatch({
@@ -296,7 +295,8 @@ export const GlobalProvider = ({ children }: any) => {
     });
   };
 
-  console.log(state, "user state");
+  console.log(state.currentChat, "user state");
+  console.log(state.groupDetail, "group state");
 
   return (
     <GlobalStateContext.Provider

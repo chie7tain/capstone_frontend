@@ -96,6 +96,7 @@ const AddReducers = (state: reducerState, action: Action): reducerState => {
       return {
         ...state,
         loading: false,
+        groupDetail: {},
         currentChat: action.payload,
       };
 
@@ -115,6 +116,7 @@ const AddReducers = (state: reducerState, action: Action): reducerState => {
     case ActionType.SET_GROUP_DETAIL:
       return {
         ...state,
+        currentChat: {},
         groupDetail: action.payload,
       };
 

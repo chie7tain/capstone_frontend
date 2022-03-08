@@ -31,7 +31,6 @@ const FriendsData: React.FC = () => {
     chat && startChat!(chat);
   }, [chat]);
 
-  // () => console.log("I just clicked me!!!", friend._id)
   return (
     <div>
       {friends.length === 0 ? (

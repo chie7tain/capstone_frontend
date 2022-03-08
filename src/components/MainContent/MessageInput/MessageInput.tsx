@@ -52,8 +52,6 @@ const MessageInput: React.FC = () => {
     getChats();
   }, []);
 
-  console.log(conversations, "convos");
-
   useEffect(() => {
     const pusher = new Pusher("94d55bd3b0ecf1274ef3", {
       cluster: "eu",
