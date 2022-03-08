@@ -1,5 +1,5 @@
-import { User } from "../utils/interface";
-import { ActionType } from "./actionType";
+import { User } from '../utils/interface';
+import { ActionType } from './actionType';
 
 interface GET_FAVORITE_FRIENDS_SUCCESS {
   type: typeof ActionType.GET_FAVORITE_FRIENDS_SUCCESS;
@@ -105,7 +105,10 @@ interface SET_GROUP_DETAIL {
   type: typeof ActionType.SET_GROUP_DETAIL;
   payload: any;
 }
-
+interface SET_SEARCH_TERM {
+  type: typeof ActionType.SET_SEARCH_TERM;
+  payload: string;
+}
 export type Action =
   | GET_FAVORITE_FRIENDS_SUCCESS
   | GET_FAVORITE_FRIENDS_FAILURE
@@ -127,4 +130,5 @@ export type Action =
   | GET_ACTIVE_CHAT
   | GET_ACTIVE_CHAT_FAILURE
   | SET_FRIEND
-  | SET_GROUP_DETAIL;
+  | SET_GROUP_DETAIL
+  | SET_SEARCH_TERM;

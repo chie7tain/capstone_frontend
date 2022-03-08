@@ -1,6 +1,6 @@
-import { Action } from "./index";
-import { ActionType } from "./actionType";
-import { IChat, User } from "../utils/interface";
+import { Action } from './index';
+import { ActionType } from './actionType';
+import { IChat, User } from '../utils/interface';
 
 interface reducerState {
   data: { [key: string]: any };
@@ -13,6 +13,7 @@ interface reducerState {
   currentChat: IChat;
   friendDetail: any;
   groupDetail: any;
+  searchTerm: string;
 }
 
 const AddReducers = (state: reducerState, action: Action): reducerState => {
@@ -116,6 +117,11 @@ const AddReducers = (state: reducerState, action: Action): reducerState => {
       return {
         ...state,
         groupDetail: action.payload,
+      };
+    case ActionType.SET_SEARCH_TERM:
+      return {
+        ...state,
+        searchTerm: action.payload,
       };
 
     default:

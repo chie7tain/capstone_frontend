@@ -1,18 +1,19 @@
-import React, { useContext, useState } from "react";
-import LeftBarFriends from "./LeftBarFriends";
-import person from "../../assets/photo.png";
+import React, { useContext, useState } from 'react';
+import LeftBarFriends from './LeftBarFriends';
+import person from '../../assets/photo.png';
 // import styles from "./LeftSideBar.module.scss";
-import styles from "./LeftSideBar.module.scss";
-import { BsDashCircleDotted } from "react-icons/bs";
-import { CgSearchLoading } from "react-icons/cg";
-import { VscChevronDown } from "react-icons/vsc";
-import { IoIosArrowUp } from "react-icons/io";
-import DropDownProfile from "./DropDownProfile/DropDownProfile";
-import { GlobalStateContext } from "../../context/GlobalState";
+import styles from './LeftSideBar.module.scss';
+import { BsDashCircleDotted } from 'react-icons/bs';
+import { CgSearchLoading } from 'react-icons/cg';
+import { VscChevronDown } from 'react-icons/vsc';
+import { IoIosArrowUp } from 'react-icons/io';
+import DropDownProfile from './DropDownProfile/DropDownProfile';
+import { GlobalStateContext } from '../../context/GlobalState';
 
 const LeftSideBar: React.FC = () => {
   const [drop, setDrop] = useState(true);
-  const { user, showProfile } = useContext(GlobalStateContext);
+  const { user, showProfile, searchTerm, setSearchTerm } =
+    useContext(GlobalStateContext);
 
   const handleShow = () => {
     showProfile!(true);
@@ -45,7 +46,12 @@ const LeftSideBar: React.FC = () => {
         <i>
           <CgSearchLoading />
         </i>
-        <input type="text" placeholder="Search or start a new chat" />
+        <input
+          type="text"
+          value={searchTerm}
+          placeholder="Search or start a new chat"
+          onChange={setSearchTerm}
+        />
       </div>
       <DropDownProfile drop={drop} />
       <LeftBarFriends />

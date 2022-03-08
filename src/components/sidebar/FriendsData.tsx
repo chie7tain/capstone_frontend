@@ -1,15 +1,33 @@
-import React, { useContext, useEffect, useState } from "react";
-import styles from "./FriendsData.module.scss";
-import { GlobalStateContext } from "../../context/GlobalState";
-import { BsPinAngle } from "react-icons/bs";
-import Spinner from "../common/Spinner";
-
+import React, { useContext, useEffect, useState } from 'react';
+import styles from './FriendsData.module.scss';
+import { GlobalStateContext } from '../../context/GlobalState';
+import { BsPinAngle } from 'react-icons/bs';
+import Spinner from '../common/Spinner';
+// import { Iusers } from '../../interfaces/Iusers';
 const FriendsData: React.FC = () => {
-  const [chat, setChat] = useState("");
-  const { data, getFriends, setShowMessages, startChat, setFriendDetail } =
-    useContext(GlobalStateContext);
+  const [chat, setChat] = useState('');
+  const {
+    data,
+    getFriends,
+    setShowMessages,
+    startChat,
+    setFriendDetail,
+    searchTerm,
+  } = useContext(GlobalStateContext);
 
   const { friends } = data;
+  console.log(friends);
+  console.log(friends.friends);
+  const filteredFriends = friends?.friends.filter((friend: any) => {
+    const { friendId: myFriend } = friend; //change the variable name
+
+    return (
+      myFriend.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      myFriend.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+    ); // check if the myFriend includes the searchTerm
+  });
+
+  console.log(filteredFriends);
 
   useEffect(() => {
     getFriends && getFriends();
@@ -37,12 +55,13 @@ const FriendsData: React.FC = () => {
       {friends.length === 0 ? (
         <div className={styles.friends__data}>
           <Spinner />
-          <h4 style={{ textAlign: "center", margin: "auto", fontSize: "16px" }}>
+          <h4 style={{ textAlign: 'center', margin: 'auto', fontSize: '16px' }}>
             No Friend included yet
           </h4>
         </div>
       ) : (
-        friends?.friends.map((friend: any, index: string) => {
+        // friends?.friends.map((friend: any, index: string) => {
+          filteredFriends.map((friend: any, index: string) => {
           return (
             <div
               key={index}

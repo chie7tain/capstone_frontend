@@ -1,8 +1,8 @@
-import axios from "axios";
-import { createContext, useReducer } from "react";
-import { ActionType } from "./actionType";
-import AddReducers from "./AddReducers";
-import { IChat, User } from "../utils/interface";
+import axios from 'axios';
+import { ChangeEventHandler, createContext, useReducer } from 'react';
+import { ActionType } from './actionType';
+import AddReducers from './AddReducers';
+import { IChat, User } from '../utils/interface';
 
 interface reducerState {
   data: { [key: string]: any };
@@ -15,6 +15,7 @@ interface reducerState {
   currentChat: IChat;
   friendDetail: any;
   groupDetail: any;
+  searchTerm: string;
   showProfile?: (value: boolean) => void;
   setShowMessages?: (value: boolean) => void;
   getUser?: (data: { user: User; accessToken: string }) => void;
@@ -28,19 +29,21 @@ interface reducerState {
   startChat?: (members: string) => void;
   setFriendDetail?: (friend: any) => void;
   setGroupDetail?: (group: any) => void;
+  setSearchTerm?: (term: any) => void;
 }
 
 const initialState: reducerState = {
   data: { friends: [], groups: [], favoriteFriendsList: [] },
   loading: false,
   error: null,
-  accessToken: JSON.parse(sessionStorage.getItem("token") as string) || "",
+  accessToken: JSON.parse(sessionStorage.getItem('token') as string) || '',
   showProfilePage: true,
   showMessages: false,
-  user: JSON.parse(sessionStorage.getItem("user") as string) || {},
+  user: JSON.parse(sessionStorage.getItem('user') as string) || {},
   currentChat: {},
   friendDetail: {},
   groupDetail: {},
+  searchTerm: '',
 };
 
 export const GlobalStateContext = createContext({} as reducerState);
@@ -49,7 +52,7 @@ export const GlobalProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(AddReducers, initialState);
   // const [hideProfileDrop, setHideProfileDrop] = useState<boolean>(true);
 
-  console.log("message....", state.showMessages);
+  console.log('message....', state.showMessages);
 
   const getUser = (data: { user: User; accessToken: string }) => {
     dispatch({
@@ -62,9 +65,9 @@ export const GlobalProvider = ({ children }: any) => {
     try {
       const {
         data: { data },
-      } = await axios.get("http://localhost:3050/api/v1/users/getfavorites", {
+      } = await axios.get('http://localhost:3050/api/v1/users/getfavorites', {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${initialState.accessToken}`,
         },
       });
@@ -76,7 +79,7 @@ export const GlobalProvider = ({ children }: any) => {
     } catch (error: any) {
       dispatch({
         type: ActionType.GET_FAVORITE_FRIENDS_FAILURE,
-        payload: "error",
+        payload: 'error',
       });
     }
   };
@@ -85,9 +88,9 @@ export const GlobalProvider = ({ children }: any) => {
     try {
       const {
         data: { data },
-      } = await axios.get("http://localhost:3050/api/v1/users/friends", {
+      } = await axios.get('http://localhost:3050/api/v1/users/friends', {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${initialState.accessToken}`,
         },
       });
@@ -106,9 +109,9 @@ export const GlobalProvider = ({ children }: any) => {
 
   const getGroups = async () => {
     try {
-      const res = await axios.get("http://localhost:3050/api/v1/groups/", {
+      const res = await axios.get('http://localhost:3050/api/v1/groups/', {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${initialState.accessToken}`,
         },
       });
@@ -144,13 +147,13 @@ export const GlobalProvider = ({ children }: any) => {
   const addFriend = async (email: string) => {
     try {
       const res = await axios.post(
-        "http://localhost:3050/api/v1/users/friend",
+        'http://localhost:3050/api/v1/users/friend',
         {
           email,
         },
         {
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${initialState.accessToken}`,
           },
         }
@@ -172,13 +175,13 @@ export const GlobalProvider = ({ children }: any) => {
   const addFavoriteFriend = async (id: string) => {
     try {
       const res = await axios.post(
-        "http://localhost:3050/api/v1/users/friends",
+        'http://localhost:3050/api/v1/users/friends',
         {
           id,
         },
         {
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${initialState.accessToken}`,
           },
         }
@@ -207,7 +210,7 @@ export const GlobalProvider = ({ children }: any) => {
         },
         {
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${initialState.accessToken}`,
           },
         }
@@ -258,13 +261,13 @@ export const GlobalProvider = ({ children }: any) => {
       const {
         data: { data },
       } = await axios.post(
-        "http://localhost:3050/api/v1/chats",
+        'http://localhost:3050/api/v1/chats',
         {
           members,
         },
         {
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${initialState.accessToken}`,
           },
         }
@@ -277,7 +280,7 @@ export const GlobalProvider = ({ children }: any) => {
     } catch (error: any) {
       dispatch({
         type: ActionType.GET_ACTIVE_CHAT_FAILURE,
-        payload: "error",
+        payload: 'error',
       });
     }
   };
@@ -295,8 +298,14 @@ export const GlobalProvider = ({ children }: any) => {
       payload: group,
     });
   };
+  const setSearchTerm = (e: any) => {
+    dispatch({
+      type: ActionType.SET_SEARCH_TERM,
+      payload: e.target.value,
+    });
+  };
 
-  console.log(state, "user state");
+  console.log(state, 'user state');
 
   return (
     <GlobalStateContext.Provider
@@ -323,6 +332,8 @@ export const GlobalProvider = ({ children }: any) => {
         friendDetail: state.friendDetail,
         setGroupDetail,
         groupDetail: state.groupDetail,
+        searchTerm: state.searchTerm,
+        setSearchTerm,
       }}
     >
       {children}
