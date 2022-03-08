@@ -22,3 +22,8 @@ export interface User {
   about?: string;
   favoriteFriends?: string[];
 }
+
+export interface IChat {
+  id?: string;
+  members?: string[];
+}

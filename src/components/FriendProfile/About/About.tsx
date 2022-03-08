@@ -7,11 +7,11 @@ interface AboutI{
   aboutInfo: string
 }
 
-const About: React.FC<AboutI> = ({about, aboutInfo}) => {
+const About: React.FC<AboutI> = ({about}) => {
   return (
     <div className={`${styles.aboutSection}`}>
-      <p className={`${styles.about}`}>{about}</p>
-      <p className={`${styles.aboutText}`}>{aboutInfo}</p>
+      <p className={`${styles.about}`}>About</p>
+      <p className={`${styles.aboutText}`}>{about}</p>
     </div>
   );
 };

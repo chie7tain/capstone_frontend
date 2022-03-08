@@ -57,6 +57,9 @@ const Login: React.FC<LoginProps> = ({ spinner }) => {
 
         spinner(true);
         console.log('>>> Mercy see:', data);
+
+        sessionStorage.setItem("token", JSON.stringify(data.accessToken));
+        sessionStorage.setItem("user", JSON.stringify(data.user));
         getUser!({ user: data.user, accessToken: data.accessToken });
 
         setTimeout(() => {
@@ -76,7 +79,6 @@ const Login: React.FC<LoginProps> = ({ spinner }) => {
         setShowError(true);
         setTimeout(() => setShowError(false), 3000);
       }
-      console.log(response);
     } catch (err: any) {
       console.error(err);
     }
@@ -149,13 +151,17 @@ const Login: React.FC<LoginProps> = ({ spinner }) => {
       <div className={styles['social-logins']}>
         <div className={styles['social-circle']}>
           <i className={styles.google}>
-            <FaGoogle />
+            <a href="http://localhost:3050/auth/google">
+              <FaGoogle />
+            </a>
           </i>
         </div>
 
         <div className={`${styles['social-circle']} ${styles.b}`}>
           <i className={styles.fb}>
-            <CgFacebook />
+            <a href="http://localhost:3050/api/v1/users/profile">
+              <CgFacebook />
+            </a>
           </i>
         </div>
 
@@ -174,7 +180,7 @@ const Login: React.FC<LoginProps> = ({ spinner }) => {
       <p>
         Dont't have an account yet? <Link to="/signup">Register </Link>
       </p>
-      <p className={styles['forogt-password']}>
+      <p className={styles["forgot-password"]}>
         <a href="/forgotPassword">Forgot Password ?</a>
       </p>
     </div>

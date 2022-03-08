@@ -1,6 +1,6 @@
 import styles from "./ProfileRightBar.module.scss";
 import picture from "../../assets/picture.png";
-import { HiLockClosed }from "react-icons/hi"
+import { HiLockClosed } from "react-icons/hi";
 
 const ProfileRightBar = () => {
   return (

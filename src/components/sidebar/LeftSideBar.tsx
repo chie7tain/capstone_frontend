@@ -20,9 +20,11 @@ const LeftSideBar: React.FC = () => {
 
   return (
     <div className={styles.sidebarr}>
-      <div className={styles.header}>
+      <header className={styles.header}>
         <div className={styles.header__profile}>
-          <img src={user.avatar} alt={user.firstName} onClick={handleShow} />
+          <div>
+            <img src={user.avatar} alt={user.firstName} onClick={handleShow} />
+          </div>
           {/* <i>
             <BsDashCircleDotted
               className={`${styles.icon__left} ${styles.icon}`}
@@ -37,7 +39,7 @@ const LeftSideBar: React.FC = () => {
             <IoIosArrowUp onClick={() => setDrop(!drop)} />
           )}
         </i>
-      </div>
+      </header>
 
       <div className={styles.input__field}>
         <i>

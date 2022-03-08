@@ -17,10 +17,11 @@ interface friendI {
   userId: string;
 }
 
-const Friend: React.FC<friendI> = ({ userId }) => {
+const Friend: React.FC<friendI> = ({userId}) => {
 
   // const { accessToken} = useContext(GlobalStateContext);
-  const { accessToken, user } = useContext(GlobalStateContext);
+  const { accessToken, user, friendDetail } = useContext(GlobalStateContext);
+  console.log(friendDetail)
 
   // const [{ data, error, loading }] = useAxios({
   //   url: `${process.env.REACT_APP_BACKEND_URL}/users/profile/${userId}`,
@@ -34,15 +35,17 @@ const Friend: React.FC<friendI> = ({ userId }) => {
   const [{ data, error, loading }] = useAxios({
     url: `${
       process.env.REACT_APP_BACKEND_URL
-    }/users/profile/${'61f96689a9bfac9a30be7977'}`,
+    }/users/profile/${friendDetail._id}`,
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmM1YTliZmFjOWEzMGJlNzk3ZCIsImlhdCI6MTY0NjI1MDQxNX0.PEHSjX8JskYowmi4RBhnFOmg8yqJjV7Ao7vl6kkGC_0'}`,
+      // Authorization: `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjk2NmM1YTliZmFjOWEzMGJlNzk3ZCIsImlhdCI6MTY0NjI1MDQxNX0.PEHSjX8JskYowmi4RBhnFOmg8yqJjV7Ao7vl6kkGC_0'}`,
+      Authorization: `Bearer ${accessToken}`
     },
   });
 
   // friendId = res.data.data.members.filter((el: string) => el !== user._id);
+
   if (loading) {
     return (
       <div className={`${styles.friend}`}>
