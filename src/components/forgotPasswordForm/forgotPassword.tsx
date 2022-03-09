@@ -16,13 +16,13 @@ const ForgotPassword = () => {
       let response = await axios.post('/api/v1/users/forgotPassword', {
         email: email,
       });
-
+      console.log(response);
+      console.log(response.data);
       let { status, message } = response.data;
       setSuccess(true);
       setError('');
       setMessage(message);
       setEmail('');
-
     } catch (error: any) {
       console.log(error.response.data);
       setError(error.response.data);
@@ -56,6 +56,7 @@ const ForgotPassword = () => {
                 }}
               />
               <Input
+                autoComplete="on"
                 value={email}
                 type="email"
                 placeholder="Email"
