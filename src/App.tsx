@@ -6,6 +6,7 @@ import LoginPage from "./components/Login/LoginPage";
 import ProfilePage from "./components/Profile/ProfileContainer";
 import { Routes, Route } from "react-router-dom";
 import { GlobalStateContext } from "./context/GlobalState";
+import ForgotPassword from "./components/forgotPasswordForm/forgotPassword";
 // import Radium, { Style } from "radium";
 
 const App: React.FC = () => {
@@ -21,6 +22,7 @@ const App: React.FC = () => {
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/profile" element={<ProfilePage />}></Route>
         <Route path="/chat" element={<MainPage />}></Route>
+        <Route path="/forgotPassword" element={<ForgotPassword />}></Route>
       </Routes>
     </>
   );
