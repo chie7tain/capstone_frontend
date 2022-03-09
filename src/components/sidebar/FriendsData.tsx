@@ -17,7 +17,6 @@ const FriendsData: React.FC = () => {
   } = useContext(GlobalStateContext);
 
   const { friends } = data;
-  console.log(friends);
 
   useEffect(() => {
     getFriends && getFriends();
@@ -39,11 +38,10 @@ const FriendsData: React.FC = () => {
     chat && startChat!(chat);
   }, [chat]);
 
-  // useEffect(() => {
-  //   currentChat.id && getMessages!(currentChat.id!);
-  // }, [messages]);
+  useEffect(() => {
+    currentChat.id && getMessages!(currentChat.id!);
+  }, [currentChat.id]);
 
-  console.log(currentChat.id, "as Iddd of chat");
   return (
     <div>
       {friends.length === 0 ? (

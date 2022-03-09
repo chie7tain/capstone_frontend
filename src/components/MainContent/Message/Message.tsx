@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Message.module.scss";
 import TextMessage from "./TextMessage/TextMessage";
 import ImageMessage from "./ImageMessage/ImageMessage";
 import VideoMessage from "./VideoMessage/VideoMessage";
 // import AudioMessage from "./AudioM/AudioMessage";
 import { RiLock2Line } from "react-icons/ri";
+import { GlobalStateContext } from "../../../context/GlobalState";
 
 const Message = () => {
+  const { messages, user, loading } = useContext(GlobalStateContext);
+  console.log(user);
+
   return (
     <div className={styles.message__container}>
       <div className={styles.encryption}>
@@ -19,13 +23,24 @@ const Message = () => {
         </p>
       </div>
       <div className={styles.messageContainer}>
-        <TextMessage />
+        {loading
+          ? "Loading..."
+          : messages.map((message, i) => {
+              if (user._id !== message.senderId) {
+                return (
+                  <TextMessage reciever={true} content={message.text} key={i} />
+                );
+              } else {
+                return <TextMessage content={message.text} key={i} />;
+              }
+            })}
+        {/* <TextMessage />
         <TextMessage reciever={true} />
         <TextMessage />
         <TextMessage reciever={true} />
         <ImageMessage />
         <TextMessage reciever={true} />
-        <VideoMessage />
+        <VideoMessage /> */}
         {/* <AudioMessage /> */}
       </div>
     </div>

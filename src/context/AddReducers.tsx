@@ -131,6 +131,7 @@ const AddReducers = (state: reducerState, action: Action): reducerState => {
     case ActionType.GET_MESSAGES_FAILURE:
       return {
         ...state,
+        loading: false,
         error: action.payload,
       };
 

@@ -15,7 +15,7 @@ interface reducerState {
   currentChat: IChat;
   friendDetail: any;
   groupDetail: any;
-  messages: IMessage;
+  messages: [IMessage];
   showProfile?: (value: boolean) => void;
   setShowMessages?: (value: boolean) => void;
   getUser?: (data: { user: User; accessToken: string }) => void;
@@ -29,6 +29,7 @@ interface reducerState {
   setFriendDetail?: (friend: any) => void;
   setGroupDetail?: (group: any) => void;
   getMessages?: (chatId: string) => void;
+  getGroupMessages?: (chatId: string) => void;
 }
 
 const initialState: reducerState = {
@@ -42,7 +43,7 @@ const initialState: reducerState = {
   currentChat: {},
   friendDetail: {},
   groupDetail: {},
-  messages: {},
+  messages: [{}],
 };
 
 export const GlobalStateContext = createContext({} as reducerState);
@@ -239,11 +240,37 @@ export const GlobalProvider = ({ children }: any) => {
         }
       );
 
-      console.log(res.data, "messages******");
+      console.log(res.data.messages, "messages******");
 
       dispatch({
         type: ActionType.GET_MESSAGES_SUCCESS,
-        payload: res.data,
+        payload: res.data.messages,
+      });
+    } catch (error: any) {
+      dispatch({
+        type: ActionType.GET_MESSAGES_FAILURE,
+        payload: error.response.error,
+      });
+    }
+  };
+
+  const getGroupMessages = async (chatId: string) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:3050/api/v1/groups/${chatId}/messages`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${state.accessToken}`,
+          },
+        }
+      );
+
+      console.log(res.data.messages, "messages******");
+
+      dispatch({
+        type: ActionType.GET_MESSAGES_SUCCESS,
+        payload: res.data.messages,
       });
     } catch (error: any) {
       dispatch({
@@ -325,6 +352,7 @@ export const GlobalProvider = ({ children }: any) => {
         setGroupDetail,
         groupDetail: state.groupDetail,
         getMessages,
+        getGroupMessages,
         messages: state.messages,
       }}
     >

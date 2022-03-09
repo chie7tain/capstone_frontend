@@ -10,10 +10,10 @@ const GroupsData: React.FC = () => {
     data,
     getGroups,
     setShowMessages,
-    startChat,
     setGroupDetail,
     groupDetail,
-    currentChat,
+    getGroupMessages,
+    messages,
   } = useContext(GlobalStateContext);
 
   const { groups } = data;
@@ -33,6 +33,12 @@ const GroupsData: React.FC = () => {
     setGroupDetail!(partner[0]);
     setShowMessages!(true);
   };
+
+  useEffect(() => {
+    groupDetail.id && getGroupMessages!(groupDetail.id!);
+  }, [groupDetail.id]);
+
+  console.log("one", messages);
 
   // let obj = {};
   // if (obj) {
