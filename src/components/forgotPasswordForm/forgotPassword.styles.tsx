@@ -50,7 +50,8 @@ export const Div = styled.div`
     color: #fff;
     padding: 10px 0;
     background: transparent;
-    transition: border-color 0.2s;
+    /* transition: border-color 0.2s; */
+    transition:all 0.2s linear;
 
     &::placeholder {
       color: transparent;
@@ -60,7 +61,7 @@ export const Div = styled.div`
       font-size: 1.3rem;
       cursor: text;
       /* top: 10px; */
-      bottom: 15px;
+      bottom: 20px;
     }
   }
 
@@ -80,7 +81,7 @@ export const Div = styled.div`
       position: absolute;
       top: 0;
       display: block;
-      transition: 0.2s;
+      transition: all 0.2s ease-in-out;
       font-size: 1rem;
       color: #11998e;
       font-weight: 700;
