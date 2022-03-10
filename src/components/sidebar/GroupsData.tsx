@@ -38,8 +38,6 @@ const GroupsData: React.FC = () => {
     groupDetail.id && getGroupMessages!(groupDetail.id!);
   }, [groupDetail.id]);
 
-  console.log("one", messages);
-
   // let obj = {};
   // if (obj) {
   //   console.log("maroooon 5", groupDetail);

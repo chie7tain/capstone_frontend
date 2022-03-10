@@ -240,7 +240,7 @@ export const GlobalProvider = ({ children }: any) => {
         }
       );
 
-      console.log(res.data.messages, "messages******");
+      // console.log(res.data.messages, "messages******");
 
       dispatch({
         type: ActionType.GET_MESSAGES_SUCCESS,
@@ -323,8 +323,9 @@ export const GlobalProvider = ({ children }: any) => {
     });
   };
 
-  console.log(state.currentChat, "user state");
-  console.log(state.groupDetail, "group state");
+  // console.log(state.currentChat, "user state");
+  // console.log(state.groupDetail, "group state");
+  console.log(state, "state data");
 
   return (
     <GlobalStateContext.Provider

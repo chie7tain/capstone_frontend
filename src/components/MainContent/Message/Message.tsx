@@ -8,8 +8,26 @@ import { RiLock2Line } from "react-icons/ri";
 import { GlobalStateContext } from "../../../context/GlobalState";
 
 const Message = () => {
-  const { messages, user, loading } = useContext(GlobalStateContext);
+  let [content, setContent] = useState([]);
+  const {
+    messages,
+    user,
+    loading,
+    currentChat,
+    getMessages,
+    groupDetail,
+    getGroupMessages,
+  } = useContext(GlobalStateContext);
   console.log(user);
+  // setContent(messages);
+
+  // useEffect(() => {
+  //   currentChat.id && getMessages!(currentChat.id!);
+  // }, [currentChat.id]);
+
+  // useEffect(() => {
+  //   groupDetail.id && getGroupMessages!(groupDetail.id!);
+  // }, [groupDetail.id]);
 
   return (
     <div className={styles.message__container}>
@@ -25,7 +43,7 @@ const Message = () => {
       <div className={styles.messageContainer}>
         {loading
           ? "Loading..."
-          : messages.map((message, i) => {
+          : messages?.map((message, i) => {
               if (user._id !== message.senderId) {
                 return (
                   <TextMessage reciever={true} content={message.text} key={i} />

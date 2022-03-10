@@ -12,13 +12,13 @@ const FavoriteFriendsData: React.FC = () => {
     setShowMessages,
     startChat,
     setFriendDetail,
+    showMessages,
   } = useContext(GlobalStateContext);
 
   const { favoriteFriendsList } = data;
 
   useEffect(() => {
     getFavoriteFriends && getFavoriteFriends();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

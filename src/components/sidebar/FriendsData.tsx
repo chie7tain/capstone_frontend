@@ -10,6 +10,7 @@ const FriendsData: React.FC = () => {
     data,
     getFriends,
     setShowMessages,
+    friendDetail,
     startChat,
     setFriendDetail,
     getMessages,
@@ -35,12 +36,14 @@ const FriendsData: React.FC = () => {
   };
 
   useEffect(() => {
+    currentChat.id && getMessages!(currentChat.id!);
+  }, [currentChat.id]);
+
+  useEffect(() => {
     chat && startChat!(chat);
   }, [chat]);
 
-  useEffect(() => {
-    currentChat.id && getMessages!(currentChat.id!);
-  }, [currentChat.id]);
+  console.log("frind details", friendDetail);
 
   return (
     <div>
