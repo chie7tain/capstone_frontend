@@ -16,17 +16,19 @@ const FriendsData: React.FC = () => {
   } = useContext(GlobalStateContext);
 
   const { friends } = data;
+  let filteredFriends;
+  if (searchTerm) {
+    filteredFriends = friends.friends.filter((friend: any) => {
+      const { friendId: myFriend } = friend; //change the variable name
 
-  const filteredFriends = friends?.friends.filter((friend: any) => {
-    const { friendId: myFriend } = friend; //change the variable name
-
-    return (
-      myFriend.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      myFriend.lastName.toLowerCase().includes(searchTerm.toLowerCase())
-    ); // check if the myFriend includes the searchTerm
-  });
-
-
+      return (
+        myFriend.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        myFriend.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+      ); // check if the myFriend includes the searchTerm
+    });
+  } else {
+    filteredFriends = friends.friends;
+  }
 
   useEffect(() => {
     getFriends && getFriends();
@@ -60,7 +62,7 @@ const FriendsData: React.FC = () => {
         </div>
       ) : (
         // friends?.friends.map((friend: any, index: string) => {
-          filteredFriends.map((friend: any, index: string) => {
+        filteredFriends.map((friend: any, index: string) => {
           return (
             <div
               key={index}

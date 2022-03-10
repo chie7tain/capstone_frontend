@@ -16,15 +16,20 @@ const FavoriteFriendsData: React.FC = () => {
   } = useContext(GlobalStateContext);
 
   const { favoriteFriendsList } = data;
-// this code is for the search bar to filter the friends list by the first name or last name using the search term which comes from the GlobalStateContext
-  const filteredFavoriteFriends =
-    favoriteFriendsList?.favoriteFriendsList.filter((myFriend: any) => {
-      return (
-        myFriend.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        myFriend.lastName.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    });
-
+  // this code is for the search bar to filter the friends list by the first name or last name using the search term which comes from the GlobalStateContext
+  let filteredFavoriteFriends;
+  if (searchTerm) {
+    filteredFavoriteFriends = favoriteFriendsList?.favoriteFriendsList.filter(
+      (myFriend: any) => {
+        return (
+          myFriend.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          myFriend.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      }
+    );
+  } else {
+    filteredFavoriteFriends = favoriteFriendsList?.favoriteFriendsList;
+  }
   useEffect(() => {
     getFavoriteFriends && getFavoriteFriends();
 
@@ -57,39 +62,37 @@ const FavoriteFriendsData: React.FC = () => {
         </div>
       ) : (
         // favoriteFriendsList?.favoriteFriendsList.map(
-        filteredFavoriteFriends.map(
-          (friend: any, index: string) => {
-            return (
-              <div
-                key={index}
-                className={styles.friends__data}
-                onClick={activeChat.bind(this, friend.id)}
-              >
-                <div className={styles.profile__Header}>
-                  <img
-                    src={friend.avatar}
-                    className={styles.profile__img}
-                    alt=""
-                  />
-                  <div className={styles.profile__info}>
-                    <h2>
-                      {`${friend.firstName} ${friend.lastName}`
-                        ? `${friend.firstName} ${friend.lastName}`
-                        : `${friend.phoneNumber}`}
-                    </h2>
-                    <p>ha ha ha oh man</p>
-                  </div>
-                </div>
-                <div className={styles.extra}>
-                  <span>05:15pm</span>
-                  <i>
-                    <BsPinAngle />
-                  </i>
+        filteredFavoriteFriends.map((friend: any, index: string) => {
+          return (
+            <div
+              key={index}
+              className={styles.friends__data}
+              onClick={activeChat.bind(this, friend.id)}
+            >
+              <div className={styles.profile__Header}>
+                <img
+                  src={friend.avatar}
+                  className={styles.profile__img}
+                  alt=""
+                />
+                <div className={styles.profile__info}>
+                  <h2>
+                    {`${friend.firstName} ${friend.lastName}`
+                      ? `${friend.firstName} ${friend.lastName}`
+                      : `${friend.phoneNumber}`}
+                  </h2>
+                  <p>ha ha ha oh man</p>
                 </div>
               </div>
-            );
-          }
-        )
+              <div className={styles.extra}>
+                <span>05:15pm</span>
+                <i>
+                  <BsPinAngle />
+                </i>
+              </div>
+            </div>
+          );
+        })
       )}
     </div>
   );

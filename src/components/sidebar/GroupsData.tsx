@@ -17,10 +17,14 @@ const GroupsData: React.FC = () => {
   const [loading, setLoading] = useState(false);
 
   const { groups } = data;
-  console.log(groups.allgroups);
-  const filteredGroups = groups?.allgroups.filter((group: any) => {
-    return group.groupName.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+  let filteredGroups;
+  if(searchTerm){
+    filteredGroups = groups?.allgroups.filter((group: any) => {
+      return group.groupName.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+  }else{
+    filteredGroups = groups?.allgroups;
+  }
 
   useEffect(() => {
     setLoading(true);
