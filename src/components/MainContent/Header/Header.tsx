@@ -10,7 +10,9 @@ import { GlobalStateContext } from "../../../context/GlobalState";
 
 const Header: React.FC = () => {
   const setChatContext = useContext(ChatContext);
-  const { friendDetail } = useContext(GlobalStateContext);
+  const { friendDetail, currentChat, groupDetail } =
+    useContext(GlobalStateContext);
+
   const handleSearchShow = () => {
     setChatContext?.setSearchView(true);
     setChatContext?.setIsProfile(true);
@@ -19,10 +21,15 @@ const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.profile__info}>
-        <img src={friendDetail.avatar} alt="user tag" />
+        <img
+          src={currentChat.id ? friendDetail.avatar : groupDetail.groupImage}
+          alt="user tag"
+        />
         <div className={styles.name__status}>
           <h2 onClick={handleSearchShow}>
-            {`${friendDetail.firstName} ${friendDetail.lastName} `}
+            {currentChat.id
+              ? `${friendDetail.firstName} ${friendDetail.lastName}`
+              : groupDetail.groupName}
           </h2>
           <p>
             <span></span> Online

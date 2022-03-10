@@ -1,6 +1,8 @@
-import { Action } from './index';
-import { ActionType } from './actionType';
-import { IChat, User } from '../utils/interface';
+
+import { Action } from "./index";
+import { ActionType } from "./actionType";
+import { IChat, IMessage, User } from "../utils/interface";
+
 
 interface reducerState {
   data: { [key: string]: any };
@@ -14,6 +16,7 @@ interface reducerState {
   friendDetail: any;
   groupDetail: any;
   searchTerm: string;
+  messages: any;
 }
 
 const AddReducers = (state: reducerState, action: Action): reducerState => {
@@ -59,19 +62,19 @@ const AddReducers = (state: reducerState, action: Action): reducerState => {
         loading: false,
       };
 
-    case ActionType.GET_MESSAGES_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        data: { ...state.data, messages: action.payload },
-      };
+    // case ActionType.GET_MESSAGES_SUCCESS:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     data: { ...state.data, messages: action.payload },
+    //   };
 
-    case ActionType.GET_MESSAGES_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
+    // case ActionType.GET_MESSAGES_FAILURE:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     error: action.payload,
+    //   };
 
     case ActionType.GET_USER_LOGIN_SUCCESS:
       return {
@@ -97,6 +100,7 @@ const AddReducers = (state: reducerState, action: Action): reducerState => {
       return {
         ...state,
         loading: false,
+        groupDetail: {},
         currentChat: action.payload,
       };
 
@@ -116,12 +120,27 @@ const AddReducers = (state: reducerState, action: Action): reducerState => {
     case ActionType.SET_GROUP_DETAIL:
       return {
         ...state,
+        currentChat: {},
         groupDetail: action.payload,
       };
     case ActionType.SET_SEARCH_TERM:
       return {
         ...state,
         searchTerm: action.payload,
+      };
+
+    case ActionType.GET_MESSAGES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        messages: action.payload,
+      };
+
+    case ActionType.GET_MESSAGES_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       };
 
     default:

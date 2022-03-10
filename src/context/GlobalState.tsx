@@ -1,8 +1,9 @@
+
 import axios from 'axios';
 import { ChangeEventHandler, createContext, useReducer } from 'react';
-import { ActionType } from './actionType';
-import AddReducers from './AddReducers';
-import { IChat, User } from '../utils/interface';
+import { ActionType } from "./actionType";
+import AddReducers from "./AddReducers";
+import { IChat, IMessage, User } from "../utils/interface";
 
 interface reducerState {
   data: { [key: string]: any };
@@ -16,13 +17,13 @@ interface reducerState {
   friendDetail: any;
   groupDetail: any;
   searchTerm: string;
+  messages: [IMessage];
   showProfile?: (value: boolean) => void;
   setShowMessages?: (value: boolean) => void;
   getUser?: (data: { user: User; accessToken: string }) => void;
   getFavoriteFriends?: () => void;
   getFriends?: () => void;
   getGroups?: () => void;
-  getMessages?: () => void;
   addFavoriteFriend?: (data: any) => void;
   addFriend?: (data: any) => void;
   removeFavoriteFriend?: (data: any) => void;
@@ -30,6 +31,8 @@ interface reducerState {
   setFriendDetail?: (friend: any) => void;
   setGroupDetail?: (group: any) => void;
   setSearchTerm?: (term: any) => void;
+  getMessages?: (chatId: string) => void;
+  getGroupMessages?: (chatId: string) => void;
 }
 
 const initialState: reducerState = {
@@ -44,6 +47,7 @@ const initialState: reducerState = {
   friendDetail: {},
   groupDetail: {},
   searchTerm: '',
+  messages: [{}],
 };
 
 export const GlobalStateContext = createContext({} as reducerState);
@@ -52,9 +56,8 @@ export const GlobalProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(AddReducers, initialState);
   // const [hideProfileDrop, setHideProfileDrop] = useState<boolean>(true);
 
-  console.log('message....', state.showMessages);
-
   const getUser = (data: { user: User; accessToken: string }) => {
+    sessionStorage.setItem("tok", data.accessToken);
     dispatch({
       type: ActionType.GET_USER_LOGIN_SUCCESS,
       payload: data,
@@ -67,8 +70,8 @@ export const GlobalProvider = ({ children }: any) => {
         data: { data },
       } = await axios.get('http://localhost:3050/api/v1/users/getfavorites', {
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${initialState.accessToken}`,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${state.accessToken}`,
         },
       });
 
@@ -90,8 +93,8 @@ export const GlobalProvider = ({ children }: any) => {
         data: { data },
       } = await axios.get('http://localhost:3050/api/v1/users/friends', {
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${initialState.accessToken}`,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${state.accessToken}`,
         },
       });
 
@@ -111,8 +114,8 @@ export const GlobalProvider = ({ children }: any) => {
     try {
       const res = await axios.get('http://localhost:3050/api/v1/groups/', {
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${initialState.accessToken}`,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${state.accessToken}`,
         },
       });
 
@@ -229,32 +232,57 @@ export const GlobalProvider = ({ children }: any) => {
   };
 
   // Get messages
+  const getMessages = async (chatId: string) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:3050/api/v1/chats/${chatId}/messages`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${state.accessToken}`,
+          },
+        }
+      );
 
-  // const getMessages = async () => {
-  //   try {
-  //     const res = await axios.get(
-  //       "http://localhost:3050/api/v1/chats/61fa3f7e3517687c2ad8ec22/messages",
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${initialState.accessToken}`,
-  //         },
-  //       }
-  //     );
+      // console.log(res.data.messages, "messages******");
 
-  //     console.log(res.data, "messages");
+      dispatch({
+        type: ActionType.GET_MESSAGES_SUCCESS,
+        payload: res.data.messages,
+      });
+    } catch (error: any) {
+      dispatch({
+        type: ActionType.GET_MESSAGES_FAILURE,
+        payload: error.response.error,
+      });
+    }
+  };
 
-  //     dispatch({
-  //       type: ActionType.GET_MESSAGES_SUCCESS,
-  //       payload: res.data,
-  //     });
-  //   } catch (error: any) {
-  //     dispatch({
-  //       type: ActionType.GET_MESSAGES_FAILURE,
-  //       payload: error.response.error,
-  //     });
-  //   }
-  // };
+  const getGroupMessages = async (chatId: string) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:3050/api/v1/groups/${chatId}/messages`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${state.accessToken}`,
+          },
+        }
+      );
+
+      console.log(res.data.messages, "messages******");
+
+      dispatch({
+        type: ActionType.GET_MESSAGES_SUCCESS,
+        payload: res.data.messages,
+      });
+    } catch (error: any) {
+      dispatch({
+        type: ActionType.GET_MESSAGES_FAILURE,
+        payload: error.response.error,
+      });
+    }
+  };
 
   const startChat = async (members: string) => {
     try {
@@ -304,9 +332,6 @@ export const GlobalProvider = ({ children }: any) => {
       payload: e.target.value,
     });
   };
-
-  console.log(state, 'user state');
-
   return (
     <GlobalStateContext.Provider
       value={{
@@ -334,6 +359,9 @@ export const GlobalProvider = ({ children }: any) => {
         groupDetail: state.groupDetail,
         searchTerm: state.searchTerm,
         setSearchTerm,
+        getMessages,
+        getGroupMessages,
+        messages: state.messages,
       }}
     >
       {children}
