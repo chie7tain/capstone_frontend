@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
+// import Pusher from "pusher-js";
 import Pusher from "pusher-js";
+import { GlobalStateContext } from "../../../context/GlobalState";
 import axios from "axios";
 import styles from "./MessageInput.module.scss";
 import { CgAddR } from "react-icons/cg";
@@ -51,8 +53,6 @@ const MessageInput: React.FC = () => {
 
     getChats();
   }, []);
-
-  console.log(conversations, "convos");
 
   useEffect(() => {
     const pusher = new Pusher("94d55bd3b0ecf1274ef3", {

@@ -1,0 +1,41 @@
+.grpProfileImg{
+    width: 50px;
+    background-color: black;
+    border-radius: 50%;
+    
+}
+.commonGrpWrap{
+    height: 27rem;
+    // border: 1px solid red;
+    background-color: rgb(5, 73, 80);
+    margin-top: 1rem;
+    padding: 2rem;
+}
+.commonGroupHeader{
+    font-size: 1.5rem;
+    color: white;
+    
+
+}
+.grpDescriptionWrap{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    // background-color: red;
+}
+.grpDescriptionText{
+    font-size: 1.5rem;
+    color: white;
+    // margin-left: -80px;
+    margin-bottom: .5rem;
+}
+.grpMembers{
+    font-size: 1.2rem;
+    color: white;
+    // margin-left: -80px;
+}
+.classDescriptionCont{
+    // background-color: red;
+    margin-right: 58px;
+    margin-top: .5rem;
+}

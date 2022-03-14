@@ -5,14 +5,17 @@ import { BsPinAngle } from 'react-icons/bs';
 import Spinner from '../common/Spinner';
 // import { Iusers } from '../../interfaces/Iusers';
 const FriendsData: React.FC = () => {
-  const [chat, setChat] = useState('');
+  const [chat, setChat] = useState("");
   const {
     data,
     getFriends,
     setShowMessages,
+    searchTerm,
+    friendDetail,
     startChat,
     setFriendDetail,
-    searchTerm,
+    getMessages,
+    currentChat,
   } = useContext(GlobalStateContext);
 
   const { friends } = data;
@@ -39,7 +42,7 @@ const FriendsData: React.FC = () => {
     setChat(friendId);
 
     const partner = friends?.friends.filter(
-      (active: any) => active._id === friendId
+      (active: any) => active.friendId.id === friendId
     );
 
     setFriendDetail!(partner[0].friendId);
@@ -47,10 +50,15 @@ const FriendsData: React.FC = () => {
   };
 
   useEffect(() => {
+    currentChat.id && getMessages!(currentChat.id!);
+  }, [currentChat.id]);
+
+  useEffect(() => {
     chat && startChat!(chat);
   }, [chat]);
 
-  // () => console.log("I just clicked me!!!", friend._id)
+  console.log("frind details", friendDetail);
+
   return (
     <div>
       {friends.length === 0 ? (
@@ -67,7 +75,7 @@ const FriendsData: React.FC = () => {
             <div
               key={index}
               className={styles.friends__data}
-              onClick={activeChat.bind(this, friend._id)}
+              onClick={activeChat.bind(this, friend.friendId.id)}
             >
               <div className={styles.profile__Header}>
                 <img

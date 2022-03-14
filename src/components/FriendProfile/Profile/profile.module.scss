@@ -1,0 +1,122 @@
+.profileWrapper {
+  margin: 0;
+  padding: 0;
+}
+
+// profileWrapper::-webkit-scrollbar{
+//     overflow-y: scroll;
+//     background-color: red;
+//     border: 5px solid black;
+// }
+
+.profileWrap {
+  display: flex;
+  flex-direction: column;
+  // border: 2px solid red;
+  justify-content: center;
+  align-items: center;
+  height: 40rem;
+  background-color: #054950;
+  // background-color: #111B21;
+  color: white;
+  // margin-bottom: 1rem;
+}
+
+.profilePicWrap {
+  // border: 1px solid red;
+  width: 20rem;
+  height: 20rem;
+  margin-bottom: 0.8rem;
+
+  // height:  12rem;
+  // width: 9.5rem;
+  // border-radius: 1rem;
+  // background-color: white;
+}
+.profilePic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.profileDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.profileName {
+  margin-bottom: 0.8rem;
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+.profileContact {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+.profileIconWrap {
+  margin-top: 2rem;
+  display: flex;
+  width: 150px;
+  // background-color: red;
+  justify-content: space-around;
+  font-size: 1.5rem;
+  color: green;
+}
+.profileIcon {
+  background-color: red;
+}
+.profileIcon:hover {
+  cursor: pointer;
+  margin: 0 auto;
+  // background: red;
+  background-size: 50px;
+}
+.profilePara {
+  display: block;
+}
+.videoIcon {
+  width: 4rem;
+  height: 4rem;
+  padding: 1rem;
+  border-radius: 50%;
+}
+.videoIcon:hover {
+  background-color: aqua;
+  // display: flex;
+  // padding: 1rem;
+  // justify-content: center;
+}
+.phoneIcon {
+  width: 4rem;
+  height: 4rem;
+  padding: 1rem;
+  border-radius: 50%;
+}
+.phoneIcon:hover {
+  background-color: aqua;
+  // display: flex;
+  padding: 1rem;
+  // justify-content: center;
+}
+
+// .videoIcon{
+
+// }
+.profilePara {
+  margin-bottom: 1rem;
+}
+.profileIconDv{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+// .profileWrapper {
+//   // overflow-y: scroll;
+//   background-color: red;
+//   border: 5px solid black;
+//   color: white;
+//   font-size: 10rem;
+// background-color: #f0f0f0;
+// }

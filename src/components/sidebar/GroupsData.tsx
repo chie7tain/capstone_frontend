@@ -5,7 +5,7 @@ import { BsPinAngle } from 'react-icons/bs';
 import Spinner from '../common/Spinner';
 
 const GroupsData: React.FC = () => {
-  const [chat, setChat] = useState('');
+  const [chat, setChat] = useState("");
   const {
     data,
     getGroups,
@@ -13,8 +13,12 @@ const GroupsData: React.FC = () => {
     startChat,
     setGroupDetail,
     searchTerm,
+    groupDetail,
+    getGroupMessages,
+    messages,
   } = useContext(GlobalStateContext);
   const [loading, setLoading] = useState(false);
+
 
   const { groups } = data;
   let filteredGroups;
@@ -39,10 +43,18 @@ const GroupsData: React.FC = () => {
     const partner = groups?.allgroups.filter(
       (active: any) => active.id === groupId
     );
-    console.log('maroooon 5', partner[0]);
     setGroupDetail!(partner[0]);
     setShowMessages!(true);
   };
+
+  useEffect(() => {
+    groupDetail.id && getGroupMessages!(groupDetail.id!);
+  }, [groupDetail.id]);
+
+  // let obj = {};
+  // if (obj) {
+  //   console.log("maroooon 5", groupDetail);
+  // }
 
   // useEffect(() => {
   //   startChat!(chat);

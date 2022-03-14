@@ -6,6 +6,7 @@ export interface IformData {
 }
 
 export interface User {
+  _id?: string;
   user?: string;
   username?: string;
   firstName?: string;
@@ -25,4 +26,17 @@ export interface User {
 export interface IChat {
   id?: string;
   members?: string[];
+}
+
+export interface IMessage {
+  id?: string;
+  senderId?: string;
+  chatId?: string;
+  text?: string;
+  mediaType?: string;
+  mediaUrl?: string;
+  mediaId?: string;
+  deletedAt?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
